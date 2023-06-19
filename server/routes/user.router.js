@@ -47,4 +47,19 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+router.put('/contact-info/:id', rejectUnauthenticated, (req, res) => {
+  const userId = req.params.id
+  const { first_name, last_name, phone_number, email, street_adress, state } = req.body;
+  const queryText = `UPDATE "user" SET "first_name" = $1, "last_name" = $2, "phone_number" = $3,
+                     "email" = $4, "street_adress" = $5, "state" = $6 WHERE "id" = $7;`;
+
+  pool.query(queryText, [first_name, last_name, phone_number, email, street_adress, state, userId])
+    .then((response) => {
+      res.sendStatus(201);
+    }).catch((err) => {
+      console.log('Error updating contact info', err);
+      res.sendStatus(500);
+    })
+})
+
 module.exports = router;
