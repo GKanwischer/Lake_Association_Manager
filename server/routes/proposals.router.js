@@ -48,32 +48,32 @@ router.get('/user', rejectUnauthenticated, (req, res) => {
 });
 
 // post route for submiting a logged-in user's vote on a specific proposal
-router.post('/proposal-vote/:id' ,rejectUnauthenticated, (req, res) => {
+router.post('/proposal-vote/:id', rejectUnauthenticated, (req, res) => {
     const proposalId = req.params.id;
     const { vote } = req.body
     const queryText = `INSERT INTO "proposal_vote" ("proposal_id", "user_id", "vote")
                         VALUES ($1, $2, $3);`;
 
     pool.query(queryText, [proposalId, req.user.id, vote])
-    .then(result => {
-        console.log(`Successful vote cast on proposal id: ${proposalId} for user: ${req.user.username}`);
-        res.status(201).send(result.rows);
-    }).catch(err => {
-        console.log(`Error casting vote on proposal id: ${proposalId} for user: ${req.user.username}`, err);
-        res.sendStatus(500);
-    })
+        .then(result => {
+            console.log(`Successful vote cast on proposal id: ${proposalId} for user: ${req.user.username}`);
+            res.status(201).send(result.rows);
+        }).catch(err => {
+            console.log(`Error casting vote on proposal id: ${proposalId} for user: ${req.user.username}`, err);
+            res.sendStatus(500);
+        })
 })
 
 // delete route for removing a specified proposal that the logged in user posted
 router.delete('/delete/:id', rejectUnauthenticated, (req, res) => {
     const proposalId = req.params.id
     const query = `DELETE FROM "proposal" WHERE "id" = $1 AND "user_id" = $2;`;
-  
+
     pool.query(query, [proposalId, req.user.id])
-      .then(res.sendStatus(200))
-      .catch(err => {
-        console.log('Error deleting proposal', err);
-      })
-  });
+        .then(res.sendStatus(200))
+        .catch(err => {
+            console.log('Error deleting proposal', err);
+        })
+});
 
 module.exports = router;
