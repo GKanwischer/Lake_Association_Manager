@@ -48,7 +48,6 @@ router.get('/user', rejectUnauthenticated, (req, res) => {
 });
 
 // post route for submiting a logged-in user's vote on a specific proposal
-
 router.post('/proposal-vote/:id' ,rejectUnauthenticated, (req, res) => {
     const proposalId = req.params.id;
     const { vote } = req.body
@@ -64,5 +63,17 @@ router.post('/proposal-vote/:id' ,rejectUnauthenticated, (req, res) => {
         res.sendStatus(500);
     })
 })
+
+// delete route for removing a specified proposal that the logged in user posted
+router.delete('/delete/:id', rejectUnauthenticated, (req, res) => {
+    const proposalId = req.params.id
+    const query = `DELETE FROM "proposal" WHERE "id" = $1 AND "user_id" = $2;`;
+  
+    pool.query(query, [proposalId, req.user.id])
+      .then(res.sendStatus(200))
+      .catch(err => {
+        console.log('Error deleting proposal', err);
+      })
+  });
 
 module.exports = router;
