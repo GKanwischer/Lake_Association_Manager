@@ -18,9 +18,9 @@ router.get('/main', rejectUnauthenticated, (req, res) => {
 });
 
 // post route for adding a proposal to the proposal table
-router.post('/add-proposal', rejectUnauthenticated, (req, res) => {
+router.post('/add', rejectUnauthenticated, (req, res) => {
     const { description } = req.body;
-    const queryText = `INSERT INTO "proposal ( "description", "user_id" )
+    const queryText = `INSERT INTO "proposal" ( "description", "user_id" )
                             VALUES ( $1, $2 );`;
 
     pool.query(queryText, [description, req.user.id])
@@ -49,18 +49,17 @@ router.get('/user', rejectUnauthenticated, (req, res) => {
 });
 
 // post route for submiting a logged-in user's vote on a specific proposal
-router.post('/proposal-vote/:id', rejectUnauthenticated, (req, res) => {
-    const proposalId = req.params.id;
-    const { vote } = req.body
+router.post('/vote/', rejectUnauthenticated, (req, res) => {
+    const { proposal_id , vote } = req.body
     const queryText = `INSERT INTO "proposal_vote" ("proposal_id", "user_id", "vote")
                         VALUES ($1, $2, $3);`;
 
-    pool.query(queryText, [proposalId, req.user.id, vote])
+    pool.query(queryText, [proposal_id, req.user.id, vote])
         .then(result => {
-            console.log(`Successful vote cast on proposal id: ${proposalId} for user: ${req.user.username}`);
+            console.log(`Successful vote cast on proposal id: ${proposal_id} for user: ${req.user.username}`);
             res.status(201).send(result.rows);
         }).catch(err => {
-            console.log(`Error casting vote on proposal id: ${proposalId} for user: ${req.user.username}`, err);
+            console.log(`Error casting vote on proposal id: ${proposal_id} for user: ${req.user.username}`, err);
             res.sendStatus(500);
         })
 })
@@ -77,4 +76,32 @@ router.delete('/delete/:id', rejectUnauthenticated, (req, res) => {
         })
 });
 
+
 module.exports = router;
+
+
+// Example of a PostgreSQL transaction --- DELETE LATER!!!
+// router.delete('/delete/:id', rejectUnauthenticated, async (req, res) => {
+//     const proposalId = req.params.id;
+
+//     try {
+//         // Start a transaction
+//         await pool.query('BEGIN');
+
+//         // Delete from the "proposal_vote" table
+//         await pool.query('DELETE FROM "proposal_vote" WHERE "proposal_id" = $1', [proposalId]);
+
+//         // Delete from the "proposal" table
+//         await pool.query('DELETE FROM "proposal" WHERE "id" = $1 AND "user_id" = $2', [proposalId, req.user.id]);
+
+//         // Commit the transaction
+//         await pool.query('COMMIT');
+
+//         res.sendStatus(200);
+//     } catch (err) {
+//         // Rollback the transaction if an error occurs
+//         await pool.query('ROLLBACK');
+//         console.log('Error deleting proposal', err);
+//         res.sendStatus(500);
+//     }
+// });
