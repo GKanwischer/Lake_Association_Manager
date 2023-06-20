@@ -18,9 +18,9 @@ router.get('/main', rejectUnauthenticated, (req, res) => {
 });
 
 // post route for adding a proposal to the proposal table
-router.post('/add-proposal', rejectUnauthenticated, (req, res) => {
+router.post('/add', rejectUnauthenticated, (req, res) => {
     const { description } = req.body;
-    const queryText = `INSERT INTO "proposal ( "description", "user_id" )
+    const queryText = `INSERT INTO "proposal" ( "description", "user_id" )
                             VALUES ( $1, $2 );`;
 
     pool.query(queryText, [description, req.user.id])
@@ -49,18 +49,17 @@ router.get('/user', rejectUnauthenticated, (req, res) => {
 });
 
 // post route for submiting a logged-in user's vote on a specific proposal
-router.post('/proposal-vote/:id', rejectUnauthenticated, (req, res) => {
-    const proposalId = req.params.id;
-    const { vote } = req.body
+router.post('/vote/', rejectUnauthenticated, (req, res) => {
+    const { proposal_id , vote } = req.body
     const queryText = `INSERT INTO "proposal_vote" ("proposal_id", "user_id", "vote")
                         VALUES ($1, $2, $3);`;
 
-    pool.query(queryText, [proposalId, req.user.id, vote])
+    pool.query(queryText, [proposal_id, req.user.id, vote])
         .then(result => {
-            console.log(`Successful vote cast on proposal id: ${proposalId} for user: ${req.user.username}`);
+            console.log(`Successful vote cast on proposal id: ${proposal_id} for user: ${req.user.username}`);
             res.status(201).send(result.rows);
         }).catch(err => {
-            console.log(`Error casting vote on proposal id: ${proposalId} for user: ${req.user.username}`, err);
+            console.log(`Error casting vote on proposal id: ${proposal_id} for user: ${req.user.username}`, err);
             res.sendStatus(500);
         })
 })
