@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
-function proposals( state = [], action ){
-    switch (action.type){
+function proposals(state = [], action) {
+    switch (action.type) {
         case 'SET_PROPS':
             return action.payload;
         default:
@@ -9,16 +9,16 @@ function proposals( state = [], action ){
     }
 }
 
-function userProposals( state = [], action ){
-    switch (action.type){
+function userProposals(state = [], action) {
+    switch (action.type) {
         case 'SET_USER_PROPS':
             return action.payload;
-        default: 
+        default:
             return state;
     }
 }
 
-const propReducer = combineReducers({ main: proposals, user: userProposals});
+const propReducer = combineReducers({ main: proposals, user: userProposals });
 
 export default propReducer;
 

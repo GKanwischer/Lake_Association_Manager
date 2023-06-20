@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 
-function* fetchEventsSaga() { 
+function* fetchEventsSaga() {
     try {
         const response = yield axios.get('/calendar');
         console.log('Successful events fetch request', response.data);
@@ -27,7 +27,7 @@ function* addEventSaga(action) { // expects { description, title, start, end }
     }
 }
 
-function* updateEventSaga(action){ // expects { event_id, description, title, start, end }
+function* updateEventSaga(action) { // expects { event_id, description, title, start, end }
     try {
         yield axios.put(`/calendar/update/${action.payload.event_id}`, action.payload)
         console.log('Successful event update request');
@@ -37,13 +37,13 @@ function* updateEventSaga(action){ // expects { event_id, description, title, st
     }
 }
 
-function* deleteEvent(action){ // expects event_id
+function* deleteEvent(action) { // expects event_id
     try {
         yield axios.delete(`calendar/delete/${action.payload}`);
         console.log('Successful event delete request');
         yield put({ type: 'FETCH_EVENTS' });
     } catch (error) {
-        console.log('Error deleting an event');  
+        console.log('Error deleting an event');
     }
 }
 
