@@ -76,4 +76,32 @@ router.delete('/delete/:id', rejectUnauthenticated, (req, res) => {
         })
 });
 
+
 module.exports = router;
+
+
+// Example of a PostgreSQL transaction --- DELETE LATER!!!
+// router.delete('/delete/:id', rejectUnauthenticated, async (req, res) => {
+//     const proposalId = req.params.id;
+
+//     try {
+//         // Start a transaction
+//         await pool.query('BEGIN');
+
+//         // Delete from the "proposal_vote" table
+//         await pool.query('DELETE FROM "proposal_vote" WHERE "proposal_id" = $1', [proposalId]);
+
+//         // Delete from the "proposal" table
+//         await pool.query('DELETE FROM "proposal" WHERE "id" = $1 AND "user_id" = $2', [proposalId, req.user.id]);
+
+//         // Commit the transaction
+//         await pool.query('COMMIT');
+
+//         res.sendStatus(200);
+//     } catch (err) {
+//         // Rollback the transaction if an error occurs
+//         await pool.query('ROLLBACK');
+//         console.log('Error deleting proposal', err);
+//         res.sendStatus(500);
+//     }
+// });
