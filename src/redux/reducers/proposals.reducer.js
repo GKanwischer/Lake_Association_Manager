@@ -22,4 +22,4 @@ const propReducer = combineReducers({ main: proposals, user: userProposals});
 
 export default propReducer;
 
-// NOTE look into yield all
+// NOTE: look into yield all
