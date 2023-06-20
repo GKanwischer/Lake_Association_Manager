@@ -49,11 +49,11 @@ router.post('/logout', (req, res) => {
 
 router.put('/contact-info/:id', rejectUnauthenticated, (req, res) => {
   const userId = req.params.id
-  const { first_name, last_name, phone_number, email, street_adress, state } = req.body;
+  const { first_name, last_name, phone_number, email, street_address, state, profile_pic } = req.body;
   const queryText = `UPDATE "user" SET "first_name" = $1, "last_name" = $2, "phone_number" = $3,
-                     "email" = $4, "street_adress" = $5, "state" = $6 WHERE "id" = $7;`;
+                     "email" = $4, "street_address" = $5, "state" = $6, "profile_pic" = $7 WHERE "id" = $8;`;
 
-  pool.query(queryText, [first_name, last_name, phone_number, email, street_adress, state, userId])
+  pool.query(queryText, [first_name, last_name, phone_number, email, street_address, state, profile_pic, userId])
     .then((response) => {
       res.sendStatus(201);
     }).catch((err) => {

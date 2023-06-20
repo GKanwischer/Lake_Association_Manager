@@ -36,10 +36,11 @@ router.post('/add-proposal', rejectUnauthenticated, (req, res) => {
 // route for getting all proposals associated with the logged in user
 router.get('/user', rejectUnauthenticated, (req, res) => {
     queryText = `SELECT * FROM "proposal" WHERE "user_id" = $1;`;
+    console.log('user', req.user);
 
     pool.query(queryText, [req.user.id])
         .then(result => {
-            console.log(`Success GETing proposals for user: ${user.username}`);
+            console.log(`Success GETing proposals for user: ${req.user.username}`);
             res.send(result.rows)
         }).catch(err => {
             console.log('Error GETing proposals', err);
