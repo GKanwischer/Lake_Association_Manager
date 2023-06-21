@@ -15,7 +15,7 @@ function* addPropSaga(action) { //
     try {
         yield axios.post('/proposals/add', action.payload);
         console.log('Succesfully added proposal');
-        yield put({ type: 'FETCH_PROPS' });
+        yield put({ type: 'FETCH_USER_PROPS' });
     } catch (error) {
         console.log('Error adding proposal');
     }
