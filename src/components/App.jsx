@@ -19,6 +19,7 @@ import InfoPage from './Pages/InfoPage/InfoPage';
 import LandingPage from './Pages/LandingPage/LandingPage';
 import LoginPage from './Pages/LoginPage/LoginPage';
 import RegisterPage from './Pages/RegisterPage/RegisterPage';
+import MainProps from './Pages/MainProps/MainProps';
 
 import './App.css';
 
@@ -66,6 +67,14 @@ function App() {
             path="/info"
           >
             <InfoPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/proposals"
+          >
+            <MainProps />
           </ProtectedRoute>
 
           <Route
