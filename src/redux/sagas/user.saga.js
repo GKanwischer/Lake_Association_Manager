@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest, takeEvery } from 'redux-saga/effects';
 
 // worker Saga: will be fired on "FETCH_USER" actions
 function* fetchUser() {
@@ -26,6 +26,7 @@ function* fetchUser() {
 
 function* contactInfoSaga(action) { // expects a user id plus { first_name, last_name, phone_number, email, street_address, state, profile_pic }
   try {
+    console.log('action.payload in saga: ', action.payload);
     yield axios.put(`/api/user/contact-info/${action.payload.id}`, action.payload)
     console.log('Successful user update request');
     yield put({ type: 'FETCH_USER' })
@@ -35,8 +36,8 @@ function* contactInfoSaga(action) { // expects a user id plus { first_name, last
 }
 
 function* userSaga() {
-  yield takeLatest('FETCH_USER', fetchUser);
-  // yield takeEvery('USER_CONTACT_INFO', contactInfoSaga)
+  yield takeEvery('FETCH_USER', fetchUser);
+  yield takeEvery('USER_CONTACT_INFO', contactInfoSaga)
 }
 
 export default userSaga;
