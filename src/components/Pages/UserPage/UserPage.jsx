@@ -1,14 +1,16 @@
 import React from 'react';
-import LogOutButton from '../../Shared/LogOutButton/LogOutButton';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+// Component imports
+import LogOutButton from '../../Shared/LogOutButton/LogOutButton';
 import UserPropItem from '../UserPropItem/UserPropItem';
+import UserContactInfo from '../UserContactInfo/UserContactInfo';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
-  const userProps = useSelector(store => store.props.user);
+  const userProps = useSelector((store) => store.props.user);
 
   console.log('user proposals: ', userProps);
 
@@ -20,28 +22,8 @@ function UserPage() {
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
-      <div className="contact-info">
-        <h3>Contact Info</h3>
-        {!user.first_name || !user.last_name ?
-          <span>Name: <input placeholder="First name" type="text" /> <input placeholder="Last name" type="text" /> <button>Update</button></span> :
-          <p>Name: {user.first_name} {user.last_name}</p>}
-        <br />
-        {!user.phone_number ?
-          <span>Phone Number: <input placeholder="phone number" type="number" /><button>Update</button></span> :
-          <p>Phone Number: {user.phone_number}</p>}
-        <br />
-        {!user.email ?
-          <span>Email: <input placeholder="Email Address" type="text" /><button>Update</button></span> :
-          <p>Email address: {user.email}</p>}
-        <br />
-        {!user.street_address || !user.city || !user.state ?
-          <span>Address: <input placeholder="Street Address" type="text" /><input placeholder="City" type="text" /><input placeholder="State" type="text" /><button>Update</button></span> :
-          <div>
-            <p>Address: {user.street_address}</p>
-            <p>{user.city}, {user.state}</p>
-          </div>}
-      </div>
-
+      <UserContactInfo />
+     
       <div className="user-props">
         <h3>Your Proposals</h3>
         <table>

@@ -4,6 +4,8 @@ const userReducer = (state = {}, action) => {
       return action.payload;
     case 'UNSET_USER':
       return {};
+    case 'UPDATE_CONTACT_INFO':
+      return [...state, action.payload];
     default:
       return state;
   }
