@@ -36,6 +36,7 @@ function* contactInfoSaga(action) { // expects a user id plus { first_name, last
 
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  // yield takeEvery('USER_CONTACT_INFO', contactInfoSaga)
 }
 
 export default userSaga;

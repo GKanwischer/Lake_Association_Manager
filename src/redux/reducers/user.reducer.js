@@ -5,7 +5,7 @@ const userReducer = (state = {}, action) => {
     case 'UNSET_USER':
       return {};
     case 'UPDATE_CONTACT_INFO':
-      return [...state, action.payload];
+      return {...state, ...action.payload};
     default:
       return state;
   }
