@@ -13,6 +13,8 @@ export default function UserContactInfo() {
     const [cityInput, setCityInput] = useState(user.city)
     const [stateInput, setStateInput] = useState(user.state)
 
+    console.log('Client side user:' , user);
+
     const contactInfo = {
         first_name: firstNameInput,
         last_name: lastNameInput,
@@ -59,7 +61,6 @@ export default function UserContactInfo() {
                 </span>
                 :
                 <p>Name: {user.first_name} {user.last_name}</p>}
-            <br />
             {!user.phone_number ?
                 <span>Phone Number:
                     <input
@@ -71,7 +72,6 @@ export default function UserContactInfo() {
                 </span>
                 :
                 <p>Phone Number: {user.phone_number}</p>}
-            <br />
             {!user.email ?
                 <span>Email:
                     <input
@@ -83,7 +83,6 @@ export default function UserContactInfo() {
                 </span>
                 :
                 <p>Email address: {user.email}</p>}
-            <br />
             {!user.street_address || !user.city || !user.state ?
                 <span>Address:
                     <input
