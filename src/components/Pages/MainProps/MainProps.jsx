@@ -13,7 +13,7 @@ export default function MainProps() {
 
     return (
         <div className="main-props">
-            <h2>Proposals</h2>
+            <h2>In Progress Proposals</h2>
             <table>
                 <thead>
                     <tr>

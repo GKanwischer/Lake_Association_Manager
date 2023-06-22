@@ -4,9 +4,8 @@ import { useState, useEffect } from "react";
 export default function MainPropItem({ prop }) {
     const dispatch = useDispatch();
     const userVotes = useSelector(store => store.props.user_votes);
-    // const [selectedVote, setSelectedVote] = useState({ proposal_id: prop.id, vote: userVotes.vote });
     const existingVote = userVotes.find(vote => vote.proposal_id === prop.id);
-    console.log('Existing vote: ', existingVote);
+    // console.log('Existing vote: ', existingVote);
     const [selectedVote, setSelectedVote] = useState({ proposal_id: prop.id,
         vote: existingVote ? existingVote.vote : null
     });
