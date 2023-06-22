@@ -60,6 +60,16 @@ function* fetchUserVoteSaga(){
     }
 }
 
+function* updateVoteSaga(){
+    try {
+        yield axios.put(`/proposals/update-vote`, action.payload)
+        console.log('Successful PUT request for updating proposal vote');
+        yield put({ type: 'FETCH_PROPS' })
+      } catch (error) {
+        console.log('Error with PUT request for updating proposal vote');
+      }
+}
+
 
 function* proposalsSaga() {
     yield takeEvery('FETCH_PROPS', fetchAllPropsSaga)
@@ -68,6 +78,7 @@ function* proposalsSaga() {
     yield takeEvery('CAST_VOTE', castVoteSaga)
     yield takeEvery('DELETE_USER_PROP', deletePropSaga)
     yield takeEvery('FETCH_USER_VOTES', fetchUserVoteSaga)
+    yield takeEvery('UPDATE_VOTE', updateVoteSaga)
 }
 
 export default proposalsSaga;

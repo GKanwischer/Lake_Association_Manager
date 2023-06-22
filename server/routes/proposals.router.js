@@ -91,6 +91,21 @@ router.get('/user-votes', rejectUnauthenticated, (req, res) => {
         })
 });
 
+// put route for updating a user's vote on a specific proposal_id
+router.put('/update-vote', rejectUnauthenticated, (req,res) => {
+    const { proposal_id, vote } = req.body;
+    const queryText = `UPDATE "proposal_vote" SET "vote" = $1 WHERE "proposal_id" = $2 AND "user_id" = $3;`;
+
+    pool.query(queryText, [vote, proposal_id, req.user.id])
+    .then((res) => {
+        console.log(`Successfully update vote for proposal id: ${proposal_id}`);
+        res.sendStatus(201);
+      }).catch((err) => {
+        console.log(`Error updating vote at proposal id: ${proposal_id}`, err);
+        res.sendStatus(500);
+      })
+})
+
 module.exports = router;
 
 

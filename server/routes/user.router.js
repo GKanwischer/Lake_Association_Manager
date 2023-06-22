@@ -54,7 +54,8 @@ router.put('/contact-info/:id', rejectUnauthenticated, (req, res) => {
                      "email" = $4, "street_address" = $5, "city" = $6, "state" = $7, "profile_pic" = $8 WHERE "id" = $9;`;
 
   pool.query(queryText, [first_name, last_name, phone_number, email, street_address, city, state, profile_pic, userId])
-    .then((response) => {
+    .then((res) => {
+      console.log('Successfully updated user contact info');
       res.sendStatus(201);
     }).catch((err) => {
       console.log('Error updating contact info', err);
