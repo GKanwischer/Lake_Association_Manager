@@ -1,10 +1,28 @@
 import { useDispatch, useSelector } from "react-redux"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function MainPropItem({ prop }) {
     const dispatch = useDispatch();
     const userVotes = useSelector(store => store.props.user_votes);
-    const [selectedVote, setSelectedVote] = useState({ proposal_id: prop.id, vote: userVotes.vote });
+    // const [selectedVote, setSelectedVote] = useState({ proposal_id: prop.id, vote: userVotes.vote });
+    const existingVote = userVotes.find(vote => vote.proposal_id === prop.id);
+    console.log('Existing vote: ', existingVote);
+    const [selectedVote, setSelectedVote] = useState({ proposal_id: prop.id,
+        vote: existingVote ? existingVote.vote : null
+    });
+    
+    useEffect(() => {
+        dispatch({ type: 'FETCH_USER_VOTES'});
+    }, [])
+
+    useEffect(() => {
+        if (existingVote) {
+            setSelectedVote((prevSelectedVote) => ({
+              ...prevSelectedVote,
+              vote: existingVote.vote,
+            }));
+          }
+        }, [existingVote]);
 
     // console.log('User votes: ', userVotes);
     // console.log(`prop id: ${prop.id}`, prop);
@@ -19,19 +37,22 @@ export default function MainPropItem({ prop }) {
                 dispatch({ type: 'FETCH_USER_VOTES' });
             }
         }
+        // checks if a user's vote exists for the specific proposal and then allows them to update the value of their vote
         if (existingVote) {
             if (existingVote.vote !== selectedVote.vote) {
                 const updatedVote = { proposal_id: existingVote.proposal_id, vote: selectedVote.vote };
-                console.log(`updated vote for proposal id: ${existingVote.proposal_id}: `, updatedVote);
+                // console.log(`updated vote for proposal id: ${existingVote.proposal_id}: `, updatedVote);
                 dispatch({ type: 'UPDATE_VOTE', payload: updatedVote });
                 dispatch({ type: 'FETCH_USER_VOTES' });
             } else {
                 console.log(`Vote value hasn't changed`);
             }
         } else {
+            // if the user doesn't already have a vote cast on the proposal their selected value is sent to the db in a POST request
             dispatch({ type: 'CAST_VOTE', payload: selectedVote })
         }
     }
+
 
     return (
         <tr>
@@ -43,14 +64,16 @@ export default function MainPropItem({ prop }) {
                     <input
                         type="radio"
                         name={prop.id}
-                        value={selectedVote.vote}
+                        value={true}
+                        checked={selectedVote.vote === true}
                         onChange={() => setSelectedVote({ proposal_id: prop.id, vote: true })} /> Pass
                 </label>
                 <label>
                     <input
                         type="radio"
                         name={prop.id}
-                        value={selectedVote.vote}
+                        value={false}
+                        checked={selectedVote.vote === false}
                         onChange={() => setSelectedVote({ proposal_id: prop.id, vote: false })} /> Veto
                 </label>
             </td>
