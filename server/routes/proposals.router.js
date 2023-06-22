@@ -77,6 +77,19 @@ router.delete('/delete/:id', rejectUnauthenticated, (req, res) => {
         })
 });
 
+// route for getting all of the user's votes associated with the different proposal ids
+router.get('/user-votes', rejectUnauthenticated, (req, res) => {
+    queryText = `SELECT "proposal_id", "vote" FROM "proposal_vote" WHERE "user_id" = $1;`;
+
+    pool.query(queryText [req.user.id])
+        .then(result => {
+            console.log(`Successful GETing user's proposal votes`);
+            res.send(result.rows)
+        }).catch(err => {
+            console.log(`Error GETing user's proposal votes`, err);
+            res.sendStatus(500);
+        })
+});
 
 module.exports = router;
 
