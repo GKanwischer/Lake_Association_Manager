@@ -14,13 +14,11 @@ export default function MainPropItem({ prop }) {
         const existingVote = userVotes.find(vote => vote.proposal_id === prop.id);
         console.log("existing vote:", existingVote);
 
-        
         if (existingVote) {
             if (existingVote.vote !== selectedVote.vote) {
                 dispatch({ type: 'FETCH_USER_VOTES' });
             }
         }
-
         if (existingVote) {
             if (existingVote.vote !== selectedVote.vote) {
                 const updatedVote = { proposal_id: existingVote.proposal_id, vote: selectedVote.vote };
