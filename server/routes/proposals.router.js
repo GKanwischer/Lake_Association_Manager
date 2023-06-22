@@ -78,10 +78,10 @@ router.delete('/delete/:id', rejectUnauthenticated, (req, res) => {
 });
 
 // route for getting all of the user's votes associated with the different proposal ids
-router.get('/user-votes', rejectUnauthenticated, (req, res) => {
+router.get('/user-vote', rejectUnauthenticated, (req, res) => {
     queryText = `SELECT "proposal_id", "vote" FROM "proposal_vote" WHERE "user_id" = $1;`;
 
-    pool.query(queryText [req.user.id])
+    pool.query(queryText, [req.user.id])
         .then(result => {
             console.log(`Successful GETing user's proposal votes`);
             res.send(result.rows)
@@ -97,7 +97,7 @@ router.put('/update-vote', rejectUnauthenticated, (req,res) => {
     const queryText = `UPDATE "proposal_vote" SET "vote" = $1 WHERE "proposal_id" = $2 AND "user_id" = $3;`;
 
     pool.query(queryText, [vote, proposal_id, req.user.id])
-    .then((res) => {
+    .then((response) => {
         console.log(`Successfully update vote for proposal id: ${proposal_id}`);
         res.sendStatus(201);
       }).catch((err) => {

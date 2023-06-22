@@ -20,7 +20,7 @@ function userProposals(state = [], action) {
 
 function userVotes(state = [], action){
     switch (action.type) {
-        case 'UPDATE_VOTE':
+        case 'SET_USER_VOTES':
             return action.payload;
         default: 
             return state;

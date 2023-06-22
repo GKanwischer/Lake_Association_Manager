@@ -11,7 +11,7 @@ function* fetchAllPropsSaga() {
     }
 }
 
-function* addPropSaga(action) { // 
+function* addPropSaga(action) { // expects { description }
     try {
         yield axios.post('/proposals/add', action.payload);
         console.log('Succesful POST request for adding a proposal');
@@ -40,7 +40,7 @@ function* castVoteSaga(action) { // expects { proposal_id and vote(true = pass, 
     }
 }
 
-function* deletePropSaga(action) { // expects proposal_id
+function* deletePropSaga(action) { // expects { proposal_id }
     try {
         yield axios.delete(`proposals/delete/${action.payload}`);
         console.log('Successful DELETE request for a user proposal');
@@ -54,13 +54,13 @@ function* fetchUserVoteSaga(){
     try {
         const response = yield axios.get('/proposals/user-vote');
         console.log('Successful GET request for user votes', response);
-        yield put({ type: 'SET_PROPS', payload: response.data });
+        yield put({ type: 'SET_USER_VOTES', payload: response.data });
     } catch (error) {
         console.log('Error with GET request for user votes');
     }
 }
 
-function* updateVoteSaga(){
+function* updateVoteSaga(action){ // expects { payload_id, vote }
     try {
         yield axios.put(`/proposals/update-vote`, action.payload)
         console.log('Successful PUT request for updating proposal vote');
