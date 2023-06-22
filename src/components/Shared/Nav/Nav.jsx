@@ -28,6 +28,10 @@ function Nav() {
               User
             </Link>
 
+            <Link className="navLink" to="/proposals">
+              Proposals
+            </Link>
+
             <Link className="navLink" to="/info">
               Info Page
             </Link>

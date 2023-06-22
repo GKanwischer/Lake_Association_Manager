@@ -24,7 +24,7 @@ function* fetchUser() {
   }
 }
 
-function* contactInfoSaga(action) { // expects a user id plus { first_name, last_name, phone_number, email, street_address, state, profile_pic }
+function* contactInfoSaga(action) { // expects a user id plus { first_name, last_name, phone_number, email, street_address, city, state, profile_pic }
   try {
     console.log('action.payload in saga: ', action.payload);
     yield axios.put(`/api/user/contact-info/${action.payload.id}`, action.payload)

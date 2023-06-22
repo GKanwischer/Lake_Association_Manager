@@ -5,7 +5,8 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 
 // route for getting all of the proposals
 router.get('/main', rejectUnauthenticated, (req, res) => {
-    queryText = `SELECT * FROM "proposal";`;
+    queryText = `SELECT "proposal"."id", "proposal"."description", "proposal"."created_date", "proposal"."status", "user"."first_name", "user"."last_name", "user"."username" FROM "proposal"
+    JOIN "user" ON "proposal"."user_id" = "user"."id" WHERE "status" = 'In Progress';`;
 
     pool.query(queryText)
         .then(result => {
@@ -76,6 +77,34 @@ router.delete('/delete/:id', rejectUnauthenticated, (req, res) => {
         })
 });
 
+// route for getting all of the user's votes associated with the different proposal ids
+router.get('/user-vote', rejectUnauthenticated, (req, res) => {
+    queryText = `SELECT "proposal_id", "vote" FROM "proposal_vote" WHERE "user_id" = $1;`;
+
+    pool.query(queryText, [req.user.id])
+        .then(result => {
+            console.log(`Successful GETing user's proposal votes`);
+            res.send(result.rows)
+        }).catch(err => {
+            console.log(`Error GETing user's proposal votes`, err);
+            res.sendStatus(500);
+        })
+});
+
+// put route for updating a user's vote on a specific proposal_id
+router.put('/update-vote', rejectUnauthenticated, (req,res) => {
+    const { proposal_id, vote } = req.body;
+    const queryText = `UPDATE "proposal_vote" SET "vote" = $1 WHERE "proposal_id" = $2 AND "user_id" = $3;`;
+
+    pool.query(queryText, [vote, proposal_id, req.user.id])
+    .then((response) => {
+        console.log(`Successfully update vote for proposal id: ${proposal_id}`);
+        res.sendStatus(201);
+      }).catch((err) => {
+        console.log(`Error updating vote at proposal id: ${proposal_id}`, err);
+        res.sendStatus(500);
+      })
+})
 
 module.exports = router;
 

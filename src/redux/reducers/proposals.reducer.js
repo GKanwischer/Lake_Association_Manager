@@ -18,7 +18,16 @@ function userProposals(state = [], action) {
     }
 }
 
-const propReducer = combineReducers({ main: proposals, user: userProposals });
+function userVotes(state = [], action){
+    switch (action.type) {
+        case 'SET_USER_VOTES':
+            return action.payload;
+        default: 
+            return state;
+    }
+}
+
+const propReducer = combineReducers({ main: proposals, user: userProposals, user_votes: userVotes });
 
 export default propReducer;
 
