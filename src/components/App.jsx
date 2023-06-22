@@ -20,6 +20,7 @@ import LandingPage from './Pages/LandingPage/LandingPage';
 import LoginPage from './Pages/LoginPage/LoginPage';
 import RegisterPage from './Pages/RegisterPage/RegisterPage';
 import MainProps from './Pages/MainProps/MainProps';
+import Home from './Pages/Home/Home';
 
 import './App.css';
 
@@ -70,11 +71,17 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
             exact
             path="/proposals"
           >
             <MainProps />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact
+            path="/home"
+          >
+            <Home />
           </ProtectedRoute>
 
           <Route
