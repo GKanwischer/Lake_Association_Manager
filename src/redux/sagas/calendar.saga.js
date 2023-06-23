@@ -9,7 +9,7 @@ function* fetchEventsSaga() {
         console.log('Successful events fetch request', response.data);
         yield put({ type: 'SET_EVENTS', payload: response.data });
     } catch (err) {
-        console.log('Error fetching events', err);
+        console.log('Error with GET events request', err);
     }
 }
 

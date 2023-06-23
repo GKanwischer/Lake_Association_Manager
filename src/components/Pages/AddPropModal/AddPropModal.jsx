@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 export default function AddPropModal({isOpen, onClose}){
     const dispatch = useDispatch();
-    const [descriptInput, setDecriptInput] = useState('');
+    const [descriptInput, setDescriptInput] = useState('');
 
     function submitProposal(){
         dispatch({ type: 'ADD_PROP', payload: {description: descriptInput }})
@@ -40,7 +40,7 @@ export default function AddPropModal({isOpen, onClose}){
             value={descriptInput}
             rows={4}
             cols={40}
-            onChange={e => setDecriptInput(e.target.value)}/>
+            onChange={e => setDescriptInput(e.target.value)}/>
             <button onClick={submitProposal}>Submit</button>
 
         </div>

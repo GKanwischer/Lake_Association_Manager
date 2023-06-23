@@ -37,7 +37,7 @@ router.post('/add', rejectUnauthenticated, (req, res) => {
 // route for getting all proposals associated with the logged in user
 router.get('/user', rejectUnauthenticated, (req, res) => {
     queryText = `SELECT * FROM "proposal" WHERE "user_id" = $1;`;
-    console.log('user', req.user);
+    // console.log('user', req.user);
 
     pool.query(queryText, [req.user.id])
         .then(result => {
