@@ -1,7 +1,10 @@
+import { useEffect } from "react";
 import Modal from 'react-modal';
 import './Home.css';
 
 import EventCalendar from "./EventCalendar"
+import HomePassedProps from "./HomePropTables/HomePassedProps";
+import HomeVetoedProps from "./HomePropTables/HomeVetoedProps";
 
 Modal.setAppElement('#react-root');
 
@@ -12,8 +15,11 @@ export default function Home() {
             <div id="home-calendar">
                 <EventCalendar />
             </div>
-            <div id="recently-passed">
-                <h2>Recently Passed Proposals</h2>
+            <div>
+                <HomePassedProps />
+            </div>
+            <div>
+                <HomeVetoedProps />
             </div>
         </div>
     )

@@ -153,20 +153,22 @@ router.post('/vote/', rejectUnauthenticated, (req, res) => {
   });
 });
 
+  function updateProposalStatus(proposalId, status) {
+    const currentDate = new Date();
+    const queryText = `UPDATE "proposal" SET "status" = $1, "status_updated_date" = $2 WHERE "id" = $3;`;
+    
+    pool.query(queryText, [status, currentDate, proposalId])
+      .then(() => {
+        console.log(`Successfully updated status of proposal id ${proposalId} to ${status}`);
+      }).catch(err => {
+        console.log(`Error updating status of proposal id ${proposalId} to ${status}`, err);
+      });
+  }
 
 
 // automatically updates the status of a proposal, when the number of votes in the proposal_vote table 
 // surpress the threshold for PASSED or VETOED
-function updateProposalStatus(proposalId, status) {
-  const queryText = `UPDATE "proposal" SET "status" = $1 WHERE "id" = $2;`;
-  
-  pool.query(queryText, [status, proposalId])
-  .then(() => {
-    console.log(`Successfully updated status of proposal id ${proposalId} to ${status}`);
-  }).catch(err => {
-    console.log(`Error updating status of proposal id ${proposalId} to ${status}`, err);
-  });
-}
+
 
 
 module.exports = router;
