@@ -1,0 +1,24 @@
+.home-container{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.fc { /* the calendar root */
+    width: 500px;
+    max-height: 500px;
+    margin: 0 auto;
+  }
+
+.event-calendar{
+    flex-grow: 1;
+    padding: 3em;
+}
+
+#calendar{
+    display: flex;
+    min-height: 80%;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 14px;
+}

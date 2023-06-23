@@ -7,11 +7,12 @@ import { useDispatch } from 'react-redux';
 
 export default function AddEventModal({ isOpen, onClose }) {
     const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
     const [start, setStart] = useState(moment().format('YYYY-MM-DDTHH:mm'));
     const [end, setEnd] = useState(moment().format('YYYY-MM-DDTHH:mm'));
     const dispatch = useDispatch();
 
-    let eventToAdd = { title, start, end };
+    let eventToAdd = { title, description, start, end };
 
     // console.log('Event: ', eventToAdd);
 
@@ -21,6 +22,7 @@ export default function AddEventModal({ isOpen, onClose }) {
             payload: eventToAdd
         })
         setTitle('');
+        setDescription('');
         setStart(moment().format('YYYY-MM-DDTHH:mm'));
         setEnd(moment().format('YYYY-MM-DDTHH:mm'));
         onClose();
@@ -29,6 +31,12 @@ export default function AddEventModal({ isOpen, onClose }) {
         <Modal isOpen={isOpen} onRequestClose={onClose}>
             {/* <form onSubmit={onSubmit}> */}
             <input placeholder="title" value={title} onChange={e => setTitle(e.target.value)} />
+            <textarea 
+            placeholder='Proposal Description'
+            value={description}
+            rows={4}
+            cols={40}
+            onChange={e => setDescription(e.target.value)}/>
             <div>
                 <label>Start Date</label>
                     <input

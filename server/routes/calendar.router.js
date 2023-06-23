@@ -21,7 +21,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.post('/create-event', rejectUnauthenticated, (req, res) => {
     const { title, description, start, end } = req.body;
     const queryText = `INSERT INTO "event_calendar" ( "title", "description", "start", "end", "user_id")
-    VALUES ($1, $2, $3, $4);`
+    VALUES ($1, $2, $3, $4, $5);`
 
     pool.query(queryText, [title, description, start, end, req.user.id])
         .then(res.sendStatus(201))
