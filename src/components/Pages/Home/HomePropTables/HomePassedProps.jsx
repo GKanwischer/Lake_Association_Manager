@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import HomePropItem from "../HomePropItem";
+import HomePropItem from "./HomePropItem";
 
 export default function HomePassedProps() {
     const passedProps = useSelector(store => store.props.main.filter(prop => prop.status === 'Passed'));

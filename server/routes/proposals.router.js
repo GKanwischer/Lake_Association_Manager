@@ -5,7 +5,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 
 // route for getting all of the proposals
 router.get('/main', rejectUnauthenticated, (req, res) => {
-  queryText = `SELECT "proposal"."id", "proposal"."description", "proposal"."created_date", "proposal"."status", "user"."first_name", "user"."last_name", "user"."username" FROM "proposal"
+  queryText = `SELECT "proposal"."id", "proposal"."description", "proposal"."created_date", "proposal"."status", "proposal"."status_updated_date", "user"."first_name", "user"."last_name", "user"."username" FROM "proposal"
     JOIN "user" ON "proposal"."user_id" = "user"."id";`; //  WHERE "status" = 'In Progress'
 
   pool.query(queryText)

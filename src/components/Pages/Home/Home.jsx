@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Modal from 'react-modal';
 import './Home.css';
 
-import EventCalendar from "./EventCalendar"
+import EventCalendar from "./Calendar/EventCalendar"
 import HomePassedProps from "./HomePropTables/HomePassedProps";
 import HomeVetoedProps from "./HomePropTables/HomeVetoedProps";
 
