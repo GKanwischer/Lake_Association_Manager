@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import MainPropItem from "../MainPropItem/MainPropItem";
 
 export default function MainProps() {
-    const proposals = useSelector(store => store.props.main)
+    const inProgressProps = useSelector(store => store.props.main.filter(prop => prop.status === 'In Progress'));
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -25,7 +25,7 @@ export default function MainProps() {
                     </tr>
                 </thead>
                 <tbody>
-                    {proposals.map(prop => <MainPropItem key={prop.id} prop={prop} />)}
+                    {inProgressProps.map(prop => <MainPropItem key={prop.id} prop={prop} />)}
                 </tbody>
             </table>
         </div>

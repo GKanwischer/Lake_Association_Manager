@@ -183,9 +183,10 @@ router.put('/update-vote', rejectUnauthenticated, (req, res) => {
   });
 
   function updateProposalStatus(proposalId, status) {
-    const queryText = `UPDATE "proposal" SET "status" = $1 WHERE "id" = $2;`;
+    const currentDate = new Date();
+    const queryText = `UPDATE "proposal" SET "status" = $1, "status_updated_date" = $2 WHERE "id" = $3;`;
     
-    pool.query(queryText, [status, proposalId])
+    pool.query(queryText, [status, currentDate, proposalId])
       .then(() => {
         console.log(`Successfully updated status of proposal id ${proposalId} to ${status}`);
       }).catch(err => {
