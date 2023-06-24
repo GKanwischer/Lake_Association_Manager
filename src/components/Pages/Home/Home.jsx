@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import Modal from 'react-modal';
 import './Home.css';
 
@@ -9,6 +10,12 @@ import HomeVetoedProps from "./HomePropTables/HomeVetoedProps";
 Modal.setAppElement('#react-root');
 
 export default function Home() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch({ type: 'FETCH_PROPS' });
+        dispatch({ type: 'FETCH_USER_VOTES' });
+      }, []);
 
     return (
         <div className="home-container">

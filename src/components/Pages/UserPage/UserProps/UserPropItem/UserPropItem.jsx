@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux"
+import moment from "moment";
 
 export default function UserPropItem({prop}){
     const dispatch = useDispatch();
@@ -14,7 +15,7 @@ export default function UserPropItem({prop}){
     return(
         <tr>
             <td>{prop.description}</td>
-            <td>{prop.created_date}</td>
+            <td>{moment(prop.created_date).format('LLL')}</td>
             <td>{prop.status}</td>
             <td><button onClick={handleDelete}>Delete</button></td>
         </tr>

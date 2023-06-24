@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import MainPropItem from "../MainPropItem/MainPropItem";
+import MainPropItem from "./MainPropItem/MainPropItem";
 
 export default function MainProps() {
 

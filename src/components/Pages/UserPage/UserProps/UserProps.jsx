@@ -2,8 +2,8 @@ import React from 'react';
 import Modal from 'react-modal';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import UserPropItem from '../UserPropItem/UserPropItem';
-import AddPropModal from '../AddPropModal/AddPropModal';
+import UserPropItem from './UserPropItem/UserPropItem';
+import AddPropModal from '../../AddPropModal/AddPropModal';
 
 Modal.setAppElement('#react-root');
 

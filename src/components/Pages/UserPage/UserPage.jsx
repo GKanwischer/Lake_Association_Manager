@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 
 // Component imports
 import LogOutButton from '../../Shared/LogOutButton/LogOutButton';
-import UserContactInfo from '../UserContactInfo/UserContactInfo';
-import UserProps from '../UserProps/UserProps';
+import UserContactInfo from './UserContactInfo/UserContactInfo';
+import UserProps from './UserProps/UserProps';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM

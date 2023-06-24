@@ -104,8 +104,8 @@ export default function UserContactInfo() {
                 </span>
                 :
                 <div>
-                    <p>Address: {user.street_address}</p>
-                    <p>{user.city}, {user.state}</p>
+                    <p>Address: {user.street_address} - { }
+                    {user.city}, {user.state}</p>
                 </div>}
         </div>
     )

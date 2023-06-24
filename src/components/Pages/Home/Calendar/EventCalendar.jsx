@@ -20,8 +20,8 @@ export default function EventCalendar() {
         dispatch({ type: 'FETCH_EVENTS' });
     }, []);
 
-    function handleDeleteEvent() {
-        console.log('Event', events)
+    function handleDeleteEvent(clickedInfo) {
+        console.log('clicked event', clickedInfo.event);
     }
 
     return (
