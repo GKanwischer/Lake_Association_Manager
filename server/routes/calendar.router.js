@@ -35,20 +35,20 @@ router.post('/create-event', rejectUnauthenticated, (req, res) => {
 router.put('/update/:id', rejectUnauthenticated, (req, res) => {
     const eventId = req.params.id;
     const { description, title, start, end } = req.body;
-    const query = `UPDATE "calendar_event" SET "description" = $1, "title" = $2, "start" = $3, "end" = $4 
-                    "WHERE "id" = $5 AND "user_id" = $6;`;
+    const query = `UPDATE "event_calendar" SET "description" = $1, "title" = $2, "start" = $3, "end" = $4 
+                    WHERE "id" = $5 AND "user_id" = $6;`;
 
     pool.query(query, [description, title, start, end, eventId, req.user.id])
         .then(res.sendStatus(200))
         .catch(err => {
-            console.log('Error deleting event', err);
+            console.log('Error updating an event', err);
         })
 });
 
 // route for deleting an event that was created by the logged in user
 router.delete('/delete/:id', rejectUnauthenticated, (req, res) => {
     const eventId = req.params.id
-    const query = `DELETE FROM "calendar_event" WHERE "id" = $1 AND "user_id" = $2;`;
+    const query = `DELETE FROM "event_calendar" WHERE "id" = $1 AND "user_id" = $2;`;
 
     pool.query(query, [eventId, req.user.id])
         .then(res.sendStatus(200))
