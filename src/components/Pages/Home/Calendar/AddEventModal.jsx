@@ -29,7 +29,6 @@ export default function AddEventModal({ isOpen, onClose }) {
     }
     return (
         <Modal isOpen={isOpen} onRequestClose={onClose}>
-            {/* <form onSubmit={onSubmit}> */}
             <input placeholder="title" value={title} onChange={e => setTitle(e.target.value)} />
             <textarea 
             placeholder='Proposal Description'
@@ -54,8 +53,6 @@ export default function AddEventModal({ isOpen, onClose }) {
                 />
             </div>
             <button onClick={onSubmit}>Add Event</button>
-            {/* </form> */}
-
         </Modal>
     )
 }

@@ -1,22 +1,34 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import './UserPage.css'
 
 // Component imports
 import LogOutButton from '../../Shared/LogOutButton/LogOutButton';
 import UserContactInfo from './UserContactInfo/UserContactInfo';
 import UserProps from './UserProps/UserProps';
+import UserEvents from './UserEvents/UserEvents';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
+  const dispatch = useDispatch();
 
   const user = useSelector((store) => store.user);
+
+  useEffect(() => {
+    dispatch({ type: 'FETCH_EVENTS' });
+  }, []);
 
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
+      <div className="user-top">
       <UserContactInfo />
+      <UserEvents />
+      </div>
       <UserProps />
+      <br/>
       <LogOutButton className="btn" />
     </div>
   );
