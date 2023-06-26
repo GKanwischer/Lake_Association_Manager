@@ -4,7 +4,7 @@ const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware')
 
 router.get('/users' , rejectUnauthenticated, (req,res) => {
-    const queryText = `Select "id", "username", "first_name", "last_name", "phone_number", "email", "street_address", "city", "state", "is_admin"
+    const queryText = `SELECT "id", "username", "first_name", "last_name", "phone_number", "email", "street_address", "city", "state", "is_admin"
                         FROM "user"
                         ORDER BY "is_admin" DESC;`;
     pool.query(queryText)
@@ -31,6 +31,25 @@ router.delete('/user-delete/:id', rejectUnauthenticated, (req,res) => {
     } else {
         console.log('Unauthorized delete request. Must be an Admin to remove a user');
     }
+})
+
+router.get('/props' , rejectUnauthenticated, (req,res) => {
+    const queryText = `SELECT "proposal"."id", "proposal"."description", "proposal"."status", "proposal"."created_date", "user"."first_name", "user"."last_name",
+                        COUNT("proposal_vote"."vote") FILTER (WHERE "proposal_vote"."vote" = true) AS true_votes,
+                        COUNT("proposal_vote"."vote") FILTER (WHERE "proposal_vote"."vote" = false) AS false_votes
+                        FROM"proposal"
+                        JOIN "user" ON "proposal"."user_id" = "user"."id"
+                        LEFT JOIN "proposal_vote" ON "proposal"."id" = "proposal_vote"."proposal_id"
+                        GROUP BY "proposal"."id", "proposal"."created_date", "user"."first_name", "user"."last_name"
+                        ORDER BY  "proposal"."created_date" ASC;`;
+    pool.query(queryText)
+    .then(result => {
+        console.log('Success GETing proposals for Admin');
+        res.send(result.rows);
+    }).catch(err => {
+        console.log('Error GETing proposals for Admin', err);
+        res.sendStatus(500);
+    })
 })
 
 router.delete('/prop-delete/:id', rejectUnauthenticated, (req,res) => {

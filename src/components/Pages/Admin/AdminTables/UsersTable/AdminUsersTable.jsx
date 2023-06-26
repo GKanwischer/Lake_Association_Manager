@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 import AdminUserItem from "./AdminUserItem";
 
 export default function AdminUsersTable() {
-    const users = useSelector(store => store.admin_users);
+    const users = useSelector(store => store.admin.users);
 
     return (
         <div className="admin-users">

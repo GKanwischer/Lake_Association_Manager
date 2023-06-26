@@ -1,5 +1,6 @@
+import { combineReducers } from "redux";
 
-export default function adminUsersReducer(state = [], action){
+function adminUsersReducer(state = [], action){
     switch (action.type){
         case 'ADMIN_SET_USERS':
             return action.payload;
@@ -7,3 +8,16 @@ export default function adminUsersReducer(state = [], action){
             return state;
     }
 }
+
+function adminPropsReducer(state = [], action){
+    switch (action.type){
+        case 'ADMIN_SET_PROPS':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+const adminReducer = combineReducers({ users: adminUsersReducer, props: adminPropsReducer})
+
+export default adminReducer
