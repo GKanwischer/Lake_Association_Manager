@@ -47,15 +47,14 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
-router.put('/contact-info/:id', rejectUnauthenticated, (req, res) => {
-  const userId = req.params.id
+router.put('/contact-info/', rejectUnauthenticated, (req, res) => {
   const { first_name, last_name, phone_number, email, street_address, city, state, profile_pic } = req.body;
   const queryText = `UPDATE "user" SET "first_name" = $1, "last_name" = $2, "phone_number" = $3,
                      "email" = $4, "street_address" = $5, "city" = $6, "state" = $7, "profile_pic" = $8 WHERE "id" = $9;`;
 
-  pool.query(queryText, [first_name, last_name, phone_number, email, street_address, city, state, profile_pic, userId])
-    .then((res) => {
-      console.log('Successfully updated user contact info');
+  pool.query(queryText, [first_name, last_name, phone_number, email, street_address, city, state, profile_pic, req.user.id])
+    .then((result) => {
+      console.log(`Successfully updated user contact info for ${req.user.username}`);
       res.sendStatus(201);
     }).catch((err) => {
       console.log('Error updating contact info', err);

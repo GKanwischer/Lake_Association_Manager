@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 
-export default function UserContactInfo() {
+export default function ContactInfoTest() {
     const dispatch = useDispatch();
     const user = useSelector((store) => store.user);
     // local input states
@@ -12,6 +12,7 @@ export default function UserContactInfo() {
     const [streetAddressInput, setStreetAddressInput] = useState(user.street_address)
     const [cityInput, setCityInput] = useState(user.city)
     const [stateInput, setStateInput] = useState(user.state)
+    const [editMode, setEditMode] = useState(false)
 
     console.log('Client side user:', user);
 
@@ -30,21 +31,29 @@ export default function UserContactInfo() {
             type: 'UPDATE_CONTACT_INFO',
             payload: contactInfo
         })
-    }
-
-    function submitChanges() {
         dispatch({
             type: 'USER_CONTACT_INFO',
             payload: user
         })
+        setEditMode(false);
     }
+
+    // function submitChanges() {
+    //     dispatch({
+    //         type: 'USER_CONTACT_INFO',
+    //         payload: user
+    //     })
+    // }
 
     return (
         <div className="contact-info">
-            <h3>Contact Info</h3>
-            <button onClick={submitChanges}>Confirm Changes</button>
+            <div className="contact-header">
+                <h3>Contact Info</h3>
+                {!editMode ? <button onClick={() => setEditMode(true)}>Edit</button> 
+                : <button onClick={handleUpdate}>Update</button>}
+            </div>
 
-            {!user.first_name || !user.last_name
+            {editMode
                 ? <span>Name:
                     <input
                         placeholder="First name"
@@ -56,30 +65,37 @@ export default function UserContactInfo() {
                         type="text"
                         value={lastNameInput}
                         onChange={e => setLastNameInput(e.target.value)} />
-                    <button onClick={handleUpdate}>Update</button>
                 </span>
-                : <p>Name: {user.first_name} {user.last_name}</p>}
-            {!user.phone_number
+                : (!user.first_name || !user.last_name)
+                    ? <span>Name: Not Given</span>
+                    : <p>Name: {user.first_name} {user.last_name}</p>}
+
+            <br />
+            {editMode
                 ? <span>Phone Number:
                     <input
                         placeholder="phone number"
                         type="tel"
                         value={phoneNumberInput}
                         onChange={e => setPhoneNumberInput(e.target.value)} />
-                    <button onClick={handleUpdate}>Update</button>
                 </span>
-                : <p>Phone Number: {user.phone_number}</p>}
-            {!user.email
+                : (!user.phone_number)
+                    ? <span>Phone Number: Not Given</span>
+                    : <p>Phone Number: {user.phone_number}</p>}
+            <br />
+            {editMode
                 ? <span>Email:
                     <input
                         placeholder="Email Address"
                         type="email"
                         value={emailInput}
                         onChange={e => setEmailInput(e.target.value)} />
-                    <button onClick={handleUpdate}>Update</button>
                 </span>
-                : <p>Email address: {user.email}</p>}
-            {!user.street_address || !user.city || !user.state
+                : (!user.email)
+                    ? <span>Email: Not Given</span>
+                    : <p>Email address: Not Given{user.email}</p>}
+            <br />
+            {editMode
                 ? <span>Address:
                     <input
                         placeholder="Street Address"
@@ -96,12 +112,56 @@ export default function UserContactInfo() {
                         type="text"
                         value={stateInput}
                         onChange={e => setStateInput(e.target.value)} />
-                    <button onClick={handleUpdate}>Update</button>
                 </span>
-                : <div>
-                    <p>Address: {user.street_address} - { }
+                : (!user.street_address || !user.city || !user.state)
+                    ? <span>Address: Not Given</span>
+                    : <div><p>Address: {user.street_address} - { }
                         {user.city}, {user.state}</p>
-                </div>}
+                    </div>}
         </div>
     )
 }
+
+{/* <button onClick={submitChanges}>Confirm Changes</button> */ }
+
+{/* <input
+placeholder="First name"
+type="text"
+value={firstNameInput}
+onChange={e => setFirstNameInput(e.target.value)} />
+<input
+placeholder="Last name"
+type="text"
+value={lastNameInput}
+onChange={e => setLastNameInput(e.target.value)} /> */}
+
+{/* <input
+placeholder="phone number"
+type="tel"
+value={phoneNumberInput}
+onChange={e => setPhoneNumberInput(e.target.value)} />
+<button onClick={handleUpdate}>Update</button> */}
+
+{/* <input
+placeholder="Email Address"
+type="email"
+value={emailInput}
+onChange={e => setEmailInput(e.target.value)} />
+<button onClick={handleUpdate}>Update</button> */}
+
+{/* <input
+placeholder="Street Address"
+type="text"
+value={streetAddressInput}
+onChange={e => setStreetAddressInput(e.target.value)} />
+<input
+placeholder="City"
+type="text"
+value={cityInput}
+onChange={e => setCityInput(e.target.value)} />
+<input
+placeholder="State"
+type="text"
+value={stateInput}
+onChange={e => setStateInput(e.target.value)} />
+<button onClick={handleUpdate}>Update</button> */}

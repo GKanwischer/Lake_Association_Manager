@@ -6,6 +6,7 @@ import './UserPage.css'
 // Component imports
 import LogOutButton from '../../Shared/LogOutButton/LogOutButton';
 import UserContactInfo from './UserContactInfo/UserContactInfo';
+import ContactInfoTest from './UserContactInfo/ContactInfoTest';
 import UserProps from './UserProps/UserProps';
 import UserEvents from './UserEvents/UserEvents';
 
@@ -24,7 +25,8 @@ function UserPage() {
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       <div className="user-top">
-      <UserContactInfo />
+      <ContactInfoTest />
+      {/* <UserContactInfo /> */}
       <UserEvents />
       </div>
       <UserProps />
