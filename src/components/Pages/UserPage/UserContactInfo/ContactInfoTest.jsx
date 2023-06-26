@@ -14,26 +14,28 @@ export default function ContactInfoTest() {
     const [stateInput, setStateInput] = useState(user.state)
     const [editMode, setEditMode] = useState(false)
 
-    console.log('Client side user:', user);
+    // console.log('Client side user:', user);
 
     const contactInfo = {
         first_name: firstNameInput,
         last_name: lastNameInput,
-        phone_number: phoneNumberInput,
+        phone_number: Number(phoneNumberInput),
         email: emailInput,
         street_address: streetAddressInput,
         city: cityInput,
         state: stateInput
     }
 
+    console.log('updated contact info: ', contactInfo);
+
     function handleUpdate() {
-        dispatch({
-            type: 'UPDATE_CONTACT_INFO',
-            payload: contactInfo
-        })
+        // dispatch({
+        //     type: 'UPDATE_CONTACT_INFO',
+        //     payload: 
+        // })
         dispatch({
             type: 'USER_CONTACT_INFO',
-            payload: user
+            payload: contactInfo
         })
         setEditMode(false);
     }
@@ -124,44 +126,3 @@ export default function ContactInfoTest() {
 
 {/* <button onClick={submitChanges}>Confirm Changes</button> */ }
 
-{/* <input
-placeholder="First name"
-type="text"
-value={firstNameInput}
-onChange={e => setFirstNameInput(e.target.value)} />
-<input
-placeholder="Last name"
-type="text"
-value={lastNameInput}
-onChange={e => setLastNameInput(e.target.value)} /> */}
-
-{/* <input
-placeholder="phone number"
-type="tel"
-value={phoneNumberInput}
-onChange={e => setPhoneNumberInput(e.target.value)} />
-<button onClick={handleUpdate}>Update</button> */}
-
-{/* <input
-placeholder="Email Address"
-type="email"
-value={emailInput}
-onChange={e => setEmailInput(e.target.value)} />
-<button onClick={handleUpdate}>Update</button> */}
-
-{/* <input
-placeholder="Street Address"
-type="text"
-value={streetAddressInput}
-onChange={e => setStreetAddressInput(e.target.value)} />
-<input
-placeholder="City"
-type="text"
-value={cityInput}
-onChange={e => setCityInput(e.target.value)} />
-<input
-placeholder="State"
-type="text"
-value={stateInput}
-onChange={e => setStateInput(e.target.value)} />
-<button onClick={handleUpdate}>Update</button> */}
