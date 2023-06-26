@@ -4,8 +4,9 @@ const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware')
 
 router.get('/users' , rejectUnauthenticated, (req,res) => {
-    const queryText = `Select "id", "username", "first_name", "last_name", "phone_number", "email", "street_address", "city", "state"
-                        FROM "user";`;
+    const queryText = `Select "id", "username", "first_name", "last_name", "phone_number", "email", "street_address", "city", "state", "is_admin"
+                        FROM "user"
+                        ORDER BY "is_admin" DESC;`;
     pool.query(queryText)
     .then(result => {
         console.log('Success GETing users');
@@ -16,8 +17,9 @@ router.get('/users' , rejectUnauthenticated, (req,res) => {
     })
 })
 
-router.delete('/user-delete/id', rejectUnauthenticated, (req,res) => {
-    const userId = req.params;
+router.delete('/user-delete/:id', rejectUnauthenticated, (req,res) => {
+    const userId = Number(req.params.id);
+    console.log('Server side user id for admin delete: ', userId);
     const queryText = `DELETE FROM "user" WHERE "id" = $1;`;
 
     if(req.user.is_admin){
@@ -31,7 +33,7 @@ router.delete('/user-delete/id', rejectUnauthenticated, (req,res) => {
     }
 })
 
-router.delete('/prop-delete/id', rejectUnauthenticated, (req,res) => {
+router.delete('/prop-delete/:id', rejectUnauthenticated, (req,res) => {
     const propId = req.params;
     const queryText = `DELETE FROM "proposal" WHERE "id" = $1;`;
 
@@ -46,7 +48,7 @@ router.delete('/prop-delete/id', rejectUnauthenticated, (req,res) => {
     }
 })
 
-router.delete('/event-delete/id', rejectUnauthenticated, (req,res) => {
+router.delete('/event-delete/:id', rejectUnauthenticated, (req,res) => {
     const userId = req.params;
     const queryText = `DELETE FROM "event_calendar" WHERE "id" = $1;`;
 
@@ -58,6 +60,21 @@ router.delete('/event-delete/id', rejectUnauthenticated, (req,res) => {
         })
     } else {
         console.log('Unauthorized delete request. Not an Admin or the user who created the event');
+    }
+})
+
+router.put('/user_level/:id', (req,res) => {
+    const userId = req.params.id;
+    const queryText = `UPDATE "user" SET "is_admin" = NOT "is_admin" WHERE "id" = $1;`;
+
+    if(req.user.is_admin){
+        pool.query(queryText, [userId])
+        .then(res.sendStatus(200))
+        .catch(err => {
+          console.log(`Error updating user level for user at id: ${userId}`, err);
+        })
+    } else {
+        console.log('Unauthorized update request. Need to be an admin to update someone\'s user level');
     }
 })
 

@@ -24,7 +24,7 @@ function* addPropSaga(action) { // expects { description }
 function* fetchUserPropSaga() {
     try {
         const response = yield axios.get('/proposals/user');
-        console.log('Successful GET reqyest for user proposals');
+        console.log('Successful GET request for user proposals');
         yield put({ type: 'SET_USER_PROPS', payload: response.data })
     } catch (error) {
         console.log('Error with GET request for user proposals');

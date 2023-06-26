@@ -3,7 +3,7 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 import calendarReducer from './calendar.reducer';
 import propReducer from './proposals.reducer';
-import adminReducer from './admin.reducer';
+import adminUsersReducer from './admin.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   events: calendarReducer,
   props: propReducer,
-  admin: adminReducer,
+  admin_users: adminUsersReducer,
 });
 
 export default rootReducer;

@@ -5,7 +5,7 @@ function* fetchUsersSaga() {
     try {
         const response = yield axios.get('/admin/users');
         console.log('Successful users fetch request', response.data);
-        yield put({ type: 'SET_ADMIN_USERS', payload: response.data });
+        yield put({ type: 'ADMIN_SET_USERS', payload: response.data });
     } catch (err) {
         console.log('Error with GET users request', err);
     }
@@ -33,11 +33,22 @@ function* adminDeleteEventSaga(action){ // expects an event id
 
 function* adminDeletePropSaga(action){ // expects a prop id
     try {
-        yield axios.delete(`/prop-delete/${action.payload}`);
+        yield axios.delete(`/admin/prop-delete/${action.payload}`);
         console.log(`Successful DELETE request of prop id: ${action.payload}`);
         yield put({ type: 'FETCH_PROPS' })
     } catch (error) {
         console.log(`Error with DELETE request of prop id: ${action.payload}`);
+    }
+}
+
+function* adminUserLevelUpdateSage(action){
+    try {
+        yield axios.put(`/admin/user_level/${action.payload}`);
+        console.log(`Successful UPDATE request to change the user level of user id: ${action.payload}`);
+        yield put({ type: 'ADMIN_FETCH_USERS' })
+    } catch (error) {
+        console.log(`Error with UPDATE request to change the user level of user id ${action.payload}`);
+        
     }
 }
 
@@ -46,6 +57,7 @@ function* adminSaga(){
     yield takeEvery( 'ADMIN_DELETE_USER' , adminDeleteUserSaga)
     yield takeEvery( 'ADMIN_DELETE_EVENT' , adminDeleteEventSaga)
     yield takeEvery( 'ADMIN_DELETE_PROP' , adminDeletePropSaga)
+    yield takeEvery( 'ADMIN_USER_LEVEL' , adminUserLevelUpdateSage)
 }
 
 export default adminSaga;
