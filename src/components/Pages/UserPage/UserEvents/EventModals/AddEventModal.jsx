@@ -14,8 +14,6 @@ export default function AddEventModal({ isOpen, onClose }) {
 
     let eventToAdd = { title, description, start, end };
 
-    // console.log('Event: ', eventToAdd);
-
     const onSubmit = () => {
         dispatch({
             type: 'ADD_EVENT',
@@ -29,21 +27,20 @@ export default function AddEventModal({ isOpen, onClose }) {
     }
     return (
         <Modal isOpen={isOpen} onRequestClose={onClose}>
-            {/* <form onSubmit={onSubmit}> */}
             <input placeholder="title" value={title} onChange={e => setTitle(e.target.value)} />
-            <textarea 
-            placeholder='Proposal Description'
-            value={description}
-            rows={4}
-            cols={40}
-            onChange={e => setDescription(e.target.value)}/>
+            <textarea
+                placeholder='Proposal Description'
+                value={description}
+                rows={4}
+                cols={40}
+                onChange={e => setDescription(e.target.value)} />
             <div>
                 <label>Start Date</label>
-                    <input
-                        type='datetime-local'
-                        value={start}
-                        onChange={e => setStart(e.target.value)}
-                    />
+                <input
+                    type='datetime-local'
+                    value={start}
+                    onChange={e => setStart(e.target.value)}
+                />
             </div>
             <div>
                 <label>End Date</label>
@@ -54,8 +51,6 @@ export default function AddEventModal({ isOpen, onClose }) {
                 />
             </div>
             <button onClick={onSubmit}>Add Event</button>
-            {/* </form> */}
-
         </Modal>
     )
 }

@@ -1,0 +1,22 @@
+.user-top{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.user-props{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contact-body{
+    display: flex;
+    flex-direction: column;
+}

@@ -1,8 +1,6 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
-
-
 function* fetchEventsSaga() {
     try {
         const response = yield axios.get('/calendar');

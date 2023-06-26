@@ -19,7 +19,7 @@ export default function ContactInfoTest() {
     const contactInfo = {
         first_name: firstNameInput,
         last_name: lastNameInput,
-        phone_number: Number(phoneNumberInput),
+        phone_number: phoneNumberInput,
         email: emailInput,
         street_address: streetAddressInput,
         city: cityInput,
@@ -59,18 +59,20 @@ export default function ContactInfoTest() {
                 </span>
                 : (!user.first_name || !user.last_name)
                     ? <span>Name: Not Given</span>
-                    : <span>Name: {user.first_name} {user.last_name}</span>}
+                    : <p>Name: {user.first_name} {user.last_name}</p>}
+            <br />
             {editMode
                 ? <span>Phone Number:
                     <input
                         placeholder="phone number"
                         type="tel"
-                        value={phoneNumberInput === '0' ? '' : phoneNumberInput}
+                        value={phoneNumberInput}
                         onChange={e => setPhoneNumberInput(e.target.value)} />
                 </span>
-                : (!user.phone_number || user.phone_number === '0')
+                : (!user.phone_number)
                     ? <span>Phone Number: Not Given</span>
-                    : <span>Phone Number: {user.phone_number}</span>}
+                    : <p>Phone Number: {user.phone_number}</p>}
+            <br />
             {editMode
                 ? <span>Email:
                     <input
@@ -81,7 +83,8 @@ export default function ContactInfoTest() {
                 </span>
                 : (!user.email)
                     ? <span>Email: Not Given</span>
-                    : <span>Email address: {user.email}</span>}
+                    : <p>Email address: {user.email}</p>}
+            <br />
             {editMode
                 ? <span>Address:
                     <input
@@ -102,8 +105,8 @@ export default function ContactInfoTest() {
                 </span>
                 : (!user.street_address || !user.city || !user.state)
                     ? <span>Address: Not Given</span>
-                    : <div><span>Address: {user.street_address} - { }
-                        {user.city}, {user.state}</span>
+                    : <div><p>Address: {user.street_address} - { }
+                        {user.city}, {user.state}</p>
                     </div>}
             </div>
         </div>

@@ -3,14 +3,13 @@ import { useEffect } from "react";
 import MainPropItem from "./MainPropItem/MainPropItem";
 
 export default function MainProps() {
-
     const inProgressProps = useSelector(store => store.props.main.filter(prop => prop.status === 'In Progress'));
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch({ type: 'FETCH_PROPS' });
-        dispatch({ type: 'FETCH_USER_VOTES' });
+        // dispatch({ type: 'FETCH_USER_VOTES' });
       }, []);
 
     return (
