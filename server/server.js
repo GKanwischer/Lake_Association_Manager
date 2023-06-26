@@ -11,6 +11,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const proposalsRouter = require('./routes/proposals.router');
 const calendarRouter = require('./routes/calendar.router')
+const adminRouter = require('./routes/admin.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -27,6 +28,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/proposals', proposalsRouter);
 app.use('/calendar', calendarRouter);
+app.use('/admin', calendarRouter);
 
 // Serve static files
 app.use(express.static('build'));
