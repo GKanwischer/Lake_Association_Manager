@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 
-export default function UserContactInfo() {
+export default function ContactInfoTest() {
     const dispatch = useDispatch();
     const user = useSelector((store) => store.user);
     // local input states
@@ -12,39 +12,39 @@ export default function UserContactInfo() {
     const [streetAddressInput, setStreetAddressInput] = useState(user.street_address)
     const [cityInput, setCityInput] = useState(user.city)
     const [stateInput, setStateInput] = useState(user.state)
+    const [editMode, setEditMode] = useState(false)
 
-    console.log('Client side user:', user);
+    // console.log('Client side user:', user);
 
     const contactInfo = {
         first_name: firstNameInput,
         last_name: lastNameInput,
-        phone_number: phoneNumberInput,
+        phone_number: Number(phoneNumberInput),
         email: emailInput,
         street_address: streetAddressInput,
         city: cityInput,
         state: stateInput
     }
 
+    console.log('updated contact info: ', contactInfo);
+
     function handleUpdate() {
         dispatch({
-            type: 'UPDATE_CONTACT_INFO',
+            type: 'USER_CONTACT_INFO',
             payload: contactInfo
         })
-    }
-
-    function submitChanges() {
-        dispatch({
-            type: 'USER_CONTACT_INFO',
-            payload: user
-        })
+        setEditMode(false);
     }
 
     return (
         <div className="contact-info">
-            <h3>Contact Info</h3>
-            <button onClick={submitChanges}>Confirm Changes</button>
-
-            {!user.first_name || !user.last_name
+            <div className="contact-header">
+                <h3>Contact Info</h3>
+                {!editMode ? <button onClick={() => setEditMode(true)}>Edit</button> 
+                : <button onClick={handleUpdate}>Update</button>}
+            </div>
+            <div className="contact-body">
+            {editMode
                 ? <span>Name:
                     <input
                         placeholder="First name"
@@ -56,30 +56,33 @@ export default function UserContactInfo() {
                         type="text"
                         value={lastNameInput}
                         onChange={e => setLastNameInput(e.target.value)} />
-                    <button onClick={handleUpdate}>Update</button>
                 </span>
-                : <p>Name: {user.first_name} {user.last_name}</p>}
-            {!user.phone_number
+                : (!user.first_name || !user.last_name)
+                    ? <span>Name: Not Given</span>
+                    : <span>Name: {user.first_name} {user.last_name}</span>}
+            {editMode
                 ? <span>Phone Number:
                     <input
                         placeholder="phone number"
                         type="tel"
-                        value={phoneNumberInput}
+                        value={phoneNumberInput === '0' ? '' : phoneNumberInput}
                         onChange={e => setPhoneNumberInput(e.target.value)} />
-                    <button onClick={handleUpdate}>Update</button>
                 </span>
-                : <p>Phone Number: {user.phone_number}</p>}
-            {!user.email
+                : (!user.phone_number || user.phone_number === '0')
+                    ? <span>Phone Number: Not Given</span>
+                    : <span>Phone Number: {user.phone_number}</span>}
+            {editMode
                 ? <span>Email:
                     <input
                         placeholder="Email Address"
                         type="email"
                         value={emailInput}
                         onChange={e => setEmailInput(e.target.value)} />
-                    <button onClick={handleUpdate}>Update</button>
                 </span>
-                : <p>Email address: {user.email}</p>}
-            {!user.street_address || !user.city || !user.state
+                : (!user.email)
+                    ? <span>Email: Not Given</span>
+                    : <span>Email address: {user.email}</span>}
+            {editMode
                 ? <span>Address:
                     <input
                         placeholder="Street Address"
@@ -96,12 +99,13 @@ export default function UserContactInfo() {
                         type="text"
                         value={stateInput}
                         onChange={e => setStateInput(e.target.value)} />
-                    <button onClick={handleUpdate}>Update</button>
                 </span>
-                : <div>
-                    <p>Address: {user.street_address} - { }
-                        {user.city}, {user.state}</p>
-                </div>}
+                : (!user.street_address || !user.city || !user.state)
+                    ? <span>Address: Not Given</span>
+                    : <div><span>Address: {user.street_address} - { }
+                        {user.city}, {user.state}</span>
+                    </div>}
+            </div>
         </div>
     )
 }
