@@ -15,7 +15,7 @@ function* adminDeleteUserSaga(action){ // expects a user id
     try {
         yield axios.delete(`/admin/user-delete/${action.payload}`);
         console.log(`Successful DELETE request of user id: ${action.payload}`);
-        yield put({ type: 'FETCH_ADMIN_USERS' })
+        yield put({ type: 'ADMIN_FETCH_USERS' })
     } catch (error) {
         console.log(`Error with DELETE request of user id: ${action.payload}`);
     }
