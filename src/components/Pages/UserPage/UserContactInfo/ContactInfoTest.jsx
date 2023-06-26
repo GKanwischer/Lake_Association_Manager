@@ -19,7 +19,7 @@ export default function ContactInfoTest() {
     const contactInfo = {
         first_name: firstNameInput,
         last_name: lastNameInput,
-        phone_number: Number(phoneNumberInput),
+        phone_number: phoneNumberInput,
         email: emailInput,
         street_address: streetAddressInput,
         city: cityInput,
@@ -29,23 +29,12 @@ export default function ContactInfoTest() {
     console.log('updated contact info: ', contactInfo);
 
     function handleUpdate() {
-        // dispatch({
-        //     type: 'UPDATE_CONTACT_INFO',
-        //     payload: 
-        // })
         dispatch({
             type: 'USER_CONTACT_INFO',
             payload: contactInfo
         })
         setEditMode(false);
     }
-
-    // function submitChanges() {
-    //     dispatch({
-    //         type: 'USER_CONTACT_INFO',
-    //         payload: user
-    //     })
-    // }
 
     return (
         <div className="contact-info">
@@ -54,7 +43,7 @@ export default function ContactInfoTest() {
                 {!editMode ? <button onClick={() => setEditMode(true)}>Edit</button> 
                 : <button onClick={handleUpdate}>Update</button>}
             </div>
-
+            <div className="contact-body">
             {editMode
                 ? <span>Name:
                     <input
@@ -71,7 +60,6 @@ export default function ContactInfoTest() {
                 : (!user.first_name || !user.last_name)
                     ? <span>Name: Not Given</span>
                     : <p>Name: {user.first_name} {user.last_name}</p>}
-
             <br />
             {editMode
                 ? <span>Phone Number:
@@ -95,7 +83,7 @@ export default function ContactInfoTest() {
                 </span>
                 : (!user.email)
                     ? <span>Email: Not Given</span>
-                    : <p>Email address: Not Given{user.email}</p>}
+                    : <p>Email address: {user.email}</p>}
             <br />
             {editMode
                 ? <span>Address:
@@ -120,9 +108,7 @@ export default function ContactInfoTest() {
                     : <div><p>Address: {user.street_address} - { }
                         {user.city}, {user.state}</p>
                     </div>}
+            </div>
         </div>
     )
 }
-
-{/* <button onClick={submitChanges}>Confirm Changes</button> */ }
-

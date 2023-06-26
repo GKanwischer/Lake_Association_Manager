@@ -25,7 +25,7 @@ export default function MainPropItem({ prop }) {
 
     // console.log('User votes: ', userVotes);
     // console.log(`prop id: ${prop.id}`, prop);
-    console.log(`selected vote value: ${prop.id}`, selectedVote);
+    // console.log(`selected vote value: ${prop.id}`, selectedVote);
 
     function handleVoteSubmit() {
         const existingVote = userVotes.find(vote => vote.proposal_id === prop.id);
@@ -49,9 +49,9 @@ export default function MainPropItem({ prop }) {
         } else {
             // if the user doesn't already have a vote cast on the proposal their selected value is sent to the db in a POST request
             dispatch({ type: 'CAST_VOTE', payload: selectedVote })
+            dispatch({ type: 'FETCH_USER_VOTES' });
         }
     }
-
 
     return (
         <tr>
