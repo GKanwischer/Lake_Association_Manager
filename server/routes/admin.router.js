@@ -68,7 +68,7 @@ router.delete('/prop-delete/:id', rejectUnauthenticated, (req,res) => {
 })
 
 router.delete('/event-delete/:id', rejectUnauthenticated, (req,res) => {
-    const userId = req.params;
+    const userId = Number(req.params.id);
     const queryText = `DELETE FROM "event_calendar" WHERE "id" = $1;`;
 
     if(req.user.is_admin){

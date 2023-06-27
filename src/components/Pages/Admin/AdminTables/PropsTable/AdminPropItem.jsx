@@ -4,11 +4,6 @@ import moment from "moment";
 export default function AdminPropItem({ prop }){
     const dispatch = useDispatch();
 
-    // function userLevelChange(){
-    //     dispatch({ type: 'ADMIN_USER_LEVEL', payload: prop.id })
-    //     // dispatch({ type: 'ADMIN_FETCH_USERS' })
-    // }
-
     function deleteProp(){
         dispatch({ type: 'ADMIN_DELETE_PROP', payload: prop.id })
     }

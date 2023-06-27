@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
+import './AdminPage.css';
 
 import AdminUsersTable from "./AdminTables/UsersTable/AdminUsersTable";
 import AdminEventsTable from "./AdminTables/EventsTable/AdminEventsTable";
@@ -14,10 +15,10 @@ export default function AdminPage() {
       }, []);
 
     return (
-        <>
+        <div className="admin">
             <AdminUsersTable />
-            <AdminEventsTable />
             <AdminPropsTable />
-        </>
+            <AdminEventsTable />
+        </div>
     )
 }
