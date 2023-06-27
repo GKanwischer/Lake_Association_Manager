@@ -3,20 +3,26 @@ import axios from 'axios';
 
 function* fetchEventsSaga() {
     try {
-        const response = yield axios.get('/calendar');
-        console.log('Successful events fetch request', response.data);
+        const response = yield axios.get(`/calendar/`);
+        console.log('Successful GET events request', response.data);
         yield put({ type: 'SET_EVENTS', payload: response.data });
     } catch (err) {
         console.log('Error with GET events request', err);
     }
 }
+// -- Stretch
+// function* fetchSortedEventsSaga(action) { // expects the specific column title to sort by
+//     try {
+//         const response = yield axios.get(`/calendar/${action.payload}`)
+//         console.log('Successful sorted GET events request');
+//         yield put({ type: 'SET_EVENTS', payload: response.data})
+//     } catch (error) {
+//         console.log('Error with sorted GET events request');
+//     }
+// }
 
 function* addEventSaga(action) { // expects { description, title, start, end }
     try {
-        // might be unnecessary -- possibly delete later --
-        // const { title, start, end } = action.payload;
-        // const eventToAdd = { title, start, end };
-        // console.log('(saga) event to add:', eventToAdd);
         yield axios.post('/calendar/create-event', action.payload)
         console.log('Successful event add request');
         yield put({ type: 'FETCH_EVENTS' });
@@ -47,6 +53,7 @@ function* deleteEvent(action) { // expects event_id
 
 function* calendarSaga() {
     yield takeEvery('FETCH_EVENTS', fetchEventsSaga)
+    // yield takeEvery('SORT_EVENTS_BY', fetchSortedEventsSaga) // stretch
     yield takeEvery('ADD_EVENT', addEventSaga)
     yield takeEvery('UPDATE_EVENT', updateEventSaga)
     yield takeEvery('DELETE_EVENT', deleteEvent)
