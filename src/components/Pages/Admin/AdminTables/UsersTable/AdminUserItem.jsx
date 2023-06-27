@@ -17,7 +17,7 @@ export default function AdminUserItem({ user }){
         <tr>
             <td>{user.is_admin ? 'Admin' : 'User'}</td>
             <td>{user.username}</td>
-            <td>{user.first_name} {user.last_name}</td>
+            <td>{user.first_name || user.last_name ? user.first_name + ' ' + user.last_name : 'N/A'}</td>
             <td>{(!user.phone_number || user.phone_number === '0') ? 'N/A' : user.phone_number}</td>
             <td>{user.email ? user.email : 'N/A'}</td>
             <td>{(user.street_address || user.city || user.state) ? (`${user.street_address} ${user.city}, ${user.state}`) : 'N/A'}</td>

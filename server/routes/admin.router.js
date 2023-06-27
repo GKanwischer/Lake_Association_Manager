@@ -34,13 +34,13 @@ router.delete('/user-delete/:id', rejectUnauthenticated, (req,res) => {
 })
 
 router.get('/props' , rejectUnauthenticated, (req,res) => {
-    const queryText = `SELECT "proposal"."id", "proposal"."description", "proposal"."status", "proposal"."created_date", "user"."first_name", "user"."last_name",
+    const queryText = `SELECT "proposal"."id", "proposal"."description", "proposal"."status", "proposal"."created_date", "user"."username", "user"."first_name", "user"."last_name",
                         COUNT("proposal_vote"."vote") FILTER (WHERE "proposal_vote"."vote" = true) AS true_votes,
                         COUNT("proposal_vote"."vote") FILTER (WHERE "proposal_vote"."vote" = false) AS false_votes
                         FROM"proposal"
                         JOIN "user" ON "proposal"."user_id" = "user"."id"
                         LEFT JOIN "proposal_vote" ON "proposal"."id" = "proposal_vote"."proposal_id"
-                        GROUP BY "proposal"."id", "proposal"."created_date", "user"."first_name", "user"."last_name"
+                        GROUP BY "proposal"."id", "proposal"."created_date", "user"."first_name", "user"."last_name", "user"."username"
                         ORDER BY  "proposal"."created_date" ASC;`;
     pool.query(queryText)
     .then(result => {
@@ -53,7 +53,7 @@ router.get('/props' , rejectUnauthenticated, (req,res) => {
 })
 
 router.delete('/prop-delete/:id', rejectUnauthenticated, (req,res) => {
-    const propId = req.params;
+    const propId = Number(req.params.id);
     const queryText = `DELETE FROM "proposal" WHERE "id" = $1;`;
 
     if(req.user.is_admin){

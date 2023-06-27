@@ -10,6 +10,7 @@ export default function AdminPage() {
 
     useEffect(() => {
         dispatch({ type: 'ADMIN_FETCH_USERS' });
+        dispatch({ type: 'ADMIN_FETCH_PROPS' });
       }, []);
 
     return (
