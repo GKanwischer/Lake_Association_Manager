@@ -11,16 +11,21 @@ export default function AdminEventsTable() {
         dispatch({ type: 'FETCH_EVENTS' });
       }, []);
 
+    function sortBy(thead){
+        // dispatch({ type: 'SORT_EVENT_BY', payload: thead})
+        console.log('Sort by: ', thead);
+    }
+
     return (
         <div className="admin-events">
                 <h3>Community Events</h3>
             <table>
                 <thead>
                     <tr>
-                        <th>Created By</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Date</th>
+                        <th onClick={() => sortBy('last_name')}>Created By</th>
+                        <th onClick={() => sortBy('title')}>Title</th>
+                        <th onClick={() => sortBy('description')}>Description</th>
+                        <th onClick={() => sortBy('start')}>Date</th>
                     </tr>
                 </thead>
                 <tbody>
