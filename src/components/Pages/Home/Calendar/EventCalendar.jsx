@@ -44,7 +44,7 @@ export default function EventCalendar() {
                                 customClass: "popoverStyle",
                                 content:
                                     `<div>
-                                        <p>Start: ${moment(info.event.start).format('LLL')}</p>
+                                        <span>Start: ${moment(info.event.start).format('LLL')}</span>
                                         <p>End: ${moment(info.event.end).format('LLL')}</p>
                                         <p>${selectedEvent[0].description}</p>
                                     </div>`,
