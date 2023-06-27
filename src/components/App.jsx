@@ -21,6 +21,7 @@ import LoginPage from './Pages/LoginPage/LoginPage';
 import RegisterPage from './Pages/RegisterPage/RegisterPage';
 import MainProps from './Pages/MainProps/MainProps';
 import Home from './Pages/Home/Home';
+import AdminPage from './Pages/Admin/AdminPage';
 
 import './App.css';
 
@@ -82,6 +83,20 @@ function App() {
             path="/home"
           >
             <Home />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact
+            path="/admin"
+          >
+              {!user.is_admin ?
+              // If the user is not an admin, 
+              // redirect to the /user page
+              <Redirect to="/user" />
+              :
+              // Otherwise, show the admin page
+              <AdminPage />
+            }
           </ProtectedRoute>
 
           <Route

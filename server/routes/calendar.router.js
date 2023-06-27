@@ -5,7 +5,10 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 
 // route for getting all of the events
 router.get('/', rejectUnauthenticated, (req, res) => {
-    const queryText = `SELECT * FROM "event_calendar";`
+    const queryText = `SELECT "event_calendar"."id", "event_calendar"."user_id", "user"."username", "user"."first_name", "user"."last_name", 
+                        "event_calendar"."title", "event_calendar"."description", "event_calendar"."start", "event_calendar"."end"
+                        FROM "event_calendar"
+                        JOIN "user" ON "event_calendar"."user_id" = "user"."id";`;
 
     pool.query(queryText)
         .then(result => {
