@@ -10,22 +10,17 @@ export default function AdminEventsTable() {
     useEffect(() => {
         dispatch({ type: 'FETCH_EVENTS' });
       }, []);
-
-    function sortBy(thead){
-        // dispatch({ type: 'SORT_EVENT_BY', payload: thead})
-        console.log('Sort by: ', thead);
-    }
-
-    return (
-        <div className="admin-events">
+      
+      return (
+          <div className="admin-events">
                 <h3>Community Events</h3>
             <table>
                 <thead>
                     <tr>
-                        <th onClick={() => sortBy('last_name')}>Created By</th>
-                        <th onClick={() => sortBy('title')}>Title</th>
-                        <th onClick={() => sortBy('description')}>Description</th>
-                        <th onClick={() => sortBy('start')}>Date</th>
+                        <th>Created By</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Date</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,3 +30,13 @@ export default function AdminEventsTable() {
         </div>
     )
 }
+
+// Stretch comback to this if you have time
+// function sortBy(thead){
+//     dispatch({ type: 'SORT_EVENTS_BY', payload: thead})
+//     console.log('Sort by: ', thead);
+// }
+// <th onClick={() => sortBy(`"user"."last_name"`)}>Created By</th>
+// <th onClick={() => sortBy(`"event_calendar"."title"`)}>Title</th>
+// <th onClick={() => sortBy(`"event_calendar"."description"`)}>Description</th>
+// <th onClick={() => sortBy(`"event_calendar"."start"`)}>Date</th> 
