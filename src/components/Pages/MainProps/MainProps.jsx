@@ -9,7 +9,7 @@ export default function MainProps() {
 
     useEffect(() => {
         dispatch({ type: 'FETCH_PROPS' });
-        // dispatch({ type: 'FETCH_USER_VOTES' });
+        dispatch({ type: 'FETCH_USER_VOTES' });
       }, []);
 
     return (

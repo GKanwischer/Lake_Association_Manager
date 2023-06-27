@@ -4,8 +4,12 @@ import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import * as bootstrap from "bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import moment from "moment";
+
 
 export default function EventCalendar() {
     const dispatch = useDispatch();
@@ -31,6 +35,22 @@ export default function EventCalendar() {
                         initialView="dayGridMonth"
                         selectable={true}
                         events={events}
+                        eventDidMount={(info) => {
+                            let selectedEvent = (events.filter(event => event.id === Number(info.event.id)))
+                            return new bootstrap.Popover(info.el, {
+                                title: info.event.title,
+                                placement: "auto",
+                                trigger: "hover",
+                                customClass: "popoverStyle",
+                                content:
+                                    `<div>
+                                        <p>Start: ${moment(info.event.start).format('LLL')}</p>
+                                        <p>End: ${moment(info.event.end).format('LLL')}</p>
+                                        <p>${selectedEvent[0].description}</p>
+                                    </div>`,
+                                html: true,
+                            })
+                        }}
                     />
                 </div>
             </section>
