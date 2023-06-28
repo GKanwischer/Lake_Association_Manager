@@ -2,6 +2,9 @@ import { useDispatch } from "react-redux"
 import { useState } from "react";
 import moment from "moment";
 import UpdateEventModal from "./EventModals/UpdateEventModal";
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
+import Button from "@mui/material/Button";
 
 export default function UserEventItem({ event }) {
     const dispatch = useDispatch();
@@ -21,17 +24,17 @@ export default function UserEventItem({ event }) {
 
     return (
         <>
-            <tr>
-                <td>{event.title}</td>
-                <td>{event.description}</td>
-                <td>{dateMatch()
+            <TableRow>
+                <TableCell>{event.title}</TableCell>
+                <TableCell>{event.description}</TableCell>
+                <TableCell>{dateMatch()
                     ? moment(event.start).format('M/DD/YY')
                     : moment(event.start).format('M/DD') +' - '+ moment(event.end).format('M/DD/YY')}
-                </td>
-                <td><button onClick={handleDelete}>Delete</button>
-                    <button onClick={() => setUpdateModalOpen(true)}>Edit</button>
-                </td>
-            </tr>
+                </TableCell>
+                <TableCell><Button onClick={handleDelete}>Delete</Button>
+                    <Button onClick={() => setUpdateModalOpen(true)}>Edit</Button>
+                </TableCell>
+            </TableRow>
             <UpdateEventModal
                 isOpen={updateModalOpen}
                 onClose={() => setUpdateModalOpen(false)}
