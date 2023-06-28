@@ -1,26 +1,31 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useState, useEffect } from "react";
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
+import FormControl from '@mui/material/FormLabel'
+import FormLabel from '@mui/material/FormLabel'
+import RadioGroup from '@mui/material/RadioGroup'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Radio from '@mui/material/Radio'
+import Button from '@mui/material/Button'
 
 export default function MainPropItem({ prop }) {
     const dispatch = useDispatch();
     const userVotes = useSelector(store => store.props.user_votes);
     const existingVote = userVotes.find(vote => vote.proposal_id === prop.id);
-    const [selectedVote, setSelectedVote] = useState({ proposal_id: prop.id,
+    const [selectedVote, setSelectedVote] = useState({
+        proposal_id: prop.id,
         vote: existingVote ? existingVote.vote : null
     });
-    
-    useEffect(() => {
-        dispatch({ type: 'FETCH_USER_VOTES'});
-    }, [])
 
     useEffect(() => {
         if (existingVote) {
             setSelectedVote((prevSelectedVote) => ({
-              ...prevSelectedVote,
-              vote: existingVote.vote,
+                ...prevSelectedVote,
+                vote: existingVote.vote,
             }));
-          }
-        }, [existingVote]);
+        }
+    }, [existingVote]);
 
     function handleVoteSubmit() {
         const existingVote = userVotes.find(vote => vote.proposal_id === prop.id);
@@ -47,30 +52,56 @@ export default function MainPropItem({ prop }) {
         }
     }
 
+    const handleChange = (event) => {
+        setSelectedVote({
+          proposal_id: prop.id,
+          vote: event.target.value === "true",
+        });
+      };
+
     return (
-        <tr>
-            <td>{prop.description}</td>
-            <td>{prop.first_name} {prop.last_name}</td>
-            <td>{prop.status}</td>
-            <td>
-                <label>
-                    <input
-                        type="radio"
-                        name={prop.id}
-                        value={true}
-                        checked={selectedVote.vote === true}
-                        onChange={() => setSelectedVote({ proposal_id: prop.id, vote: true })} /> Pass
-                </label>
-                <label>
-                    <input
-                        type="radio"
-                        name={prop.id}
-                        value={false}
-                        checked={selectedVote.vote === false}
-                        onChange={() => setSelectedVote({ proposal_id: prop.id, vote: false })} /> Veto
-                </label>
-            </td>
-            <td><button onClick={handleVoteSubmit}>Submit Vote</button></td>
-        </tr>
+        <TableRow>
+            <TableCell>{prop.description}</TableCell>
+            <TableCell>{prop.first_name} {prop.last_name}</TableCell>
+            <TableCell>
+                <FormControl component="fieldset">
+                    <RadioGroup
+                        row
+                        aria-label={`vote-${prop.id}`}
+                        name={`vote-${prop.id}`}
+                        value={selectedVote.vote}
+                        onChange={handleChange}
+                    >
+                        <FormControlLabel
+                            value="true"
+                            control={<Radio />}
+                            label="Pass"
+                        />
+                        <FormControlLabel
+                            value="false"
+                            control={<Radio />}
+                            label="Veto"
+                        />
+                    </RadioGroup>
+                </FormControl>
+            </TableCell>
+            <TableCell><Button variant="contained" onClick={handleVoteSubmit}>Submit Vote</Button></TableCell>
+        </TableRow>
     )
 }
+                // <label>
+                //     <input
+                //         type="radio"
+                //         name={prop.id}
+                //         value={true}
+                //         checked={selectedVote.vote === true}
+                //         onChange={() => setSelectedVote({ proposal_id: prop.id, vote: true })} /> Pass
+                // </label>
+                // <label>
+                //     <input
+                //         type="radio"
+                //         name={prop.id}
+                //         value={false}
+                //         checked={selectedVote.vote === false}
+                //         onChange={() => setSelectedVote({ proposal_id: prop.id, vote: false })} /> Veto
+                // </label>

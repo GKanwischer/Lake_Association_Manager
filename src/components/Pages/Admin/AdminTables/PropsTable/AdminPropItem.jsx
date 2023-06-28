@@ -1,5 +1,8 @@
 import { useDispatch } from "react-redux"
 import moment from "moment";
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
+import Button from "@mui/material/Button";
 
 export default function AdminPropItem({ prop }){
     const dispatch = useDispatch();
@@ -9,14 +12,14 @@ export default function AdminPropItem({ prop }){
     }
 
     return(
-        <tr>
-            <td>{(prop.first_name || prop.last_name) ? prop.first_name + ' ' + prop.last_name : prop.username}</td>
-            <td>{prop.description}</td>
-            <td>{prop.status}</td>
-            <td>{prop.true_votes}</td>
-            <td>{prop.false_votes}</td>
-            <td>{moment(prop.created_date).format('LLL')}</td>
-            <td><button onClick={deleteProp}>Delete</button></td>
-        </tr>
+        <TableRow>
+            <TableCell>{(prop.first_name || prop.last_name) ? prop.first_name + ' ' + prop.last_name : prop.username}</TableCell>
+            <TableCell>{prop.description}</TableCell>
+            <TableCell>{prop.status}</TableCell>
+            <TableCell>{prop.true_votes}</TableCell>
+            <TableCell>{prop.false_votes}</TableCell>
+            <TableCell>{moment(prop.created_date).format('LLL')}</TableCell>
+            <TableCell><Button variant="contained" onClick={deleteProp}>Delete</Button></TableCell>
+        </TableRow>
     )
 }

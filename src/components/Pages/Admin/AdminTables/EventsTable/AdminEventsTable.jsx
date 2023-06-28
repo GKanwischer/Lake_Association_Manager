@@ -1,6 +1,13 @@
 import { useSelector, useDispatch } from "react-redux"
 import { useEffect, useState } from "react";
 import AdminEventItem from "./AdminEventItem";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Card from '@mui/material/Card';
 
 export default function AdminEventsTable() {
     const dispatch = useDispatch();
@@ -9,34 +16,39 @@ export default function AdminEventsTable() {
 
     useEffect(() => {
         dispatch({ type: 'FETCH_EVENTS' });
-      }, []);
-      
-      return (
-          <div className="admin-events">
-                <h3>Community Events</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Created By</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {events.map(event => <AdminEventItem key={event.id} event={event} />)}
-                </tbody>
-            </table>
+    }, []);
+
+    return (
+        <div className="admin-events">
+            <h3>Community Events</h3>
+            <Card elevation={6}>
+                <TableContainer>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Created By</TableCell>
+                                <TableCell>Title</TableCell>
+                                <TableCell>Description</TableCell>
+                                <TableCell>Date</TableCell>
+                                <TableCell>Action</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {events.map(event => <AdminEventItem key={event.id} event={event} />)}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </Card>
         </div>
     )
 }
 
-// Stretch comback to this if you have time
-// function sortBy(thead){
-//     dispatch({ type: 'SORT_EVENTS_BY', payload: thead})
-//     console.log('Sort by: ', thead);
+// StretTableCell comback to TableCellis if youTableCellave time
+// function sortBy(TableCellead){
+//     dispatTableCell({ type: 'SORT_EVENTS_BY', payload: TableCellead})
+//     console.log('Sort by: ', TableCellead);
 // }
-// <th onClick={() => sortBy(`"user"."last_name"`)}>Created By</th>
-// <th onClick={() => sortBy(`"event_calendar"."title"`)}>Title</th>
-// <th onClick={() => sortBy(`"event_calendar"."description"`)}>Description</th>
-// <th onClick={() => sortBy(`"event_calendar"."start"`)}>Date</th> 
+// <TableCell onClick={() => sortBy(`"user"."last_name"`)}>Created By</TableCell>
+// <TableCell onClick={() => sortBy(`"event_calendar"."title"`)}>Title</TableCell>
+// <TableCell onClick={() => sortBy(`"event_calendar"."description"`)}>Description</TableCell>
+// <TableCell onClick={() => sortBy(`"event_calendar"."start"`)}>Date</TableCell> 

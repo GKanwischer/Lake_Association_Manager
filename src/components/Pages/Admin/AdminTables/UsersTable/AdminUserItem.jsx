@@ -1,4 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
+import Button from "@mui/material/Button";
 
 export default function AdminUserItem({ user }) {
     const dispatch = useDispatch();
@@ -15,32 +18,33 @@ export default function AdminUserItem({ user }) {
     }
 
     return (
-        <tr>
-            <td>{user.is_admin
-                ? 'Admin'
-                : 'User'}
-            </td>
-            <td>{user.username}</td>
-            <td>{(user.first_name || user.last_name)
+        <TableRow>
+            <TableCell>
+                {user.is_admin
+                    ? 'Admin'
+                    : 'User'}
+            </TableCell>
+            <TableCell>{user.username}</TableCell>
+            <TableCell>{(user.first_name || user.last_name)
                 ? user.first_name + ' ' + user.last_name
                 : 'N/A'}
-            </td>
-            <td>{(!user.phone_number || user.phone_number === '0')
+            </TableCell>
+            <TableCell>{(!user.phone_number || user.phone_number === '0')
                 ? 'N/A'
                 : user.phone_number}
-            </td>
-            <td>{user.email
+            </TableCell>
+            <TableCell>{user.email
                 ? user.email
                 : 'N/A'}
-            </td>
-            <td>{(user.street_address || user.city || user.state)
+            </TableCell>
+            <TableCell>{(user.street_address || user.city || user.state)
                 ? (`${user.street_address} ${user.city}, ${user.state}`)
                 : 'N/A'}
-            </td>
-            <td className="user-actions">
-                <button onClick={userLevelChange}>{user.is_admin ? 'Remove Admin' : 'Make Admin'}</button>
-                <button onClick={deleteUser}>Delete</button>
-            </td>
-        </tr>
+            </TableCell>
+            <TableCell className="user-actions">
+                <Button variant="contained" onClick={userLevelChange}>{user.is_admin ? 'Remove Admin' : 'Make Admin'}</Button>
+                <Button variant="contained" onClick={deleteUser}>Delete</Button>
+            </TableCell>
+        </TableRow>
     )
 }
