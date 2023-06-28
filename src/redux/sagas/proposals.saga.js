@@ -35,6 +35,7 @@ function* castVoteSaga(action) { // expects { proposal_id and vote(true = pass, 
     try {
         yield axios.post('proposals/vote', action.payload);
         console.log('Success POST request for casting vote');
+        yield put({ type: 'FETCH_USER_VOTES' })
     } catch (error) {
         console.log('Error with POST request for casting vote');
     }
@@ -64,7 +65,7 @@ function* updateVoteSaga(action){ // expects { payload_id, vote }
     try {
         yield axios.put(`/proposals/update-vote`, action.payload)
         console.log('Successful PUT request for updating proposal vote');
-        yield put({ type: 'FETCH_PROPS' })
+        yield put({ type: 'FETCH_USER_VOTES' })
       } catch (error) {
         console.log('Error with PUT request for updating proposal vote');
       }

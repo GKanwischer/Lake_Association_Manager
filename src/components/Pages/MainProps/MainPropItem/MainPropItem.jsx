@@ -5,7 +5,6 @@ export default function MainPropItem({ prop }) {
     const dispatch = useDispatch();
     const userVotes = useSelector(store => store.props.user_votes);
     const existingVote = userVotes.find(vote => vote.proposal_id === prop.id);
-    // console.log('Existing vote: ', existingVote);
     const [selectedVote, setSelectedVote] = useState({ proposal_id: prop.id,
         vote: existingVote ? existingVote.vote : null
     });
@@ -23,10 +22,6 @@ export default function MainPropItem({ prop }) {
           }
         }, [existingVote]);
 
-    // console.log('User votes: ', userVotes);
-    // console.log(`prop id: ${prop.id}`, prop);
-    // console.log(`selected vote value: ${prop.id}`, selectedVote);
-
     function handleVoteSubmit() {
         const existingVote = userVotes.find(vote => vote.proposal_id === prop.id);
         console.log("existing vote:", existingVote);
@@ -40,16 +35,15 @@ export default function MainPropItem({ prop }) {
         if (existingVote) {
             if (existingVote.vote !== selectedVote.vote) {
                 const updatedVote = { proposal_id: existingVote.proposal_id, vote: selectedVote.vote };
-                // console.log(`updated vote for proposal id: ${existingVote.proposal_id}: `, updatedVote);
                 dispatch({ type: 'UPDATE_VOTE', payload: updatedVote });
-                dispatch({ type: 'FETCH_USER_VOTES' });
+                // dispatch({ type: 'FETCH_USER_VOTES' });
             } else {
                 console.log(`Vote value hasn't changed`);
             }
         } else {
             // if the user doesn't already have a vote cast on the proposal their selected value is sent to the db in a POST request
             dispatch({ type: 'CAST_VOTE', payload: selectedVote })
-            dispatch({ type: 'FETCH_USER_VOTES' });
+            // dispatch({ type: 'FETCH_USER_VOTES' });
         }
     }
 

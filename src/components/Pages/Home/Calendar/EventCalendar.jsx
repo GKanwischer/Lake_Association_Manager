@@ -7,7 +7,7 @@ import interactionPlugin from '@fullcalendar/interaction'
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as bootstrap from "bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import moment from "moment";
 
 
