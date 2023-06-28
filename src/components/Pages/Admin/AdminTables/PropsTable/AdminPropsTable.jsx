@@ -14,24 +14,26 @@ export default function AdminPropsTable() {
     return (
         <div className="admin-props">
             <h3>All Proposals</h3>
-            <TableContainer>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Created By</TableCell>
-                            <TableCell>Description</TableCell>
-                            <TableCell>Status</TableCell>
-                            <TableCell>Pass Count</TableCell>
-                            <TableCell>Veto Count</TableCell>
-                            <TableCell>Date Created</TableCell>
-                            <TableCell className="user-actions">Actions</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {props.map(prop => <AdminPropItem key={prop.id} prop={prop} />)}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+            <Card elevation={6}>
+                <TableContainer>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Created By</TableCell>
+                                <TableCell>Description</TableCell>
+                                <TableCell>Status</TableCell>
+                                <TableCell>Pass Count</TableCell>
+                                <TableCell>Veto Count</TableCell>
+                                <TableCell>Date Created</TableCell>
+                                <TableCell className="user-actions">Actions</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {props.map(prop => <AdminPropItem key={prop.id} prop={prop} />)}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </Card>
         </div>
     )
 }

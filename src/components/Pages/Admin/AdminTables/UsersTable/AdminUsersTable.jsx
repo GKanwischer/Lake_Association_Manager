@@ -19,25 +19,26 @@ export default function AdminUsersTable() {
         <div className="admin-users">
             <h2>Welcome Admin {loggedInUser.username}!</h2>
             <h3>Lake Association Members</h3>
-            <TableContainer>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>User Level</TableCell>
-                            <TableCell>Username</TableCell>
-                            <TableCell>Full Name</TableCell>
-                            <TableCell>Phone Number</TableCell>
-                            <TableCell>Email</TableCell>
-                            <TableCell>Address</TableCell>
-                            <TableCell className="user-actions">Actions</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {filteredUsers.map(user => <AdminUserItem key={user.id} user={user} />)}
-                    </TableBody>
-                </Table>
-
-            </TableContainer>
+            <Card elevation={6}>
+                <TableContainer>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>User Level</TableCell>
+                                <TableCell>Username</TableCell>
+                                <TableCell>Full Name</TableCell>
+                                <TableCell>Phone Number</TableCell>
+                                <TableCell>Email</TableCell>
+                                <TableCell>Address</TableCell>
+                                <TableCell className="user-actions">Actions</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {filteredUsers.map(user => <AdminUserItem key={user.id} user={user} />)}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </Card>
         </div>
     )
 }

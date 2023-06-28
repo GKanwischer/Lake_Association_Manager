@@ -21,22 +21,24 @@ export default function AdminEventsTable() {
     return (
         <div className="admin-events">
             <h3>Community Events</h3>
-            <TableContainer>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Created By</TableCell>
-                            <TableCell>Title</TableCell>
-                            <TableCell>Description</TableCell>
-                            <TableCell>Date</TableCell>
-                            <TableCell>Action</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {events.map(event => <AdminEventItem key={event.id} event={event} />)}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+            <Card elevation={6}>
+                <TableContainer>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Created By</TableCell>
+                                <TableCell>Title</TableCell>
+                                <TableCell>Description</TableCell>
+                                <TableCell>Date</TableCell>
+                                <TableCell>Action</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {events.map(event => <AdminEventItem key={event.id} event={event} />)}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </Card>
         </div>
     )
 }
