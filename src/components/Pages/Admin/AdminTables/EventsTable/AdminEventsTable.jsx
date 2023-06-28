@@ -29,6 +29,7 @@ export default function AdminEventsTable() {
                             <TableCell>Title</TableCell>
                             <TableCell>Description</TableCell>
                             <TableCell>Date</TableCell>
+                            <TableCell>Action</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
