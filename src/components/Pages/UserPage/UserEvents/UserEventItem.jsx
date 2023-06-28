@@ -31,8 +31,8 @@ export default function UserEventItem({ event }) {
                     ? moment(event.start).format('M/DD/YY')
                     : moment(event.start).format('M/DD') +' - '+ moment(event.end).format('M/DD/YY')}
                 </TableCell>
-                <TableCell><Button onClick={handleDelete}>Delete</Button>
-                    <Button onClick={() => setUpdateModalOpen(true)}>Edit</Button>
+                <TableCell><Button variant="contained" onClick={handleDelete}>Delete</Button>
+                    <Button variant="contained" onClick={() => setUpdateModalOpen(true)}>Edit</Button>
                 </TableCell>
             </TableRow>
             <UpdateEventModal

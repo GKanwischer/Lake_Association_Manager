@@ -1,5 +1,8 @@
 import { useDispatch } from "react-redux"
 import moment from "moment";
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
+import Button from "@mui/material/Button";
 
 export default function UserPropItem({prop}){
     const dispatch = useDispatch();
@@ -13,12 +16,12 @@ export default function UserPropItem({prop}){
     }
 
     return(
-        <tr>
-            <td>{prop.description}</td>
-            <td>{moment(prop.created_date).format('LLL')}</td>
-            <td>{prop.status}</td>
-            <td><button onClick={handleDelete}>Delete</button></td>
-        </tr>
+        <TableRow>
+            <TableCell>{prop.description}</TableCell>
+            <TableCell>{moment(prop.created_date).format('LLL')}</TableCell>
+            <TableCell>{prop.status}</TableCell>
+            <TableCell><Button variant="contained" onClick={handleDelete}>Delete</Button></TableCell>
+        </TableRow>
 
     )
 }

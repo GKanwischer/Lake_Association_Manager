@@ -34,7 +34,7 @@ export default function UserEvents() {
                                 <TableCell>Title</TableCell>
                                 <TableCell>Description</TableCell>
                                 <TableCell>Date</TableCell>
-                                <TableCell><Button onClick={() => setModalOpen(true)}>Add Event</Button></TableCell>
+                                <TableCell><Button variant="contained" onClick={() => setModalOpen(true)}>Add Event</Button></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
