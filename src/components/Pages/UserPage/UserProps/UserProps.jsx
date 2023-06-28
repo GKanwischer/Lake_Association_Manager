@@ -27,10 +27,10 @@ export default function UserProps() {
   }, []);
 
   return (
-    <div className="user-props">
+    <div>
+      <Card elevation={6} className="user-props">
       <h3>Your Proposals</h3>
-      <Card elevation={6}>
-        <Button variant="contained" onClick={() => setModalOpen(true)}>Add Proposal</Button>
+        
         <AddPropModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
         <TableContainer>
           <Table>
@@ -39,7 +39,7 @@ export default function UserProps() {
                 <TableCell>Description</TableCell>
                 <TableCell>Date created</TableCell>
                 <TableCell>Status</TableCell>
-                <TableCell></TableCell>
+                <TableCell><Button variant="contained" onClick={() => setModalOpen(true)}>Add Proposal</Button></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
