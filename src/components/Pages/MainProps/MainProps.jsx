@@ -21,24 +21,26 @@ export default function MainProps() {
     }, []);
 
     return (
-        <div className="main-props">
-            <h2>In Progress Proposals</h2>
-            <TableContainer>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Description</TableCell>
-                            <TableCell>Proposed By</TableCell>
-                            <TableCell>Vote</TableCell>
-                            <TableCell></TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {inProgressProps.map(prop => <MainPropItem key={prop.id} prop={prop} />)}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        </div>
+        <Card sx={{ maxWidth: 1200 }}>
+            <div className="main-props">
+                <h2>In Progress Proposals</h2>
+                <TableContainer>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Description</TableCell>
+                                <TableCell>Proposed By</TableCell>
+                                <TableCell>Vote</TableCell>
+                                <TableCell></TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {inProgressProps.map(prop => <MainPropItem key={prop.id} prop={prop} />)}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </div>
+        </Card>
     )
 
 }
