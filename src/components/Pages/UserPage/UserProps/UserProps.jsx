@@ -11,6 +11,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Card from '@mui/material/Card';
+import CardHeader from "@mui/material/CardHeader";
 import Button from "@mui/material/Button";
 
 Modal.setAppElement('#react-root');
@@ -29,8 +30,9 @@ export default function UserProps() {
   return (
     <div>
       <Card elevation={6} className="user-props">
-      <h3>Your Proposals</h3>
-        
+        <CardHeader
+          title="Your Proposals"
+        />       
         <AddPropModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
         <TableContainer>
           <Table>

@@ -9,6 +9,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Card from '@mui/material/Card';
+import CardHeader from "@mui/material/CardHeader";
+import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 
 export default function UserEvents() {
@@ -25,23 +27,27 @@ export default function UserEvents() {
 
     return (
         <div className="user-events">
-            <h3>Your Community Events</h3>
             <Card elevation={6}>
-                <TableContainer>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Title</TableCell>
-                                <TableCell>Description</TableCell>
-                                <TableCell>Date</TableCell>
-                                <TableCell><Button variant="contained" onClick={() => setModalOpen(true)}>Add Event</Button></TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {userEvents.map(event => <UserEventItem key={event.id} event={event} />)}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                <CardHeader
+                    title="Your Community Events"
+                />
+                {/* <CardContent className="user-event-body"> */}
+                    <TableContainer>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>Title</TableCell>
+                                    <TableCell>Description</TableCell>
+                                    <TableCell>Date</TableCell>
+                                    <TableCell><Button variant="contained" onClick={() => setModalOpen(true)}>Add Event</Button></TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {userEvents.map(event => <UserEventItem key={event.id} event={event} />)}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                {/* </CardContent> */}
             </Card>
 
             <AddEventModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />

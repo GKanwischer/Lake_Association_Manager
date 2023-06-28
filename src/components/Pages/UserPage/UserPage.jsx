@@ -20,7 +20,7 @@ function UserPage() {
   }, []);
 
   return (
-    <div className="container">
+    <div className="user-container">
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       <div className="user-top">
