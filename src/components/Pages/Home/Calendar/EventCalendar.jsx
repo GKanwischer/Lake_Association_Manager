@@ -20,41 +20,37 @@ export default function EventCalendar() {
     }, []);
 
     return (
-        <>
-            <section id="calendar">
-                <div className="event-calendar" style={{ position: "relative", zIndex: 0 }}>
-                    <Card elevation={6} className="event-card">
+        <div className="event-calendar" id="calendar" style={{ position: "relative", zIndex: 0 }}>
+            <Card elevation={6} className="event-card">
 
-                        <FullCalendar
-                            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-                            headerToolbar={{
-                                left: 'dayGridMonth,timeGridWeek,timeGridDay',
-                                center: 'title',
-                                right: 'prev,next today'
-                            }}
-                            initialView="dayGridMonth"
-                            selectable={true}
-                            events={events}
-                            eventDidMount={(info) => {
-                                let selectedEvent = (events.filter(event => event.id === Number(info.event.id)))
-                                return new bootstrap.Popover(info.el, {
-                                    title: info.event.title,
-                                    placement: "auto",
-                                    trigger: "hover",
-                                    customClass: "popoverStyle",
-                                    content:
-                                        `<div>
+                <FullCalendar
+                    plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+                    headerToolbar={{
+                        left: 'dayGridMonth,timeGridWeek,timeGridDay',
+                        center: 'title',
+                        right: 'prev,next today'
+                    }}
+                    initialView="dayGridMonth"
+                    selectable={true}
+                    events={events}
+                    eventDidMount={(info) => {
+                        let selectedEvent = (events.filter(event => event.id === Number(info.event.id)))
+                        return new bootstrap.Popover(info.el, {
+                            title: info.event.title,
+                            placement: "auto",
+                            trigger: "hover",
+                            customClass: "popoverStyle",
+                            content:
+                                `<div>
                                         <span>Start: ${moment(info.event.start).format('LLL')}</span>
                                         <p>End: ${moment(info.event.end).format('LLL')}</p>
                                         <p>${selectedEvent[0].description}</p>
                                     </div>`,
-                                    html: true,
-                                })
-                            }}
-                        />
-                    </Card>
-                </div>
-            </section>
-        </>
+                            html: true,
+                        })
+                    }}
+                />
+            </Card>
+        </div>
     )
 }

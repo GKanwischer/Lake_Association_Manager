@@ -26,3 +26,9 @@
     height: 400px;
     width: 500px;
 }
+
+.user-events th, .user-props th{
+    background-color: rgb(114, 162, 245);
+    color: white;
+    font-size: 18px;
+}

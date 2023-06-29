@@ -23,11 +23,12 @@ export default function MainProps() {
 
     return (
         <div className="prop-component">
+            <h2>In Progress Proposals</h2>
             <Card
-                sx={{ maxWidth: '80%' }}
+                sx={{ maxWidth: '85%' }}
                 className="main-props"
+                elevation={6}
             >
-                <h2>In Progress Proposals</h2>
                 <TableContainer
                     sx={{ height: 650 }}
                 >
@@ -38,10 +39,10 @@ export default function MainProps() {
                     >
                         <TableHead>
                             <TableRow>
-                                <TableCell>Description</TableCell>
-                                <TableCell>Proposed By</TableCell>
-                                <TableCell>Vote</TableCell>
-                                <TableCell></TableCell>
+                                <TableCell sx={{minWidth: 500}}>Description</TableCell>
+                                <TableCell align="left" >Proposed By</TableCell>
+                                <TableCell align="center" >Vote</TableCell>
+                                <TableCell ></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

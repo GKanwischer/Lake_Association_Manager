@@ -63,7 +63,7 @@ export default function MainPropItem({ prop }) {
         <TableRow hover >
             <TableCell>{prop.description}</TableCell>
             <TableCell>{prop.first_name} {prop.last_name}</TableCell>
-            <TableCell>
+            <TableCell align="center">
                 <FormControl component="fieldset">
                     <RadioGroup
                         row
@@ -74,12 +74,12 @@ export default function MainPropItem({ prop }) {
                     >
                         <FormControlLabel
                             value="true"
-                            control={<Radio />}
+                            control={<Radio size="small"/>}
                             label="Pass"
                         />
                         <FormControlLabel
                             value="false"
-                            control={<Radio />}
+                            control={<Radio size="small"/>}
                             label="Veto"
                         />
                     </RadioGroup>

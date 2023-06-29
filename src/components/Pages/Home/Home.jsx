@@ -15,17 +15,15 @@ export default function Home() {
     useEffect(() => {
         dispatch({ type: 'FETCH_PROPS' });
         dispatch({ type: 'FETCH_USER_VOTES' });
-      }, []);
+    }, []);
 
     return (
         <div className="home-container">
-            <div id="home-calendar">
+            <div className="home-calendar">
                 <EventCalendar />
             </div>
-            <div>
+            <div className="home-props">
                 <HomePassedProps />
-            </div>
-            <div>
                 <HomeVetoedProps />
             </div>
         </div>
