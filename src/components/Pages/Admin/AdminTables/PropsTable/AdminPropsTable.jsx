@@ -21,7 +21,7 @@ export default function AdminPropsTable() {
                     <Table
                         sx={{ height: "max-content" }}
                         stickyHeader
-                        aria-label="sticky table"
+                        aria-label="admin proposals table"
                     >
                         <TableHead>
                             <TableRow>

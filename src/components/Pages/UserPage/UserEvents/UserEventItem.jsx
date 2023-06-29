@@ -28,7 +28,7 @@ export default function UserEventItem({ event }) {
 
     return (
         <>
-            <TableRow>
+            <TableRow sx={{ Height: 300 }}>
                 <TableCell>{event.title}</TableCell>
                 <TableCell>{event.description}</TableCell>
                 <TableCell>{dateMatch()

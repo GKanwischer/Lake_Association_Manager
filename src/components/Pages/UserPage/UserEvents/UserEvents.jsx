@@ -40,9 +40,14 @@ export default function UserEvents() {
                         </Tooltip>
                     }
                 />
-                {/* <CardContent className="user-event-body"> */}
-                <TableContainer>
-                    <Table>
+                <TableContainer
+                    sx={{ height: 400, minWidth: 600 }}
+                >
+                    <Table
+                        sx={{ height: "max-content" }}
+                        stickyHeader
+                        aria-label="user events table"
+                    >
                         <TableHead>
                             <TableRow>
                                 <TableCell>Title</TableCell>
@@ -56,9 +61,7 @@ export default function UserEvents() {
                         </TableBody>
                     </Table>
                 </TableContainer>
-                {/* </CardContent> */}
             </Card>
-
             <AddEventModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
         </div>
     )

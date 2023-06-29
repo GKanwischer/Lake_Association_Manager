@@ -13,6 +13,9 @@ import TableRow from '@mui/material/TableRow';
 import Card from '@mui/material/Card';
 import CardHeader from "@mui/material/CardHeader";
 import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import IconButton from '@mui/material/IconButton';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
 Modal.setAppElement('#react-root');
 
@@ -32,6 +35,13 @@ export default function UserProps() {
       <Card elevation={6} className="user-props">
         <CardHeader
           title="Your Proposals"
+          action={
+            <Tooltip title="Add Proposal">
+                <IconButton aria-label="add" onClick={() => setModalOpen(true)}>
+                    <AddBoxIcon fontSize="large" />
+                </IconButton>
+            </Tooltip>
+        }
         />       
         <AddPropModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
         <TableContainer>
@@ -41,7 +51,7 @@ export default function UserProps() {
                 <TableCell>Description</TableCell>
                 <TableCell>Date created</TableCell>
                 <TableCell>Status</TableCell>
-                <TableCell><Button variant="contained" onClick={() => setModalOpen(true)}>Add Proposal</Button></TableCell>
+                <TableCell></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
