@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Card from '@mui/material/Card';
+import './MainProps.css';
 
 import MainPropItem from "./MainPropItem/MainPropItem";
 
@@ -21,11 +22,20 @@ export default function MainProps() {
     }, []);
 
     return (
-        <Card sx={{ maxWidth: 1200 }}>
-            <div className="main-props">
+        <div className="prop-component">
+            <Card
+                sx={{ maxWidth: '80%' }}
+                className="main-props"
+            >
                 <h2>In Progress Proposals</h2>
-                <TableContainer>
-                    <Table>
+                <TableContainer
+                    sx={{ height: 650 }}
+                >
+                    <Table
+                        sx={{ height: "max-content" }}
+                        stickyHeader 
+                        aria-label="sticky table"
+                    >
                         <TableHead>
                             <TableRow>
                                 <TableCell>Description</TableCell>
@@ -39,8 +49,8 @@ export default function MainProps() {
                         </TableBody>
                     </Table>
                 </TableContainer>
-            </div>
-        </Card>
+            </Card>
+        </div>
     )
 
 }

@@ -17,11 +17,16 @@ export default function AdminUsersTable() {
 
     return (
         <div className="admin-users">
-            <h2>Welcome Admin {loggedInUser.username}!</h2>
             <h3>Lake Association Members</h3>
             <Card elevation={6}>
-                <TableContainer>
-                    <Table>
+                <TableContainer
+                    sx={{ height: 450 }}
+                >
+                    <Table
+                        sx={{ height: "max-content" }}
+                        stickyHeader
+                        aria-label="sticky table"
+                    >
                         <TableHead>
                             <TableRow>
                                 <TableCell>User Level</TableCell>

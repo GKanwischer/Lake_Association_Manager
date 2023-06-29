@@ -2,6 +2,10 @@ import { useDispatch, useSelector } from "react-redux"
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import Button from "@mui/material/Button";
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Checkbox from '@mui/material/Checkbox';
+import Tooltip from "@mui/material/Tooltip";
 
 export default function AdminUserItem({ user }) {
     const dispatch = useDispatch();
@@ -20,6 +24,13 @@ export default function AdminUserItem({ user }) {
     return (
         <TableRow>
             <TableCell>
+                <Tooltip title={user.is_admin ? 'Remove admin' : 'Make admin'}>
+                    <Checkbox
+                        checked={user.is_admin}
+                        onChange={userLevelChange}
+                        inputProps={{ 'aria-label': 'controlled' }}
+                    />
+                </Tooltip>
                 {user.is_admin
                     ? 'Admin'
                     : 'User'}
@@ -42,8 +53,9 @@ export default function AdminUserItem({ user }) {
                 : 'N/A'}
             </TableCell>
             <TableCell className="user-actions">
-                <Button variant="contained" onClick={userLevelChange}>{user.is_admin ? 'Remove Admin' : 'Make Admin'}</Button>
-                <Button variant="contained" onClick={deleteUser}>Delete</Button>
+                <IconButton aria-label="delete" onClick={deleteUser}>
+                    <DeleteIcon fontSize="inherit" />
+                </IconButton>
             </TableCell>
         </TableRow>
     )

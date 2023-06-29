@@ -1,0 +1,10 @@
+.main-props{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+}
+
+.prop-component{
+    margin-top: 5%
+}

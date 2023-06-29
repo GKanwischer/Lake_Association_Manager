@@ -22,8 +22,14 @@ export default function AdminEventsTable() {
         <div className="admin-events">
             <h3>Community Events</h3>
             <Card elevation={6}>
-                <TableContainer>
-                    <Table>
+                <TableContainer
+                    sx={{ height: 525 }}
+                >
+                    <Table
+                        sx={{ height: "max-content" }}
+                        stickyHeader
+                        aria-label="sticky table"
+                    >
                         <TableHead>
                             <TableRow>
                                 <TableCell>Created By</TableCell>

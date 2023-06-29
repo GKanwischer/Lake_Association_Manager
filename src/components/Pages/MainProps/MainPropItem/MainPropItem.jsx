@@ -60,7 +60,7 @@ export default function MainPropItem({ prop }) {
       };
 
     return (
-        <TableRow>
+        <TableRow hover >
             <TableCell>{prop.description}</TableCell>
             <TableCell>{prop.first_name} {prop.last_name}</TableCell>
             <TableCell>
