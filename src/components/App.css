@@ -2,6 +2,7 @@ html,
 body,
 #react-root {
   height: 100%;
+  background-color: rgb(211, 172, 113);
 }
 
 body {
@@ -110,3 +111,4 @@ input {
   margin: 5px;
   margin-bottom: 10px;
 }
+

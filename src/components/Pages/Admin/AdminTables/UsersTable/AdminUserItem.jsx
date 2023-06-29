@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
-import Button from "@mui/material/Button";
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Checkbox from '@mui/material/Checkbox';
@@ -23,7 +22,7 @@ export default function AdminUserItem({ user }) {
 
     return (
         <TableRow>
-            <TableCell>
+            <TableCell align="left">
                 <Tooltip title={user.is_admin ? 'Remove admin' : 'Make admin'}>
                     <Checkbox
                         checked={user.is_admin}
@@ -35,12 +34,12 @@ export default function AdminUserItem({ user }) {
                     ? 'Admin'
                     : 'User'}
             </TableCell>
-            <TableCell>{user.username}</TableCell>
-            <TableCell>{(user.first_name || user.last_name)
+            <TableCell align="center" >{user.username}</TableCell>
+            <TableCell align="center" >{(user.first_name || user.last_name)
                 ? user.first_name + ' ' + user.last_name
                 : 'N/A'}
             </TableCell>
-            <TableCell>{(!user.phone_number || user.phone_number === '0')
+            <TableCell align="center" >{(!user.phone_number || user.phone_number === '0')
                 ? 'N/A'
                 : user.phone_number}
             </TableCell>
@@ -48,14 +47,16 @@ export default function AdminUserItem({ user }) {
                 ? user.email
                 : 'N/A'}
             </TableCell>
-            <TableCell>{(user.street_address || user.city || user.state)
+            <TableCell sx={{minWidth: 250}}>{(user.street_address || user.city || user.state)
                 ? (`${user.street_address} ${user.city}, ${user.state}`)
                 : 'N/A'}
             </TableCell>
-            <TableCell className="user-actions">
-                <IconButton aria-label="delete" onClick={deleteUser}>
-                    <DeleteIcon fontSize="inherit" />
-                </IconButton>
+            <TableCell align="right" className="user-actions">
+                <Tooltip title="Delete">
+                    <IconButton aria-label="delete" onClick={deleteUser}>
+                        <DeleteIcon fontSize="inherit" />
+                    </IconButton>
+                </Tooltip>
             </TableCell>
         </TableRow>
     )

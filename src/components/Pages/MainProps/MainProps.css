@@ -8,3 +8,13 @@
 .prop-component{
     margin-top: 5%
 }
+
+/* tbody{
+    background-color: rgb(255 251 221);
+} */
+
+.main-props th{
+    background-color: rgb(114, 162, 245);
+    color: white;
+    font-size: 18px;
+}

@@ -14,7 +14,7 @@ export default function AdminPropsTable() {
     return (
         <div className="admin-props">
             <h3>All Proposals</h3>
-            <Card elevation={6}>
+            <Card elevation={6} >
                 <TableContainer
                     sx={{ height: 525, minWidth: 100 }}
                 >
@@ -25,13 +25,13 @@ export default function AdminPropsTable() {
                     >
                         <TableHead>
                             <TableRow>
-                                <TableCell>Created By</TableCell>
+                                <TableCell sx={{maxWidth:120}}>Created By</TableCell>
                                 <TableCell sx={{minWidth: 500}}>Description</TableCell>
                                 <TableCell align="center" sx={{maxWidth: 110}}>Status</TableCell>
                                 <TableCell align="center" sx={{maxWidth: 60}}>Pass</TableCell>
                                 <TableCell align="center" sx={{maxWidth: 60}}>Veto</TableCell>
                                 <TableCell align="center" sx={{maxWidth: 130}}>Date Created</TableCell>
-                                <TableCell align="center" sx={{maxWidth: 60}}>Action</TableCell>
+                                <TableCell align="center" sx={{maxWidth: 60}}></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

@@ -29,13 +29,13 @@ export default function AdminUsersTable() {
                     >
                         <TableHead>
                             <TableRow>
-                                <TableCell>User Level</TableCell>
-                                <TableCell>Username</TableCell>
-                                <TableCell>Full Name</TableCell>
-                                <TableCell>Phone Number</TableCell>
-                                <TableCell>Email</TableCell>
+                                <TableCell align="center" sx={{maxWidth: 140}}>User Level</TableCell>
+                                <TableCell align="center" sx={{maxWidth: 150}}>Username</TableCell>
+                                <TableCell align="center">Full Name</TableCell>
+                                <TableCell align="center" sx={{maxWidth: 120, padding: 0}}>Phone Number</TableCell>
+                                <TableCell align="center">Email</TableCell>
                                 <TableCell>Address</TableCell>
-                                <TableCell className="user-actions">Actions</TableCell>
+                                <TableCell align="center" sx={{maxWidth: 70, padding: 0}}></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

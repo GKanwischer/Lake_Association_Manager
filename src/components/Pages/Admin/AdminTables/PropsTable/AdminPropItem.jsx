@@ -4,6 +4,7 @@ import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Tooltip from "@mui/material/Tooltip";
 
 export default function AdminPropItem({ prop }) {
     const dispatch = useDispatch();
@@ -20,10 +21,12 @@ export default function AdminPropItem({ prop }) {
             <TableCell align="center" >{prop.true_votes}</TableCell>
             <TableCell align="center" >{prop.false_votes}</TableCell>
             <TableCell align="center" >{moment(prop.created_date).format('LLL')}</TableCell>
-            <TableCell align="center" >
-                <IconButton aria-label="delete" onClick={deleteProp}>
-                    <DeleteIcon fontSize="inherit" />
-                </IconButton>
+            <TableCell align="right" >
+                <Tooltip title="Delete">
+                    <IconButton aria-label="delete" onClick={deleteProp}>
+                        <DeleteIcon fontSize="inherit" />
+                    </IconButton>
+                </Tooltip>
             </TableCell>
         </TableRow>
     )

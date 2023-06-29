@@ -31,12 +31,12 @@ export default function AdminEventsTable() {
                         aria-label="sticky table"
                     >
                         <TableHead>
-                            <TableRow>
-                                <TableCell>Created By</TableCell>
+                            <TableRow hover>
+                                <TableCell sx={{maxWidth:140}}>Created By</TableCell>
                                 <TableCell>Title</TableCell>
-                                <TableCell>Description</TableCell>
-                                <TableCell>Date</TableCell>
-                                <TableCell>Action</TableCell>
+                                <TableCell sx={{minWidth: 500}} >Description</TableCell>
+                                <TableCell align="center">Date</TableCell>
+                                <TableCell align="center" sx={{maxWidth: 60}}></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
