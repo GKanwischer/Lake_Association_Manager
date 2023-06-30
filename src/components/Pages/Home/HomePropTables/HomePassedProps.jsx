@@ -17,7 +17,7 @@ export default function HomePassedProps() {
             <CardHeader
                 title="Recently Passed Proposals" />
             <TableContainer
-                sx={{ height: 250 }}>
+                sx={{ height: 350 }}>
                 <Table
                     sx={{ height: "max-content" }}
                     stickyHeader

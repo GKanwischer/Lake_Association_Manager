@@ -18,7 +18,7 @@ export default function HomeVetoedProps() {
             <CardHeader
                 title="Recently Vetoed Proposals" />
             <TableContainer
-                sx={{ height: 250 }}>
+                sx={{ height: 350 }}>
                 <Table
                     sx={{ height: "max-content" }}
                     stickyHeader

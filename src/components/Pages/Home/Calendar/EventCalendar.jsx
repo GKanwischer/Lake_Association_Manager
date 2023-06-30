@@ -22,7 +22,7 @@ export default function EventCalendar() {
 
     return (
             <div className="event-calendar" id="calendar" style={{ position: "relative", zIndex: 0 }}>
-                <Card elevation={6} className="event-card">
+                <Card elevation={6} className="event-card" sx={{ maxHeight: 900 }} >
                     <CardHeader
                         title="Community Events"
                     />

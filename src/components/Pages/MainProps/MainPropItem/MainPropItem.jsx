@@ -18,6 +18,7 @@ export default function MainPropItem({ prop }) {
         proposal_id: prop.id,
         vote: existingVote ? existingVote.vote : null
     });
+    console.log('selectedVote: ', selectedVote);
 
     useEffect(() => {
         if (existingVote) {

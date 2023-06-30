@@ -25,7 +25,7 @@ export default function MainProps() {
         <div className="prop-component">
             <h2>In Progress Proposals</h2>
             <Card
-                sx={{ maxWidth: '85%' }}
+                sx={{ maxWidth: 1/1 }}
                 className="main-props"
                 elevation={6}
             >
