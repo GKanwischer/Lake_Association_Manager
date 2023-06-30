@@ -8,6 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Card from '@mui/material/Card';
+import CardHeader from "@mui/material/CardHeader";
 
 export default function AdminEventsTable() {
     const dispatch = useDispatch();
@@ -20,8 +21,8 @@ export default function AdminEventsTable() {
 
     return (
         <div className="admin-events">
-            <h3>Community Events</h3>
             <Card elevation={6}>
+                <CardHeader title="Community Events" />
                 <TableContainer
                     sx={{ height: 525 }}
                 >

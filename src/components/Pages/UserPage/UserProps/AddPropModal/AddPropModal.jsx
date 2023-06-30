@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Modal from "@mui/material/Modal";
 import Box from '@mui/material/Box';
+import Button from "@mui/material/Button";
 
 export default function AddPropModal({ isOpen, onClose }) {
     const dispatch = useDispatch();
@@ -44,7 +45,7 @@ export default function AddPropModal({ isOpen, onClose }) {
                         rows={4}
                         cols={40}
                         onChange={e => setDescriptInput(e.target.value)} />
-                    <button onClick={submitProposal}>Submit</button>
+                    <Button variant="contained" onClick={submitProposal}>Submit</Button>
                 </div>
             </Box>
         </Modal>

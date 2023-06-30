@@ -7,14 +7,15 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Card from '@mui/material/Card';
+import CardHeader from "@mui/material/CardHeader";
 
 export default function AdminPropsTable() {
     const props = useSelector(store => store.admin.props)
 
     return (
         <div className="admin-props">
-            <h3>All Proposals</h3>
             <Card elevation={6} >
+            <CardHeader title="All Proposals" />
                 <TableContainer
                     sx={{ height: 525, minWidth: 100 }}
                 >

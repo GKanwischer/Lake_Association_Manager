@@ -5,6 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Checkbox from '@mui/material/Checkbox';
 import Tooltip from "@mui/material/Tooltip";
+import Swal from "sweetalert2";
 
 export default function AdminUserItem({ user }) {
     const dispatch = useDispatch();
@@ -56,7 +57,26 @@ export default function AdminUserItem({ user }) {
             </TableCell>
             <TableCell align="right" className="user-actions">
                 <Tooltip title="Delete">
-                    <IconButton aria-label="delete" onClick={deleteUser}>
+                    <IconButton aria-label="delete" onClick={() => {
+                        Swal.fire({
+                            title: 'Are you sure?',
+                            text: "You won't be able to revert this!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, remove them!'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                deleteUser(),
+                                Swal.fire(
+                                    'Deleted!',
+                                    `User: ${user.username}, has been removed from the community.`,
+                                    'success'
+                                )
+                            }
+                        })
+                    }}>
                         <DeleteIcon fontSize="inherit" />
                     </IconButton>
                 </Tooltip>

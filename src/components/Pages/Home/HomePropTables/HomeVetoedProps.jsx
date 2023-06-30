@@ -17,8 +17,12 @@ export default function HomeVetoedProps() {
         <Card className="recently-complete" elevation={6}>
             <CardHeader
                 title="Recently Vetoed Proposals" />
-            <TableContainer>
-                <Table>
+            <TableContainer
+                sx={{ height: 250 }}>
+                <Table
+                    sx={{ height: "max-content" }}
+                    stickyHeader
+                    aria-label="recently vetoed table">
                     <TableHead>
                         <TableRow>
                             <TableCell sx={{ minWidth: 700 }}>Description</TableCell>

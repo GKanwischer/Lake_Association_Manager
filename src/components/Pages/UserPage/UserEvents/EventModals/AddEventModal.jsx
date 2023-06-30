@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import moment from "moment";
 import Modal from "@mui/material/Modal";
 import Box from '@mui/material/Box';
+import Button from "@mui/material/Button";
 
 export default function AddEventModal({ isOpen, onClose }) {
     const [title, setTitle] = useState('');
@@ -67,7 +68,7 @@ export default function AddEventModal({ isOpen, onClose }) {
                         onChange={e => setEnd(e.target.value)}
                     />
                 </div>
-                <button onClick={onSubmit}>Add Event</button>
+                <Button variant="contained" onClick={onSubmit}>Add Event</Button>
             </Box>
         </Modal>
     )

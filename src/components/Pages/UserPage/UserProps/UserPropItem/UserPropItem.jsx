@@ -5,6 +5,7 @@ import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Tooltip from "@mui/material/Tooltip";
+import Swal from "sweetalert2";
 
 export default function UserPropItem({ prop }) {
     const dispatch = useDispatch();
@@ -20,11 +21,30 @@ export default function UserPropItem({ prop }) {
             <TableCell>{prop.status}</TableCell>
             <TableCell align="right">
                 <Tooltip title="Delete">
-                    <IconButton aria-label="delete" onClick={handleDelete}>
+                    <IconButton aria-label="delete" 
+                        onClick={() => {
+                            Swal.fire({
+                                title: 'Are you sure?',
+                                text: "You won't be able to revert this!",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Yes, delete it!'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    handleDelete(),
+                                        Swal.fire(
+                                            'Deleted!',
+                                            `Your proposal created on ${moment(prop.created_date).format('LLL')}, was succesfully deleted.`,
+                                            'success'
+                                        )
+                                }
+                            })
+                        }}>
                         <DeleteIcon fontSize="inherit" />
                     </IconButton>
                 </Tooltip>
-                {/* <Button variant="contained" onClick={handleDelete}>Delete</Button> */}
             </TableCell>
         </TableRow>
 

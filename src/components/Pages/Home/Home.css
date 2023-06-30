@@ -70,3 +70,7 @@ a {
     display:flex;
     justify-content: center;
 }
+
+#welcome-msg h2 p{
+    color: white;
+}

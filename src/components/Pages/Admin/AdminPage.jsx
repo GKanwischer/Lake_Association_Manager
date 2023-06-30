@@ -18,6 +18,8 @@ export default function AdminPage() {
     return (
         <div className="admin">
             <h2>Welcome Admin {loggedInUser.username}!</h2>
+            <h4>This page is help you manage the status of memebers, and remove any proposals <br/>
+             or events that have been posted</h4>
             <AdminUsersTable />
             <AdminPropsTable />
             <AdminEventsTable />

@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Tooltip from "@mui/material/Tooltip";
 import EditIcon from '@mui/icons-material/Edit';
+import Swal from "sweetalert2";
 
 
 export default function UserEventItem({ event }) {
@@ -28,7 +29,7 @@ export default function UserEventItem({ event }) {
 
     return (
         <>
-            <TableRow sx={{ Height: 300 }}>
+            <TableRow>
                 <TableCell>{event.title}</TableCell>
                 <TableCell>{event.description}</TableCell>
                 <TableCell>{dateMatch()
@@ -37,7 +38,27 @@ export default function UserEventItem({ event }) {
                 </TableCell>
                 <TableCell align="right">
                     <Tooltip title="Delete">
-                        <IconButton aria-label="delete" onClick={handleDelete}>
+                        <IconButton aria-label="delete"
+                            onClick={() => {
+                                Swal.fire({
+                                    title: 'Are you sure?',
+                                    text: "You won't be able to revert this!",
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Yes, delete it!'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        handleDelete(),
+                                            Swal.fire(
+                                                'Deleted!',
+                                                `Event: ${event.title}, was succesfully deleted.`,
+                                                'success'
+                                            )
+                                    }
+                                })
+                            }}>
                             <DeleteIcon fontSize="inherit" />
                         </IconButton>
                     </Tooltip>

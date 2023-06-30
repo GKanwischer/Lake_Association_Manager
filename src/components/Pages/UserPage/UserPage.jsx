@@ -21,7 +21,7 @@ function UserPage() {
 
   return (
     <div className="user-container">
-      <h2>Welcome, {user.username}!</h2>
+      <h2>{user.username}</h2>
       <div className="user-top">
         <UserContactInfo />
         <UserEvents />

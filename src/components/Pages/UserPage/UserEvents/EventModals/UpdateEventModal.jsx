@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import moment from "moment";
 import Modal from "@mui/material/Modal";
 import Box from '@mui/material/Box';
+import Button from "@mui/material/Button";
 
 export default function UpdateEventModal({ isOpen, onClose, event }) {
     const [title, setTitle] = useState('');
@@ -101,7 +102,7 @@ export default function UpdateEventModal({ isOpen, onClose, event }) {
                         onChange={handleEndChange}
                     />
                 </div>
-                <button onClick={onUpdate}>Confirm Update</button>
+                <Button variant="contained" onClick={onUpdate}>Confirm Update</Button>
             </Box>
         </Modal>
     )

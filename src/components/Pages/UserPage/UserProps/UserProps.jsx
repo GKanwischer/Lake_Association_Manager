@@ -37,15 +37,19 @@ export default function UserProps() {
           title="Your Proposals"
           action={
             <Tooltip title="Add Proposal">
-                <IconButton aria-label="add" onClick={() => setModalOpen(true)}>
-                    <AddBoxIcon fontSize="large" />
-                </IconButton>
+              <IconButton aria-label="add" onClick={() => setModalOpen(true)}>
+                <AddBoxIcon fontSize="large" />
+              </IconButton>
             </Tooltip>
-        }
-        />       
+          }
+        />
         <AddPropModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
-        <TableContainer>
-          <Table>
+        <TableContainer
+          sx={{ height: 450 }}>
+          <Table
+            sx={{ height: "max-content" }}
+            stickyHeader
+            aria-label="user proposals table">
             <TableHead>
               <TableRow>
                 <TableCell>Description</TableCell>
