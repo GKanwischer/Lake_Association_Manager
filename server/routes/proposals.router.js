@@ -37,7 +37,6 @@ router.post('/add', rejectUnauthenticated, (req, res) => {
 // route for getting all proposals associated with the logged in user
 router.get('/user', rejectUnauthenticated, (req, res) => {
   queryText = `SELECT * FROM "proposal" WHERE "user_id" = $1;`;
-  // console.log('user', req.user);
 
   pool.query(queryText, [req.user.id])
     .then(result => {
@@ -94,7 +93,10 @@ router.delete('/delete/:id', rejectUnauthenticated, (req, res) => {
   const query = `DELETE FROM "proposal" WHERE "id" = $1 AND "user_id" = $2;`;
       
   pool.query(query, [proposalId, req.user.id])
-  .then(res.sendStatus(200))
+  .then(result => {
+    console.log(`Successful delete of proposal at id: ${proposalId} for ${req.user.username}`);
+    res.sendStatus(200)
+  })
   .catch(err => {
     console.log('Error deleting proposal', err);
   })
@@ -166,30 +168,3 @@ function updateProposalStatus(proposalId, status) {
 }
 
 module.exports = router;
-
-
-// Example of a PostgreSQL transaction --- DELETE LATER!!!
-// router.delete('/delete/:id', rejectUnauthenticated, async (req, res) => {
-  //     const proposalId = req.params.id;
-  
-  //     try {
-    //         // Start a transaction
-    //         await pool.query('BEGIN');
-    
-    //         // Delete from the "proposal_vote" table
-    //         await pool.query('DELETE FROM "proposal_vote" WHERE "proposal_id" = $1', [proposalId]);
-    
-    //         // Delete from the "proposal" table
-    //         await pool.query('DELETE FROM "proposal" WHERE "id" = $1 AND "user_id" = $2', [proposalId, req.user.id]);
-    
-    //         // Commit the transaction
-    //         await pool.query('COMMIT');
-    
-    //         res.sendStatus(200);
-    //     } catch (err) {
-      //         // Rollback the transaction if an error occurs
-      //         await pool.query('ROLLBACK');
-      //         console.log('Error deleting proposal', err);
-      //         res.sendStatus(500);
-      //     }
-      // });

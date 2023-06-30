@@ -7,10 +7,6 @@ import Button from "@mui/material/Button";
 export default function UserPropItem({prop}){
     const dispatch = useDispatch();
 
-    // function handleEdit(){
-    //     might add this later
-    // }
-
     function handleDelete(){
         dispatch({ type: 'DELETE_USER_PROP', payload: prop.id })
     }

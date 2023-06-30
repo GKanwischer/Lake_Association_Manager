@@ -9,6 +9,7 @@ export default function AddPropModal({ isOpen, onClose }) {
 
     function submitProposal() {
         dispatch({ type: 'ADD_PROP', payload: { description: descriptInput } })
+        setDescriptInput('');
         onClose();
     }
 
@@ -29,7 +30,7 @@ export default function AddPropModal({ isOpen, onClose }) {
     return (
         <Modal
             open={isOpen}
-            shouldCloseOnOverlayClick={true}
+            // shouldCloseOnOverlayClick={true}
             onClose={onClose}
         >
             <Box sx={style}>

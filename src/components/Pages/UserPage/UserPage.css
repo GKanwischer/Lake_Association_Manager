@@ -5,9 +5,7 @@
 .user-top{
     display: flex;
     align-items: flex-start;
-    /* width: 85%; */
     flex-direction: row;
-    height: 400px;
 }
 
 .user-props{
