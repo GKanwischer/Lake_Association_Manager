@@ -29,7 +29,7 @@ export default function UserEvents() {
 
     return (
         <Card elevation={6} className="user-events"
-        sx={{ height: 400, width: 1/1 }}>
+        sx={{ width: 1/1 }}>
             <CardHeader
                 title="Your Community Events"
                 action={
@@ -38,7 +38,7 @@ export default function UserEvents() {
                             <AddBoxIcon fontSize="large" />
                         </IconButton>
                     </Tooltip>} />
-            <TableContainer sx={{ height: 400 }}>
+            <TableContainer sx={{ height: 425 }}>
                 <Table
                     sx={{ height: "max-content" }}
                     stickyHeader

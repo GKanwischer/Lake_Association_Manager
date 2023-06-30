@@ -41,7 +41,7 @@ export default function ContactInfoTest() {
 
     return (
         <Card elevation={6} className="contact-info"
-        sx={{ height: 400 }}>
+        sx={{ height: 500 }}>
             <CardHeader
                 title="Contact Info"
                 action={
