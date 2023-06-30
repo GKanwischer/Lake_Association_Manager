@@ -45,6 +45,9 @@ export default function AddEventModal({ isOpen, onClose }) {
             onClose={onClose}
         >
             <Box sx={style}>
+                <div className="modal-header">
+                    <h2>Add an Event</h2>
+                </div>
                 <input placeholder="title" value={title} onChange={e => setTitle(e.target.value)} />
                 <textarea
                     placeholder='Proposal Description'

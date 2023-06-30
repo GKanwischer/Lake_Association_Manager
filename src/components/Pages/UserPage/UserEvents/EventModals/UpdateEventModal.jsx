@@ -70,6 +70,9 @@ export default function UpdateEventModal({ isOpen, onClose, event }) {
             onClose={onClose}
         >
             <Box sx={style}>
+                <div className="modal-header">
+                    <h2>Update Event Info</h2>
+                </div>
                 <div>
                     <input
                         placeholder="title"
