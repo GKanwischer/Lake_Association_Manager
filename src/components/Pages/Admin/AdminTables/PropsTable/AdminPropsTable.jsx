@@ -7,25 +7,32 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Card from '@mui/material/Card';
+import CardHeader from "@mui/material/CardHeader";
 
 export default function AdminPropsTable() {
     const props = useSelector(store => store.admin.props)
 
     return (
         <div className="admin-props">
-            <h3>All Proposals</h3>
-            <Card elevation={6}>
-                <TableContainer>
-                    <Table>
+            <Card elevation={6} >
+            <CardHeader title="All Proposals" />
+                <TableContainer
+                    sx={{ height: 525, minWidth: 100 }}
+                >
+                    <Table
+                        sx={{ height: "max-content" }}
+                        stickyHeader
+                        aria-label="admin proposals table"
+                    >
                         <TableHead>
                             <TableRow>
-                                <TableCell>Created By</TableCell>
-                                <TableCell>Description</TableCell>
-                                <TableCell>Status</TableCell>
-                                <TableCell>Pass Count</TableCell>
-                                <TableCell>Veto Count</TableCell>
-                                <TableCell>Date Created</TableCell>
-                                <TableCell className="user-actions">Actions</TableCell>
+                                <TableCell sx={{maxWidth:120}}>Created By</TableCell>
+                                <TableCell sx={{minWidth: 500}}>Description</TableCell>
+                                <TableCell align="center" sx={{maxWidth: 110}}>Status</TableCell>
+                                <TableCell align="center" sx={{maxWidth: 60}}>Pass</TableCell>
+                                <TableCell align="center" sx={{maxWidth: 60}}>Veto</TableCell>
+                                <TableCell align="center" sx={{maxWidth: 130}}>Date Created</TableCell>
+                                <TableCell align="center" sx={{maxWidth: 60}}></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

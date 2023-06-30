@@ -10,8 +10,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Card from '@mui/material/Card';
 import CardHeader from "@mui/material/CardHeader";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import IconButton from '@mui/material/IconButton';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+
 
 export default function UserEvents() {
     const dispatch = useDispatch();
@@ -26,31 +28,35 @@ export default function UserEvents() {
     }, []);
 
     return (
-        <div className="user-events">
-            <Card elevation={6}>
-                <CardHeader
-                    title="Your Community Events"
-                />
-                {/* <CardContent className="user-event-body"> */}
-                    <TableContainer>
-                        <Table>
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>Title</TableCell>
-                                    <TableCell>Description</TableCell>
-                                    <TableCell>Date</TableCell>
-                                    <TableCell><Button variant="contained" onClick={() => setModalOpen(true)}>Add Event</Button></TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {userEvents.map(event => <UserEventItem key={event.id} event={event} />)}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                {/* </CardContent> */}
-            </Card>
-
+        <Card elevation={6} className="user-events"
+        sx={{ height: 400, width: 1/1 }}>
+            <CardHeader
+                title="Your Community Events"
+                action={
+                    <Tooltip title="Add Event">
+                        <IconButton aria-label="add" onClick={() => setModalOpen(true)}>
+                            <AddBoxIcon fontSize="large" />
+                        </IconButton>
+                    </Tooltip>} />
+            <TableContainer sx={{ height: 400 }}>
+                <Table
+                    sx={{ height: "max-content" }}
+                    stickyHeader
+                    aria-label="user events table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Title</TableCell>
+                            <TableCell>Description</TableCell>
+                            <TableCell>Date</TableCell>
+                            <TableCell></TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {userEvents.map(event => <UserEventItem key={event.id} event={event} />)}
+                    </TableBody>
+                </Table>
+            </TableContainer>
             <AddEventModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
-        </div>
+        </Card>
     )
 }

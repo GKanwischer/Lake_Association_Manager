@@ -19,8 +19,6 @@ export default function ContactInfoTest() {
     const [stateInput, setStateInput] = useState(user.state)
     const [editMode, setEditMode] = useState(false)
 
-    // console.log('Client side user:', user);
-
     const contactInfo = {
         first_name: firstNameInput,
         last_name: lastNameInput,
@@ -42,7 +40,8 @@ export default function ContactInfoTest() {
     }
 
     return (
-        <Card elevation={6} className="contact-info">
+        <Card elevation={6} className="contact-info"
+        sx={{ height: 400 }}>
             <CardHeader
                 title="Contact Info"
                 action={
@@ -55,22 +54,18 @@ export default function ContactInfoTest() {
                 }
             />
             <div>
-                <CardContent className="contact-body">
+                <CardContent className="contact-body" >
                     {editMode
                         ? <span>
-                            <TextField
-                                variant='filled'
+                            <input
                                 placeholder="First name"
-                                size="small"
                                 type="text"
                                 label="First Name"
                                 value={firstNameInput}
                                 className="contact-input"
                                 onChange={e => setFirstNameInput(e.target.value)} />
-                            <TextField
-                                variant='filled'
+                            <input
                                 placeholder="Last name"
-                                size="small"
                                 type="text"
                                 label="Last Name"
                                 value={lastNameInput}
@@ -78,14 +73,12 @@ export default function ContactInfoTest() {
                                 onChange={e => setLastNameInput(e.target.value)} />
                         </span>
                         : (!user.first_name || !user.last_name)
-                            ? <span>Name: Not Given</span>
-                            : <span>Name: {user.first_name} {user.last_name}</span>}
+                            ? <p><strong>Name:</strong> Not Given</p>
+                            : <p><strong>Name:</strong> {user.first_name} {user.last_name}</p>}
                     {editMode
                         ? <span>
-                            <TextField
-                                variant='filled'
+                            <input
                                 placeholder="phone number"
-                                size="small"
                                 type="tel"
                                 label="Phone Number"
                                 value={phoneNumberInput === '0' ? '' : phoneNumberInput}
@@ -93,14 +86,12 @@ export default function ContactInfoTest() {
                                 onChange={e => setPhoneNumberInput(e.target.value)} />
                         </span>
                         : (!user.phone_number || user.phone_number === '0')
-                            ? <span>Phone Number: Not Given</span>
-                            : <span>Phone Number: {user.phone_number}</span>}
+                            ? <p><strong>Phone Number:</strong> Not Given</p>
+                            : <p><strong>Phone Number:</strong> {user.phone_number}</p>}
                     {editMode
                         ? <span>
-                            <TextField
-                                variant='filled'
+                            <input
                                 placeholder="Email Address"
-                                size="small"
                                 type="email"
                                 label="Email"
                                 value={emailInput}
@@ -108,32 +99,26 @@ export default function ContactInfoTest() {
                                 onChange={e => setEmailInput(e.target.value)} />
                         </span>
                         : (!user.email)
-                            ? <span>Email: Not Given</span>
-                            : <span>Email address: {user.email}</span>}
+                            ? <p><strong>Email:</strong> Not Given</p>
+                            : <p><strong>Email:</strong> {user.email}</p>}
                     {editMode
                         ? <span>
-                            <TextField
-                                variant='filled'
+                            <input
                                 placeholder="Street Address"
-                                size="small"
                                 type="text"
                                 label="Street Address"
                                 value={streetAddressInput}
                                 className="contact-input"
                                 onChange={e => setStreetAddressInput(e.target.value)} />
-                            <TextField
-                                variant='filled'
+                            <input
                                 placeholder="City"
-                                size="small"
                                 type="text"
                                 label="City"
                                 value={cityInput}
                                 className="contact-input"
                                 onChange={e => setCityInput(e.target.value)} />
-                            <TextField
-                                variant='filled'
+                            <input
                                 placeholder="State"
-                                size="small"
                                 type="text"
                                 label="State"
                                 value={stateInput}
@@ -141,9 +126,9 @@ export default function ContactInfoTest() {
                                 onChange={e => setStateInput(e.target.value)} />
                         </span>
                         : (!user.street_address || !user.city || !user.state)
-                            ? <span>Address: Not Given</span>
-                            : <div><span>Address: {user.street_address} - { }
-                                {user.city}, {user.state}</span>
+                            ? <p><strong>Address:</strong> Not Given</p>
+                            : <div><p><strong>Address:</strong> {user.street_address} - { }
+                                {user.city}, {user.state}</p>
                             </div>}
                 </CardContent>
             </div>

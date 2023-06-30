@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-content: flex-start;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
 }
 
 .fc { /* the calendar root */
@@ -14,6 +14,7 @@
 .event-calendar{
     flex-grow: 1;
     padding: 3em;
+    background-color: rgba(255, 255, 255, 0);
 }
 
 #calendar{
@@ -30,4 +31,46 @@
 
 a {
     color: #212529
+}
+
+.event-card{
+    padding: 20px;
+}
+
+.recently-complete th{
+    background-color: rgb(114, 162, 245);
+    color: white;
+    font-size: 18px;
+}
+
+.recently-complete{
+    margin-bottom: 3em;
+}
+
+.home-props{
+    padding-top: 3em;
+    
+}
+
+.home-props h2{
+    display:flex;
+    justify-content: center;
+}
+
+.home-top{
+    padding: 5%;
+    height: 550px;
+}
+
+.home-bottom{
+    display: flex;
+}
+
+.home-calendar h2{
+    display:flex;
+    justify-content: center;
+}
+
+#welcome-msg h2 p{
+    color: white;
 }

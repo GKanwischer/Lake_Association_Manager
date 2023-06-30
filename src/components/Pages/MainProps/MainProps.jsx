@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Card from '@mui/material/Card';
+import './MainProps.css';
 
 import MainPropItem from "./MainPropItem/MainPropItem";
 
@@ -21,17 +22,27 @@ export default function MainProps() {
     }, []);
 
     return (
-        <Card sx={{ maxWidth: 1200 }}>
-            <div className="main-props">
-                <h2>In Progress Proposals</h2>
-                <TableContainer>
-                    <Table>
+        <div className="prop-component">
+            <h2>In Progress Proposals</h2>
+            <Card
+                sx={{ maxWidth: '85%' }}
+                className="main-props"
+                elevation={6}
+            >
+                <TableContainer
+                    sx={{ height: 650 }}
+                >
+                    <Table
+                        sx={{ height: "max-content" }}
+                        stickyHeader 
+                        aria-label="sticky table"
+                    >
                         <TableHead>
                             <TableRow>
-                                <TableCell>Description</TableCell>
-                                <TableCell>Proposed By</TableCell>
-                                <TableCell>Vote</TableCell>
-                                <TableCell></TableCell>
+                                <TableCell sx={{minWidth: 500}}>Description</TableCell>
+                                <TableCell align="left" >Proposed By</TableCell>
+                                <TableCell align="left" >Vote</TableCell>
+                                <TableCell ></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -39,8 +50,8 @@ export default function MainProps() {
                         </TableBody>
                     </Table>
                 </TableContainer>
-            </div>
-        </Card>
+            </Card>
+        </div>
     )
 
 }

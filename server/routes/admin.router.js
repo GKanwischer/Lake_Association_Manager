@@ -9,7 +9,7 @@ router.get('/users' , rejectUnauthenticated, (req,res) => {
                         ORDER BY "is_admin" DESC;`;
     pool.query(queryText)
     .then(result => {
-        console.log('Success GETing users');
+        console.log(`Success GETing users for admin ${req.user.username}`);
         res.send(result.rows);
     }).catch(err => {
         console.log('Error GETing users', err);
@@ -24,8 +24,10 @@ router.delete('/user-delete/:id', rejectUnauthenticated, (req,res) => {
 
     if(req.user.is_admin){
         pool.query(queryText, [userId])
-        .then(res.sendStatus(200))
-        .catch(err => {
+        .then(result => {
+            console.log(`Successful DELETE of user at id: ${userId}, by admin ${req.user.username}`);
+            res.sendStatus(200)}
+        ).catch(err => {
           console.log('Error removing user', err);
         })
     } else {
@@ -58,8 +60,10 @@ router.delete('/prop-delete/:id', rejectUnauthenticated, (req,res) => {
 
     if(req.user.is_admin){
         pool.query(queryText, [propId])
-        .then(res.sendStatus(200))
-        .catch(err => {
+        .then(result => {
+            console.log(`Successful DELETE of proposal at id: ${propId}, by admin ${req.user.username}`);
+            res.sendStatus(200)}
+        ).catch(err => {
           console.log('Error deleting proposal', err);
         })
     } else {
@@ -68,13 +72,15 @@ router.delete('/prop-delete/:id', rejectUnauthenticated, (req,res) => {
 })
 
 router.delete('/event-delete/:id', rejectUnauthenticated, (req,res) => {
-    const userId = Number(req.params.id);
+    const eventId = Number(req.params.id);
     const queryText = `DELETE FROM "event_calendar" WHERE "id" = $1;`;
 
     if(req.user.is_admin){
-        pool.query(queryText, [userId])
-        .then(res.sendStatus(200))
-        .catch(err => {
+        pool.query(queryText, [eventId])
+        .then(result => {
+            console.log(`Successful DELETE of event at id: ${eventId}, by admin ${req.user.username}`);
+            res.sendStatus(200)}
+        ).catch(err => {
           console.log('Error deleting event', err);
         })
     } else {
@@ -88,8 +94,10 @@ router.put('/user_level/:id', (req,res) => {
 
     if(req.user.is_admin){
         pool.query(queryText, [userId])
-        .then(res.sendStatus(200))
-        .catch(err => {
+        .then(result => {
+            console.log(`Successful user level UPDATE for id: ${userId}, by admin ${req.user.username}`);
+            res.sendStatus(200)}
+        ).catch(err => {
           console.log(`Error updating user level for user at id: ${userId}`, err);
         })
     } else {

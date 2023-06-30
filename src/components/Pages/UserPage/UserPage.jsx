@@ -21,14 +21,15 @@ function UserPage() {
 
   return (
     <div className="user-container">
-      <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
+      <h2>{user.username}</h2>
       <div className="user-top">
-      <UserContactInfo />
-      <UserEvents />
+        <UserContactInfo />
+        <UserEvents />
       </div>
+      <div className="user-bottom">
       <UserProps />
-      <br/>
+      </div>
+      <br />
       <LogOutButton className="btn" />
     </div>
   );

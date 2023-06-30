@@ -8,6 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Card from '@mui/material/Card';
+import CardHeader from "@mui/material/CardHeader";
 
 export default function AdminEventsTable() {
     const dispatch = useDispatch();
@@ -20,17 +21,23 @@ export default function AdminEventsTable() {
 
     return (
         <div className="admin-events">
-            <h3>Community Events</h3>
             <Card elevation={6}>
-                <TableContainer>
-                    <Table>
+                <CardHeader title="Community Events" />
+                <TableContainer
+                    sx={{ height: 525 }}
+                >
+                    <Table
+                        sx={{ height: "max-content" }}
+                        stickyHeader
+                        aria-label="sticky table"
+                    >
                         <TableHead>
-                            <TableRow>
-                                <TableCell>Created By</TableCell>
+                            <TableRow hover>
+                                <TableCell sx={{maxWidth:140}}>Created By</TableCell>
                                 <TableCell>Title</TableCell>
-                                <TableCell>Description</TableCell>
-                                <TableCell>Date</TableCell>
-                                <TableCell>Action</TableCell>
+                                <TableCell sx={{minWidth: 500}} >Description</TableCell>
+                                <TableCell align="center">Date</TableCell>
+                                <TableCell align="center" sx={{maxWidth: 60}}></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

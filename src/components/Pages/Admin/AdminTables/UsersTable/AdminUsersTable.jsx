@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Card from '@mui/material/Card';
+import CardHeader from "@mui/material/CardHeader";
 
 export default function AdminUsersTable() {
     const users = useSelector(store => store.admin.users);
@@ -17,20 +18,25 @@ export default function AdminUsersTable() {
 
     return (
         <div className="admin-users">
-            <h2>Welcome Admin {loggedInUser.username}!</h2>
-            <h3>Lake Association Members</h3>
             <Card elevation={6}>
-                <TableContainer>
-                    <Table>
+                <CardHeader title="Lake Association Members" />
+                <TableContainer
+                    sx={{ height: 450 }}
+                >
+                    <Table
+                        sx={{ height: "max-content" }}
+                        stickyHeader
+                        aria-label="admin user table"
+                    >
                         <TableHead>
                             <TableRow>
-                                <TableCell>User Level</TableCell>
-                                <TableCell>Username</TableCell>
-                                <TableCell>Full Name</TableCell>
-                                <TableCell>Phone Number</TableCell>
-                                <TableCell>Email</TableCell>
+                                <TableCell align="center" sx={{ maxWidth: 140 }}>User Level</TableCell>
+                                <TableCell align="center" sx={{ maxWidth: 150 }}>Username</TableCell>
+                                <TableCell align="center">Full Name</TableCell>
+                                <TableCell align="center" sx={{ maxWidth: 120, padding: 0 }}>Phone Number</TableCell>
+                                <TableCell align="center">Email</TableCell>
                                 <TableCell>Address</TableCell>
-                                <TableCell className="user-actions">Actions</TableCell>
+                                <TableCell align="center" sx={{ maxWidth: 70, padding: 0 }}></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as bootstrap from "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import moment from "moment";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
 
 
 export default function EventCalendar() {
@@ -19,9 +21,11 @@ export default function EventCalendar() {
     }, []);
 
     return (
-        <>
-            <section id="calendar">
-                <div className="event-calendar" style={{ position: "relative", zIndex: 0 }}>
+            <div className="event-calendar" id="calendar" style={{ position: "relative", zIndex: 0 }}>
+                <Card elevation={6} className="event-card">
+                    <CardHeader
+                        title="Community Events"
+                    />
                     <FullCalendar
                         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
                         headerToolbar={{
@@ -41,16 +45,15 @@ export default function EventCalendar() {
                                 customClass: "popoverStyle",
                                 content:
                                     `<div>
-                                        <span>Start: ${moment(info.event.start).format('LLL')}</span>
-                                        <p>End: ${moment(info.event.end).format('LLL')}</p>
-                                        <p>${selectedEvent[0].description}</p>
-                                    </div>`,
+                            <span>Start: ${moment(info.event.start).format('LLL')}</span>
+                            <p>End: ${moment(info.event.end).format('LLL')}</p>
+                            <p>${selectedEvent[0].description}</p>
+                            </div>`,
                                 html: true,
                             })
                         }}
                     />
-                </div>
-            </section>
-        </>
+                </Card>
+            </div>
     )
 }

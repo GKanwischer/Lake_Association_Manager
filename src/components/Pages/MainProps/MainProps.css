@@ -1,0 +1,30 @@
+.main-props{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    
+}
+
+.prop-component{
+    padding: 5%;
+    margin: 20px;
+}
+
+.prop-component h2{
+    display: flex;
+    justify-content: center;
+    margin-top: -40px;
+    margin-bottom: 40px;
+    font-size: 50px;
+}
+
+/* tbody{
+    background-color: rgb(255 251 221);
+} */
+
+.main-props th{
+    background-color: rgb(114, 162, 245);
+    color: white;
+    font-size: 18px;
+}

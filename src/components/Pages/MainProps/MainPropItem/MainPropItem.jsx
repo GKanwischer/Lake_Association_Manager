@@ -8,6 +8,7 @@ import RadioGroup from '@mui/material/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Radio from '@mui/material/Radio'
 import Button from '@mui/material/Button'
+import Swal from "sweetalert2";
 
 export default function MainPropItem({ prop }) {
     const dispatch = useDispatch();
@@ -54,16 +55,16 @@ export default function MainPropItem({ prop }) {
 
     const handleChange = (event) => {
         setSelectedVote({
-          proposal_id: prop.id,
-          vote: event.target.value === "true",
+            proposal_id: prop.id,
+            vote: event.target.value === "true",
         });
-      };
+    };
 
     return (
-        <TableRow>
+        <TableRow hover >
             <TableCell>{prop.description}</TableCell>
             <TableCell>{prop.first_name} {prop.last_name}</TableCell>
-            <TableCell>
+            <TableCell align="center">
                 <FormControl component="fieldset">
                     <RadioGroup
                         row
@@ -74,34 +75,30 @@ export default function MainPropItem({ prop }) {
                     >
                         <FormControlLabel
                             value="true"
-                            control={<Radio />}
+                            control={<Radio size="small" />}
                             label="Pass"
                         />
                         <FormControlLabel
                             value="false"
-                            control={<Radio />}
+                            control={<Radio size="small" />}
                             label="Veto"
                         />
                     </RadioGroup>
                 </FormControl>
             </TableCell>
-            <TableCell><Button variant="contained" onClick={handleVoteSubmit}>Submit Vote</Button></TableCell>
+            <TableCell>
+                <Button
+                    variant="contained"
+                    onClick={() => {handleVoteSubmit(), Swal.fire({
+                        icon: 'success',
+                        title: 'Your vote has been saved',
+                        showConfirmButton: false,
+                        timer: 1450
+                      })}}
+
+                      
+                    >Submit Vote</Button>
+            </TableCell>
         </TableRow>
     )
 }
-                // <label>
-                //     <input
-                //         type="radio"
-                //         name={prop.id}
-                //         value={true}
-                //         checked={selectedVote.vote === true}
-                //         onChange={() => setSelectedVote({ proposal_id: prop.id, vote: true })} /> Pass
-                // </label>
-                // <label>
-                //     <input
-                //         type="radio"
-                //         name={prop.id}
-                //         value={false}
-                //         checked={selectedVote.vote === false}
-                //         onChange={() => setSelectedVote({ proposal_id: prop.id, vote: false })} /> Veto
-                // </label>

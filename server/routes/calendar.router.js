@@ -20,25 +20,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
             })
 })
 
-// router.get('/:sortBy', rejectUnauthenticated, (req, res) => { // stretch
-//     const sortBy = req.params;
-//     console.log('req params: ', sortBy);
-//     const queryText = `SELECT "event_calendar"."id", "event_calendar"."user_id", "user"."username", "user"."first_name", "user"."last_name", 
-//                         "event_calendar"."title", "event_calendar"."description", "event_calendar"."start", "event_calendar"."end"
-//                         FROM "event_calendar"
-//                         JOIN "user" ON "event_calendar"."user_id" = "user"."id"
-//                         ORDER BY $1;`;
-
-//     pool.query(queryText, [sortBy])
-//         .then(result => {
-//             console.log('Success GETing events sorted by: ', sortBy);
-//             res.send(result.rows);
-//         }).catch(err => {
-//             console.log('Error getting calendar events', err);
-//             res.sendStatus(500);
-//         })
-// })
-
 // route for posting a new event to the calendar
 router.post('/create-event', rejectUnauthenticated, (req, res) => {
     const { title, description, start, end } = req.body;
@@ -46,8 +27,10 @@ router.post('/create-event', rejectUnauthenticated, (req, res) => {
     VALUES ($1, $2, $3, $4, $5);`
 
     pool.query(queryText, [title, description, start, end, req.user.id])
-        .then(res.sendStatus(201))
-        .catch(err => {
+        .then(result => {
+            console.log(`Successful POST of event: ${title} for ${req.user.username}`);
+            res.sendStatus(201)}
+        ).catch(err => {
             console.log('Error posting event', err);
             res.sendStatus(500);
         })
@@ -61,8 +44,10 @@ router.put('/update/:id', rejectUnauthenticated, (req, res) => {
                     WHERE "id" = $5 AND "user_id" = $6;`;
 
     pool.query(query, [description, title, start, end, eventId, req.user.id])
-        .then(res.sendStatus(200))
-        .catch(err => {
+        .then(result => {
+            console.log(`Successful PUT of event at id: ${eventId} for ${req.user.username}`);
+            res.sendStatus(200)}
+        ).catch(err => {
             console.log('Error updating an event', err);
         })
 });
@@ -73,8 +58,10 @@ router.delete('/delete/:id', rejectUnauthenticated, (req, res) => {
     const query = `DELETE FROM "event_calendar" WHERE "id" = $1 AND "user_id" = $2;`;
 
     pool.query(query, [eventId, req.user.id])
-        .then(res.sendStatus(200))
-        .catch(err => {
+        .then(result => {
+            console.log(`Successful delete of event at id: ${eventId} for ${req.user.username}`);
+            res.sendStatus(200)}
+        ).catch(err => {
             console.log('Error deleting event', err);
         })
 });
