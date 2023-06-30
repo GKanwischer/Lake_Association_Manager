@@ -1,7 +1,8 @@
-import Modal from "react-modal";
 import React, { useState, useEffect } from "react";
-import moment from "moment";
 import { useDispatch } from 'react-redux';
+import moment from "moment";
+import Modal from "@mui/material/Modal";
+import Box from '@mui/material/Box';
 
 export default function UpdateEventModal({ isOpen, onClose, event }) {
     const [title, setTitle] = useState('');
@@ -49,42 +50,59 @@ export default function UpdateEventModal({ isOpen, onClose, event }) {
         onClose();
     }
 
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
+    };
+
 
     return (
-        <Modal isOpen={isOpen} onRequestClose={onClose}>
-            <div>
-                <input
-                    placeholder="title"
-                    value={title}
-                    onChange={e => setTitle(e.target.value)}
-                />
-            </div>
-            <div>
-                <textarea
-                    placeholder='Proposal Description'
-                    value={description}
-                    rows={4}
-                    cols={40}
-                    onChange={e => setDescription(e.target.value)}
-                />
-            </div>
-            <div>
-                <label>Start Date</label>
-                <input
-                    type='datetime-local'
-                    value={start}
-                    onChange={handleStartChange}
-                />
-            </div>
-            <div>
-                <label>End Date</label>
-                <input
-                    type='datetime-local'
-                    value={end}
-                    onChange={handleEndChange}
-                />
-            </div>
-            <button onClick={onUpdate}>Update Event</button>
+        <Modal
+            open={isOpen}
+            onClose={onClose}
+        >
+            <Box sx={style}>
+                <div>
+                    <input
+                        placeholder="title"
+                        value={title}
+                        onChange={e => setTitle(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <textarea
+                        placeholder='Proposal Description'
+                        value={description}
+                        rows={4}
+                        cols={40}
+                        onChange={e => setDescription(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label>Start Date</label>
+                    <input
+                        type='datetime-local'
+                        value={start}
+                        onChange={handleStartChange}
+                    />
+                </div>
+                <div>
+                    <label>End Date</label>
+                    <input
+                        type='datetime-local'
+                        value={end}
+                        onChange={handleEndChange}
+                    />
+                </div>
+                <button onClick={onUpdate}>Confirm Update</button>
+            </Box>
         </Modal>
     )
 }

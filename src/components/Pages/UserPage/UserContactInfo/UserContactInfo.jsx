@@ -19,8 +19,6 @@ export default function ContactInfoTest() {
     const [stateInput, setStateInput] = useState(user.state)
     const [editMode, setEditMode] = useState(false)
 
-    // console.log('Client side user:', user);
-
     const contactInfo = {
         first_name: firstNameInput,
         last_name: lastNameInput,

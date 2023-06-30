@@ -37,17 +37,12 @@ export default function UserEvents() {
                             <IconButton aria-label="add" onClick={() => setModalOpen(true)}>
                                 <AddBoxIcon fontSize="large" />
                             </IconButton>
-                        </Tooltip>
-                    }
-                />
-                <TableContainer
-                    sx={{ height: 400, minWidth: 600 }}
-                >
+                        </Tooltip>}/>
+                <TableContainer sx={{ height: 400, minWidth: 600 }}>
                     <Table
                         sx={{ height: "max-content" }}
                         stickyHeader
-                        aria-label="user events table"
-                    >
+                        aria-label="user events table">
                         <TableHead>
                             <TableRow>
                                 <TableCell>Title</TableCell>

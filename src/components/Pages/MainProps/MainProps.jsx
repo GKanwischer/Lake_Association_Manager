@@ -41,7 +41,7 @@ export default function MainProps() {
                             <TableRow>
                                 <TableCell sx={{minWidth: 500}}>Description</TableCell>
                                 <TableCell align="left" >Proposed By</TableCell>
-                                <TableCell align="center" >Vote</TableCell>
+                                <TableCell align="left" >Vote</TableCell>
                                 <TableCell ></TableCell>
                             </TableRow>
                         </TableHead>

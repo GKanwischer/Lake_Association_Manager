@@ -3,6 +3,7 @@ body,
 #react-root {
   height: 100%;
   background-color: rgb(211, 172, 113);
+  font-family: sans-serif;
 }
 
 body {
