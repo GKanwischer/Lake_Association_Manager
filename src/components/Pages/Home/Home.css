@@ -37,17 +37,36 @@ a {
     padding: 20px;
 }
 
-#recently-complete th{
+.recently-complete th{
     background-color: rgb(114, 162, 245);
     color: white;
     font-size: 18px;
 }
 
+.recently-complete{
+    margin-bottom: 3em;
+}
+
 .home-props{
-    margin: auto;
+    padding-top: 3em;
+    
 }
 
 .home-props h2{
+    display:flex;
+    justify-content: center;
+}
+
+.home-top{
+    padding: 5%;
+    height: 550px;
+}
+
+.home-bottom{
+    display: flex;
+}
+
+.home-calendar h2{
     display:flex;
     justify-content: center;
 }

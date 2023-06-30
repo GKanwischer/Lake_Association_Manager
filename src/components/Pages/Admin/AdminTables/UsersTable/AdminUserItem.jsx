@@ -12,12 +12,10 @@ export default function AdminUserItem({ user }) {
 
     function userLevelChange() {
         dispatch({ type: 'ADMIN_USER_LEVEL', payload: user.id })
-        // dispatch({ type: 'ADMIN_FETCH_USERS' })
     }
 
     function deleteUser() {
         dispatch({ type: 'ADMIN_DELETE_USER', payload: user.id })
-        // dispatch({ type: 'ADMIN_FETCH_USERS' })
     }
 
     return (
@@ -34,22 +32,27 @@ export default function AdminUserItem({ user }) {
                     ? 'Admin'
                     : 'User'}
             </TableCell>
-            <TableCell align="center" >{user.username}</TableCell>
-            <TableCell align="center" >{(user.first_name || user.last_name)
-                ? user.first_name + ' ' + user.last_name
-                : 'N/A'}
+            <TableCell align="center" >
+                {user.username}
             </TableCell>
-            <TableCell align="center" >{(!user.phone_number || user.phone_number === '0')
-                ? 'N/A'
-                : user.phone_number}
+            <TableCell align="center" >
+                {(user.first_name || user.last_name)
+                    ? user.first_name + ' ' + user.last_name
+                    : 'N/A'}
+            </TableCell>
+            <TableCell align="center" >
+                {(!user.phone_number || user.phone_number === '0')
+                    ? 'N/A'
+                    : user.phone_number}
             </TableCell>
             <TableCell>{user.email
                 ? user.email
                 : 'N/A'}
             </TableCell>
-            <TableCell sx={{minWidth: 250}}>{(user.street_address || user.city || user.state)
-                ? (`${user.street_address} ${user.city}, ${user.state}`)
-                : 'N/A'}
+            <TableCell sx={{ minWidth: 250 }}>
+                {(user.street_address || user.city || user.state)
+                    ? (`${user.street_address} ${user.city}, ${user.state}`)
+                    : 'N/A'}
             </TableCell>
             <TableCell align="right" className="user-actions">
                 <Tooltip title="Delete">

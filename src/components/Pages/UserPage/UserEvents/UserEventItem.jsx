@@ -35,7 +35,7 @@ export default function UserEventItem({ event }) {
                     ? moment(event.start).format('M/DD/YY')
                     : moment(event.start).format('M/DD') + ' - ' + moment(event.end).format('M/DD/YY')}
                 </TableCell>
-                <TableCell>
+                <TableCell align="right">
                     <Tooltip title="Delete">
                         <IconButton aria-label="delete" onClick={handleDelete}>
                             <DeleteIcon fontSize="inherit" />
