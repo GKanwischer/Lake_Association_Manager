@@ -41,8 +41,8 @@ export default function AdminEventItem({ event }) {
                                 text: "You won't be able to revert this!",
                                 icon: 'warning',
                                 showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
+                                confirmButtonColor: 'rgb(191 34 34)',
+                                cancelButtonColor: 'rgb(160 158 158)',
                                 confirmButtonText: 'Yes, Delete it!'
                             }).then((result) => {
                                 if (result.isConfirmed) {
