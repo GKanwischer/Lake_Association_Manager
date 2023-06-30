@@ -7,13 +7,14 @@
 
 .fc { /* the calendar root */
     width: 500px;
-    max-height: 700px;
+    height: 446px;
     margin: 0 auto;
+    padding-bottom: 10px;
   }
 
 .event-calendar{
     flex-grow: 1;
-    padding: 3em;
+    padding: 1.5em;
     background-color: rgba(255, 255, 255, 0);
 }
 
@@ -40,16 +41,16 @@ a {
 .recently-complete th{
     background-color: rgb(114, 162, 245);
     color: white;
-    font-size: 18px;
+    font-size: 14px;
 }
 
 .recently-complete{
-    margin-bottom: 3em;
+    margin-bottom: 1.5em;
 }
 
 .home-props{
-    padding-top: 3em;
-    
+    padding-top: 1.5em;
+    padding-right: 1.5em;
 }
 
 .home-props h2{
@@ -59,7 +60,7 @@ a {
 
 .home-top{
     padding: 5%;
-    height: 550px;
+    height: 400px;
 }
 
 .home-bottom{

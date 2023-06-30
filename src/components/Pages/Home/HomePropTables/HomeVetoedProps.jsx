@@ -25,7 +25,7 @@ export default function HomeVetoedProps() {
                     aria-label="recently vetoed table">
                     <TableHead>
                         <TableRow>
-                            <TableCell sx={{ minWidth: 700 }}>Description</TableCell>
+                            <TableCell sx={{ minWidth: 250 }}>Description</TableCell>
                             <TableCell>Proposed By</TableCell>
                             <TableCell>Date Vetoed</TableCell>
                         </TableRow>

@@ -24,9 +24,9 @@ export default function HomePassedProps() {
                     aria-label="recently passed table">
                     <TableHead>
                         <TableRow>
-                            <TableCell sx={{ minWidth: 700 }}>Description</TableCell>
-                            <TableCell>Proposed By</TableCell>
-                            <TableCell>Date Passed</TableCell>
+                            <TableCell sx={{ minWidth: 250 }}>Description</TableCell>
+                            <TableCell align="center" >Proposed By</TableCell>
+                            <TableCell align="center" >Date Passed</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
