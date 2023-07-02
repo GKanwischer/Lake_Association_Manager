@@ -18,7 +18,14 @@ export default function AdminUsersTable() {
 
     return (
         <div className="admin-users">
-            <Card elevation={6}>
+            <Card
+                elevation={6}
+                sx={{
+                    border: 4,
+                    borderRadius: '16px',
+                    borderColor: 'rgb(114, 162, 245)'
+                }}
+            >
                 <CardHeader title="Lake Association Members" />
                 <TableContainer
                     sx={{ height: 450 }}

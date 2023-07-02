@@ -21,7 +21,14 @@ export default function AdminEventsTable() {
 
     return (
         <div className="admin-events">
-            <Card elevation={6}>
+            <Card
+                elevation={6}
+                sx={{
+                    border: 4,
+                    borderRadius: '16px',
+                    borderColor: 'rgb(114, 162, 245)'
+                }}
+            >
                 <CardHeader title="Community Events" />
                 <TableContainer
                     sx={{ height: 525 }}
@@ -33,11 +40,11 @@ export default function AdminEventsTable() {
                     >
                         <TableHead>
                             <TableRow hover>
-                                <TableCell sx={{maxWidth:140}}>Created By</TableCell>
+                                <TableCell sx={{ maxWidth: 140 }}>Created By</TableCell>
                                 <TableCell>Title</TableCell>
-                                <TableCell sx={{minWidth: 500}} >Description</TableCell>
+                                <TableCell sx={{ minWidth: 500 }} >Description</TableCell>
                                 <TableCell align="center">Date</TableCell>
-                                <TableCell align="center" sx={{maxWidth: 60}}></TableCell>
+                                <TableCell align="center" sx={{ maxWidth: 60 }}></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

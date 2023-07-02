@@ -40,8 +40,16 @@ export default function ContactInfoTest() {
     }
 
     return (
-        <Card elevation={6} className="contact-info"
-        sx={{ height: 500 }}>
+        <Card
+            elevation={6}
+            className="contact-info"
+            sx={{
+                height: 500,
+                border: 4,
+                borderRadius: '16px',
+                borderColor: 'rgb(114, 162, 245)'
+            }}
+        >
             <CardHeader
                 title="Contact Info"
                 action={

@@ -14,8 +14,15 @@ export default function AdminPropsTable() {
 
     return (
         <div className="admin-props">
-            <Card elevation={6} >
-            <CardHeader title="All Proposals" />
+            <Card
+                elevation={6}
+                sx={{
+                    border: 4,
+                    borderRadius: '16px',
+                    borderColor: 'rgb(114, 162, 245)'
+                }}
+            >
+                <CardHeader title="All Proposals" />
                 <TableContainer
                     sx={{ height: 525, minWidth: 100 }}
                 >
@@ -26,13 +33,13 @@ export default function AdminPropsTable() {
                     >
                         <TableHead>
                             <TableRow>
-                                <TableCell sx={{maxWidth:120}}>Created By</TableCell>
-                                <TableCell sx={{minWidth: 500}}>Description</TableCell>
-                                <TableCell align="center" sx={{maxWidth: 110}}>Status</TableCell>
-                                <TableCell align="center" sx={{maxWidth: 60}}>Pass</TableCell>
-                                <TableCell align="center" sx={{maxWidth: 60}}>Veto</TableCell>
-                                <TableCell align="center" sx={{maxWidth: 130}}>Date Created</TableCell>
-                                <TableCell align="center" sx={{maxWidth: 60}}></TableCell>
+                                <TableCell sx={{ maxWidth: 120 }}>Created By</TableCell>
+                                <TableCell sx={{ minWidth: 500 }}>Description</TableCell>
+                                <TableCell align="center" sx={{ maxWidth: 110 }}>Status</TableCell>
+                                <TableCell align="center" sx={{ maxWidth: 60 }}>Pass</TableCell>
+                                <TableCell align="center" sx={{ maxWidth: 60 }}>Veto</TableCell>
+                                <TableCell align="center" sx={{ maxWidth: 130 }}>Date Created</TableCell>
+                                <TableCell align="center" sx={{ maxWidth: 60 }}></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

@@ -21,39 +21,48 @@ export default function EventCalendar() {
     }, []);
 
     return (
-            <div className="event-calendar" id="calendar" style={{ position: "relative", zIndex: 0 }}>
-                <Card elevation={6} className="event-card" sx={{ maxHeight: 900 }} >
-                    <CardHeader
-                        title="Community Events"
-                    />
-                    <FullCalendar
-                        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-                        headerToolbar={{
-                            left: 'dayGridMonth,timeGridWeek,timeGridDay',
-                            center: 'title',
-                            right: 'prev,next today'
-                        }}
-                        initialView="dayGridMonth"
-                        selectable={true}
-                        events={events}
-                        eventDidMount={(info) => {
-                            let selectedEvent = (events.filter(event => event.id === Number(info.event.id)))
-                            return new bootstrap.Popover(info.el, {
-                                title: info.event.title,
-                                placement: "auto",
-                                trigger: "hover",
-                                customClass: "popoverStyle",
-                                content:
-                                    `<div>
+        <div className="event-calendar" id="calendar" style={{ position: "relative", zIndex: 0 }}>
+            <Card
+                elevation={6}
+                className="event-card"
+                sx={{
+                    maxHeight: 900,
+                    border: 4,
+                    borderRadius: '16px',
+                    borderColor: 'rgb(114, 162, 245)'
+                }}
+            >
+                <CardHeader
+                    title="Community Events"
+                />
+                <FullCalendar
+                    plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+                    headerToolbar={{
+                        left: 'dayGridMonth,timeGridWeek,timeGridDay',
+                        center: 'title',
+                        right: 'prev,next today'
+                    }}
+                    initialView="dayGridMonth"
+                    selectable={true}
+                    events={events}
+                    eventDidMount={(info) => {
+                        let selectedEvent = (events.filter(event => event.id === Number(info.event.id)))
+                        return new bootstrap.Popover(info.el, {
+                            title: info.event.title,
+                            placement: "auto",
+                            trigger: "hover",
+                            customClass: "popoverStyle",
+                            content:
+                                `<div>
                             <span>Start: ${moment(info.event.start).format('LLL')}</span>
                             <p>End: ${moment(info.event.end).format('LLL')}</p>
                             <p>${selectedEvent[0].description}</p>
                             </div>`,
-                                html: true,
-                            })
-                        }}
-                    />
-                </Card>
-            </div>
+                            html: true,
+                        })
+                    }}
+                />
+            </Card>
+        </div>
     )
 }
