@@ -42,7 +42,7 @@ export default function AdminUsersTable() {
                                 <TableCell align="center">Full Name</TableCell>
                                 <TableCell align="center" sx={{ maxWidth: 120, padding: 0 }}>Phone Number</TableCell>
                                 <TableCell align="center">Email</TableCell>
-                                <TableCell>Address</TableCell>
+                                <TableCell align="center" >Address</TableCell>
                                 <TableCell align="center" sx={{ maxWidth: 70, padding: 0 }}></TableCell>
                             </TableRow>
                         </TableHead>

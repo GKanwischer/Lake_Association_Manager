@@ -46,9 +46,10 @@ export default function AdminUserItem({ user }) {
                     ? 'N/A'
                     : user.phone_number}
             </TableCell>
-            <TableCell>{user.email
-                ? user.email
-                : 'N/A'}
+            <TableCell align="center" >
+                {user.email
+                    ? user.email
+                    : 'N/A'}
             </TableCell>
             <TableCell sx={{ minWidth: 250 }}>
                 {(user.street_address || user.city || user.state)
