@@ -34,7 +34,9 @@ export default function AddEventModal({ isOpen, onClose }) {
         transform: 'translate(-50%, -50%)',
         width: 400,
         bgcolor: 'background.paper',
-        border: '2px solid #000',
+        border: 4,
+        borderRadius: '16px',
+        borderColor: 'rgb(114, 162, 245)',
         boxShadow: 24,
         p: 4,
     };
@@ -45,6 +47,9 @@ export default function AddEventModal({ isOpen, onClose }) {
             onClose={onClose}
         >
             <Box sx={style}>
+                <div className="modal-header">
+                    <h2>Add an Event</h2>
+                </div>
                 <input placeholder="title" value={title} onChange={e => setTitle(e.target.value)} />
                 <textarea
                     placeholder='Proposal Description'
@@ -68,7 +73,7 @@ export default function AddEventModal({ isOpen, onClose }) {
                         onChange={e => setEnd(e.target.value)}
                     />
                 </div>
-                <Button variant="contained" onClick={onSubmit}>Add Event</Button>
+                <Button variant="contained" onClick={onSubmit}>Submit</Button>
             </Box>
         </Modal>
     )

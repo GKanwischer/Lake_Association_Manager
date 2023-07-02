@@ -22,7 +22,7 @@ export default function ContactInfoTest() {
     const contactInfo = {
         first_name: firstNameInput,
         last_name: lastNameInput,
-        phone_number: Number(phoneNumberInput),
+        phone_number: phoneNumberInput,
         email: emailInput,
         street_address: streetAddressInput,
         city: cityInput,
@@ -40,8 +40,16 @@ export default function ContactInfoTest() {
     }
 
     return (
-        <Card elevation={6} className="contact-info"
-        sx={{ height: 500 }}>
+        <Card
+            elevation={6}
+            className="contact-info"
+            sx={{
+                height: 500,
+                border: 4,
+                borderRadius: '16px',
+                borderColor: 'rgb(114, 162, 245)'
+            }}
+        >
             <CardHeader
                 title="Contact Info"
                 action={
@@ -79,7 +87,7 @@ export default function ContactInfoTest() {
                         ? <span>
                             <input
                                 placeholder="phone number"
-                                type="tel"
+                                type="text"
                                 label="Phone Number"
                                 value={phoneNumberInput === '0' ? '' : phoneNumberInput}
                                 className="contact-input"

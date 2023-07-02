@@ -58,7 +58,9 @@ export default function UpdateEventModal({ isOpen, onClose, event }) {
         transform: 'translate(-50%, -50%)',
         width: 400,
         bgcolor: 'background.paper',
-        border: '2px solid #000',
+        border: 4,
+        borderRadius: '16px',
+        borderColor: 'rgb(114, 162, 245)',
         boxShadow: 24,
         p: 4,
     };
@@ -70,6 +72,9 @@ export default function UpdateEventModal({ isOpen, onClose, event }) {
             onClose={onClose}
         >
             <Box sx={style}>
+                <div className="modal-header">
+                    <h2>Update Event Info</h2>
+                </div>
                 <div>
                     <input
                         placeholder="title"

@@ -1,56 +1,55 @@
-.home-container{
+.home-container {
     display: flex;
     flex-direction: column;
     margin: 20px;
-    padding: 5%;
+    padding-right: 5%;
+    padding-left: 5%;
+    text-align: center;
 
 }
 
-.fc { /* the calendar root */
+.fc {
+    /* the calendar root */
     width: 800px;
     min-height: 800px;
     margin: 0 auto;
     /* padding-bottom: 10px; */
-  }
+}
 
-.event-calendar{
+.event-calendar {
     flex-grow: 1;
     /* padding: 1.5em; */
     background-color: rgba(255, 255, 255, 0);
 }
 
-#calendar{
+#calendar {
     display: flex;
     min-height: 80%;
     font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
     font-size: 14px;
 }
 
-.popoverStyle{
+.popoverStyle {
     z-index: 99999
-    
 }
 
 a {
     color: #212529
 }
 
-.event-card{
+.event-card {
     padding: 20px;
-    padding-top:0;
+    padding-top: 0;
 }
 
-.recently-complete th{
+.recently-complete th {
     background-color: rgb(114, 162, 245);
     color: white;
     font-size: 14px;
 }
 
-/* .recently-complete{
-    margin-bottom: 1.5em;
-} */
 
-.home-props{
+.home-props {
     margin-left: 1.5em;
     width: 65%;
     height: 100%;
@@ -59,28 +58,62 @@ a {
     justify-content: space-between;
 }
 
-.home-props h2{
-    display:flex;
+.home-props h2 {
+    display: flex;
     justify-content: center;
 }
 
-.home-top{
-    padding-bottom: 5%;
-    height: 400px;
+.home-top {
+    margin-bottom: 1.5em;
+    margin-top: 1.5em;
 }
 
-.home-bottom{
+.home-bottom {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     height: 884px;
+    margin-top: 1.5em;
 }
 
-.home-calendar h2{
-    display:flex;
+.home-calendar h2 {
+    display: flex;
     justify-content: center;
 }
 
-#welcome-msg h2 p{
-    color: white;
+.welcome-msg {
+    /* background: rgb(114, 162, 245); */
+    background: transparent;
+    background: linear-gradient(135deg, rgba(114, 162, 245, 1) 25%, rgba(114, 162, 245, 1) 50%, rgba(114, 162, 245, 0) 75%);
+    padding: 1.5em;
+    margin-bottom: 3em;
+    border-radius: 16px;
+    text-align: left;
+}
+
+
+
+.welcome-msg h2{
+    font-size: 40px;
+    text-decoration: underline;
+}
+
+.welcome-msg p{
+    font-size: 24px;
+    font-style: italic;
+}
+
+.home-images {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.img-card {
+    padding: .25%;
+}
+
+.img-card img {
+    border-radius: 10px;
+    max-height: 375px;
 }

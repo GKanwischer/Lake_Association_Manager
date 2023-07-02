@@ -14,7 +14,15 @@ export default function HomeVetoedProps() {
 
 
     return (
-        <Card className="recently-complete" elevation={6}>
+        <Card
+            className="recently-complete"
+            elevation={6}
+            sx={{
+                border: 4,
+                borderRadius: '16px',
+                borderColor: 'rgb(114, 162, 245)'
+            }}
+        >
             <CardHeader
                 title="Recently Vetoed Proposals" />
             <TableContainer

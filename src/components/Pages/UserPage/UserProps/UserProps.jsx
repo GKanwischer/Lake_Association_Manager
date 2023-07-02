@@ -32,7 +32,15 @@ export default function UserProps() {
 
   return (
     <div>
-      <Card elevation={6} className="user-props">
+      <Card
+        elevation={6}
+        className="user-props"
+        sx={{
+          border: 4,
+          borderRadius: '16px',
+          borderColor: 'rgb(114, 162, 245)'
+        }}
+      >
         <CardHeader
           title="Your Proposals"
           action={

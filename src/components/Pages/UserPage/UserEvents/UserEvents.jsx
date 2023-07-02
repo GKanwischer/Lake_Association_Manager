@@ -28,8 +28,16 @@ export default function UserEvents() {
     }, []);
 
     return (
-        <Card elevation={6} className="user-events"
-        sx={{ width: 1/1 }}>
+        <Card
+            elevation={6}
+            className="user-events"
+            sx={{
+                width: 1/1,
+                border: 4,
+                borderRadius: '16px',
+                borderColor: 'rgb(114, 162, 245)'
+            }}
+        >
             <CardHeader
                 title="Your Community Events"
                 action={

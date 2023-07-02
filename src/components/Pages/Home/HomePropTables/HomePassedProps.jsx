@@ -13,7 +13,15 @@ export default function HomePassedProps() {
     const passedProps = useSelector(store => store.props.main.filter(prop => prop.status === 'Passed'));
 
     return (
-        <Card className="recently-complete" elevation={6}>
+        <Card
+            className="recently-complete"
+            elevation={6}
+            sx={{
+                border: 4,
+                borderRadius: '16px',
+                borderColor: 'rgb(114, 162, 245)'
+            }}
+        >
             <CardHeader
                 title="Recently Passed Proposals" />
             <TableContainer

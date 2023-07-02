@@ -7,6 +7,7 @@
   margin: 0 0 30px;
   background-color: rgb(114, 162, 245);
   overflow: hidden;
+  background-image: url("/Users/Kandyman/Documents/EDA/Tier_3/Solo_Project/Lake_Association_Manager/public/images/Nav_banner.png");
 }
 
 .nav a {
@@ -23,12 +24,12 @@
 
 .navLink {
   display: inline-block;
-  color: #f2f2f2;
-  background-color: rgb(114, 162, 245);
+  color: #000000;
+  background-color: rgba(114, 162, 245, 0);
   text-align: center;
-  padding: 24px 10px;
+  padding: 7px 10px;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 19px;
 
   /* these last two make the logout button in
   the nav bar look like another link */
@@ -38,5 +39,15 @@
 }
 
 .navLink:hover {
-  background-color: rgb(23, 106, 209);
+  background-color: rgb(91, 156, 235);
+}
+
+.nav-right{
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-right-top{
+  height: 47.5px;
+  width: 100%;
 }

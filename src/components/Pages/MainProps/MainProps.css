@@ -8,16 +8,18 @@
 
 .prop-component{
     padding: 5%;
+    padding-top: 0;
     margin: 20px;
 }
 
-.prop-component h2{
+/* .prop-component h2{
     display: flex;
     justify-content: center;
     margin-top: -40px;
     margin-bottom: 40px;
-    font-size: 50px;
-}
+    font-size: 40px;
+    text-decoration: underline;
+} */
 
 /* tbody{
     background-color: rgb(255 251 221);
@@ -27,4 +29,25 @@
     background-color: rgb(114, 162, 245);
     color: white;
     font-size: 18px;
+}
+
+.prop-header{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.prop-header h2{
+    display: flex;
+    justify-content: center;
+
+    font-size: 40px;
+    text-decoration: underline;
+}
+
+.prop-header p{
+    display: flex;
+    justify-content: center;
+    font-size: 22px;
+    font-style: italic;
+    text-align: center;
 }

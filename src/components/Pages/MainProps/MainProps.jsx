@@ -23,23 +23,32 @@ export default function MainProps() {
 
     return (
         <div className="prop-component">
-            <h2>In Progress Proposals</h2>
+            <div className="prop-header">
+                <h2>Active Proposals</h2>
+                <p>Please take a few moments to either cast or <br />
+                    update your vote on our current proposals</p>
+            </div>
             <Card
-                sx={{ maxWidth: 1/1 }}
                 className="main-props"
                 elevation={6}
+                sx={{
+                    maxWidth: 1 / 1,
+                    border: 4,
+                    borderRadius: '16px',
+                    borderColor: 'rgb(114, 162, 245)'
+                }}
             >
                 <TableContainer
-                    sx={{ height: 650 }}
+                    sx={{ height: 700 }}
                 >
                     <Table
                         sx={{ height: "max-content" }}
-                        stickyHeader 
+                        stickyHeader
                         aria-label="sticky table"
                     >
                         <TableHead>
                             <TableRow>
-                                <TableCell sx={{minWidth: 500}}>Description</TableCell>
+                                <TableCell sx={{ minWidth: 500 }}>Description</TableCell>
                                 <TableCell align="left" >Proposed By</TableCell>
                                 <TableCell align="left" >Vote</TableCell>
                                 <TableCell ></TableCell>
