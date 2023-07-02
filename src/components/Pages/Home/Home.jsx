@@ -4,7 +4,6 @@ import Modal from 'react-modal';
 import './Home.css';
 import Paper from "@mui/material/Paper";
 import Card from "@mui/material/Card";
-import Container from "@mui/material/Container";
 
 import EventCalendar from "./Calendar/EventCalendar"
 import HomePassedProps from "./HomePropTables/HomePassedProps";

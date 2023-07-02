@@ -21,13 +21,17 @@ function UserPage() {
 
   return (
     <div className="user-container">
-      <h2>{user.username}</h2>
+      <div className="user-header">
+        <h2>Member: {user.username}</h2>
+        <p>Here you can manage your contact information,<br />
+          proposals, and community events</p>
+      </div>
       <div className="user-top">
         <UserContactInfo />
         <UserEvents />
       </div>
       <div className="user-bottom">
-      <UserProps />
+        <UserProps />
       </div>
       <br />
       <LogOutButton className="btn" />
