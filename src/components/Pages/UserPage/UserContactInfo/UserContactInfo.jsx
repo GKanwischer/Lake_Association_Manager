@@ -22,7 +22,7 @@ export default function ContactInfoTest() {
     const contactInfo = {
         first_name: firstNameInput,
         last_name: lastNameInput,
-        phone_number: Number(phoneNumberInput),
+        phone_number: phoneNumberInput,
         email: emailInput,
         street_address: streetAddressInput,
         city: cityInput,
@@ -79,7 +79,7 @@ export default function ContactInfoTest() {
                         ? <span>
                             <input
                                 placeholder="phone number"
-                                type="tel"
+                                type="text"
                                 label="Phone Number"
                                 value={phoneNumberInput === '0' ? '' : phoneNumberInput}
                                 className="contact-input"

@@ -10,7 +10,7 @@ CREATE TABLE "user" (
     "is_admin" BOOLEAN DEFAULT false,
     "first_name" VARCHAR (40),
     "last_name" VARCHAR (40),
-    "phone_number" BIGINT,
+    "phone_number" VARCHAR (40),
     "email" VARCHAR (100),
     "street_address" VARCHAR (120),
     "city" VARCHAR (80),
@@ -23,7 +23,8 @@ CREATE TABLE "proposal"(
 	"description" VARCHAR (2000) NOT NULL,
 	"user_id" INTEGER REFERENCES "user" ON DELETE CASCADE, 
 	"created_date" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	"status" VARCHAR (40) DEFAULT 'In Progress'
+	"status" VARCHAR (40) DEFAULT 'In Progress',
+	"status_updated_date" TIMESTAMP
 );
 
 	
@@ -52,6 +53,3 @@ CREATE TABLE "gallery" (
 	"description" VARCHAR (2000),
 	"likes" INTEGER DEFAULT 0
 );
-
-ALTER TABLE "proposal"
-ADD COLUMN "status_updated_date" TIMESTAMP;

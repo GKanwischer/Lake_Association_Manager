@@ -71,7 +71,7 @@ export default function AddEventModal({ isOpen, onClose }) {
                         onChange={e => setEnd(e.target.value)}
                     />
                 </div>
-                <Button variant="contained" onClick={onSubmit}>Add Event</Button>
+                <Button variant="contained" onClick={onSubmit}>Submit</Button>
             </Box>
         </Modal>
     )

@@ -34,7 +34,7 @@ export default function AddPropModal({ isOpen, onClose }) {
             // shouldCloseOnOverlayClick={true}
             onClose={onClose}
         >
-            <Box sx={style}>s
+            <Box sx={style}>
                 <div className="modal-header">
                     <h2>Add a Proposal</h2>
                 </div>
