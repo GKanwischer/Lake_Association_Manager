@@ -1,5 +1,57 @@
 .login-page{
-    margin-top: 15%;
+    height: 100%;
+    /* margin-top: 15%; */
     display: flex;
     flex-direction: column;
+}   
+
+.login-container{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    margin: 5%;
+}
+
+.login-about{
+    display: flex;
+    margin-left: 1.5em;
+    padding: 2%;
+    /* height: 350px; */
+    justify-content: space-between;
+}
+
+.la-msg{
+    width: 65%;
+    height: 100%;
+}
+
+.la-msg h2{
+    font-size: 28px;
+    text-decoration: underline;
+}
+
+.la-msg p{
+    font-size: 20px;
+    font-style: italic;
+}
+
+.la-pic img{
+    margin-left: 10px;
+    border-radius: 12px;
+}
+
+.key-btn{
+    margin-top: -10px;
+    font-size: 14px;
+    padding: 0;
+    border-width: 0;
+    border-radius: 0;
+    background: none;
+    color: #444444;
+}
+
+.reg-top{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
