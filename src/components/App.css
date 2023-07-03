@@ -34,8 +34,8 @@ Button
   border-color: #014041;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #00acb0;
-  color: #f8f8f8;
+  background-color: rgb(114, 162, 245);
+  color: #000000;
   font-size: 1.1rem;
   outline: 0;
   cursor: pointer;
@@ -57,8 +57,9 @@ Button
 }
 
 .btn:hover {
-  background-color: #008183;
+  background-color: rgb(65, 107, 178);
   text-decoration: none;
+  color: #f8f8f8;
 }
 
 /* This line makes the "Register" and "Login" buttons look like links */
