@@ -39,3 +39,19 @@
     margin-left: 10px;
     border-radius: 12px;
 }
+
+.key-btn{
+    margin-top: -10px;
+    font-size: 14px;
+    padding: 0;
+    border-width: 0;
+    border-radius: 0;
+    background: none;
+    color: #444444;
+}
+
+.reg-top{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
