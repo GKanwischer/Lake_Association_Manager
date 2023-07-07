@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useHistory } from 'react-router-dom';
 import RegisterForm from './RegisterForm';
-import LoginAbout from '../LoginAbout/LoginAbout';
+import LoginAbout from '../LoginPage/LoginAbout/LoginAbout';
 
 function RegisterPage() {
   const history = useHistory();

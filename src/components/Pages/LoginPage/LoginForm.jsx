@@ -3,12 +3,15 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
+// this component constructs the login form for the login page
+
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
   const dispatch = useDispatch();
 
+  // function to post the login information
   const login = (event) => {
     event.preventDefault();
 

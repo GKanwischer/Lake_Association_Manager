@@ -1,5 +1,7 @@
 import Card from "@mui/material/Card"
 
+// this component constructs the about us section of the home/login page
+
 export default function LoginAbout() {
 
     return (

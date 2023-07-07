@@ -1,8 +1,11 @@
 import React from 'react';
-import LoginForm from './LoginForm';
-import LoginAbout from '../LoginAbout/LoginAbout';
 import { useHistory } from 'react-router-dom';
 import './LoginPage.css'
+// component imports
+import LoginForm from './LoginForm';
+import LoginAbout from './LoginAbout/LoginAbout';
+
+// this component constructs and houses all things related to the login page
 
 function LoginPage() {
   const history = useHistory();
