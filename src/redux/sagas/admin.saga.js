@@ -1,7 +1,7 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
-// saga file to manage all of the friend end request pertaining to the admin page and functionality
+// saga file to manage all of the front end request pertaining to the admin page and functionality
 
 // saga to get all of the relevant information about all of the users
 function* adminFetchUsersSaga() {
