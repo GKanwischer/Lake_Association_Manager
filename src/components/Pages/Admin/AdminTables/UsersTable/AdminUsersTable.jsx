@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux"
-import AdminUserItem from "./AdminUserItem";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,6 +7,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Card from '@mui/material/Card';
 import CardHeader from "@mui/material/CardHeader";
+
+// component import
+import AdminUserItem from "./AdminUserItem";
+
+// this component constructs the users table for the admin page
 
 export default function AdminUsersTable() {
     const users = useSelector(store => store.admin.users);

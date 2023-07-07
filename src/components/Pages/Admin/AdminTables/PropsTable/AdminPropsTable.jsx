@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux"
-import AdminPropItem from "./AdminPropItem"
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,6 +7,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Card from '@mui/material/Card';
 import CardHeader from "@mui/material/CardHeader";
+// component import
+import AdminPropItem from "./AdminPropItem"
+
+// this component constructs the proposals table for the admin page
 
 export default function AdminPropsTable() {
     const props = useSelector(store => store.admin.props)

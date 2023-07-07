@@ -7,14 +7,18 @@ import Checkbox from '@mui/material/Checkbox';
 import Tooltip from "@mui/material/Tooltip";
 import Swal from "sweetalert2";
 
+// this component builds each item in the users table of the admin page
+
 export default function AdminUserItem({ user }) {
     const dispatch = useDispatch();
     const loggedInUser = useSelector(store => store.user)
 
+    // function to update a users admin status
     function userLevelChange() {
         dispatch({ type: 'ADMIN_USER_LEVEL', payload: user.id })
     }
 
+    // function for removing a user from the community and db
     function deleteUser() {
         dispatch({ type: 'ADMIN_DELETE_USER', payload: user.id })
     }

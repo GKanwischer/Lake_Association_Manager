@@ -2,9 +2,12 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import './AdminPage.css';
 
+// component imports
 import AdminUsersTable from "./AdminTables/UsersTable/AdminUsersTable";
 import AdminEventsTable from "./AdminTables/EventsTable/AdminEventsTable";
 import AdminPropsTable from "./AdminTables/PropsTable/AdminPropsTable";
+
+// this component builds and houses everything related to the admin page
 
 export default function AdminPage() {
     const dispatch = useDispatch();
