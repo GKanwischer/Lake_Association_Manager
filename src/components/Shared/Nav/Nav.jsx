@@ -11,7 +11,6 @@ function Nav() {
     <div className="nav">
       <div className="nav-left">
         <Link to="/home">
-          {/* <h2 className="nav-title">Lake Association Manager</h2> */}
           <img src="/images/Nav_logo_1.5.png" />
         </Link>
       </div>
@@ -49,10 +48,6 @@ function Nav() {
               <LogOutButton className="navLink" />
             </>
           )}
-
-          {/* <Link className="navLink" to="/about">
-            About
-          </Link> */}
         </div>
       </div>
     </div>
