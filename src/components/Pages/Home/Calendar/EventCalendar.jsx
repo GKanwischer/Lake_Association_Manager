@@ -1,4 +1,4 @@
-import React from "react"; // , { useRef }
+import React from "react";
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
@@ -11,6 +11,7 @@ import moment from "moment";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 
+// This component constructs the calendar (FullCalendar.io) for the home page
 
 export default function EventCalendar() {
     const dispatch = useDispatch();
@@ -21,7 +22,10 @@ export default function EventCalendar() {
     }, []);
 
     return (
-        <div className="event-calendar" id="calendar" style={{ position: "relative", zIndex: 0 }}>
+        <div 
+        className="event-calendar" 
+        id="calendar" 
+        style={{ position: "relative", zIndex: 0 }}>
             <Card
                 elevation={6}
                 className="event-card"
@@ -46,6 +50,9 @@ export default function EventCalendar() {
                     selectable={true}
                     events={events}
                     eventDidMount={(info) => {
+                        // This single line allows me to get additional information (that the calendar doesn't hold locally) from the database 
+                        // about each event for interaction purposes. It finds the id of the selected (locally stored) event and matches it 
+                        // with it's corresponding event in the db. Then stores all of the info from the db into the selectedEvent variable.
                         let selectedEvent = (events.filter(event => event.id === Number(info.event.id)))
                         return new bootstrap.Popover(info.el, {
                             title: info.event.title,

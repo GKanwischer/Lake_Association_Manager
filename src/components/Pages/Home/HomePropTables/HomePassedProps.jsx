@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import HomePropItem from "./HomePropItem";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,8 +7,13 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Card from '@mui/material/Card';
 import CardHeader from "@mui/material/CardHeader";
+// component import
+import HomePropItem from "./HomePropItem";
+
+// This component constructs the recently passed proposals table for the home page
 
 export default function HomePassedProps() {
+    // filters out the vetoed proposals from all of the proposals
     const passedProps = useSelector(store => store.props.main.filter(prop => prop.status === 'Passed'));
 
     return (
