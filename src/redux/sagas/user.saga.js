@@ -24,17 +24,19 @@ function* fetchUser() {
   }
 }
 
+// saga to update any of the contact information given by the logged in user
 function* contactInfoSaga(action) { // expects a user id plus { first_name, last_name, phone_number, email, street_address, city, state, profile_pic }
   try {
-    console.log('action.payload in saga: ', action.payload);
     yield axios.put(`/api/user/contact-info/`, action.payload)
-    console.log('Successful user update request');
+    // console.log('Successful user update request');
+    // get the up-to-date information on logged in user
     yield put({ type: 'FETCH_USER' })
   } catch (error) {
-    console.log('Error with user update request');
+    // console.log('Error with user update request');
   }
 }
 
+// watcher saga for the user related requests
 function* userSaga() {
   yield takeEvery('FETCH_USER', fetchUser);
   yield takeEvery('USER_CONTACT_INFO', contactInfoSaga)
