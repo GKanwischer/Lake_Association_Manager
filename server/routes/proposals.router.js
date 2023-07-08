@@ -174,11 +174,11 @@ function updateProposalStatus(proposalId, status) {
 
   pool.query(queryText, [status, currentDate, proposalId])
     .then(() => {
-      // console.log(`Successfully updated status of proposal id ${proposalId} to ${status}`);
-      res.sendStatus(201);
+      console.log(`Successfully updated status of proposal id ${proposalId} to ${status}`);
+      // res.sendStatus(201);
     }).catch(err => {
-      // console.log(`Error updating status of proposal id ${proposalId} to ${status}`, err);
-      res.sendStatus(500);
+      console.log(`Error updating status of proposal id ${proposalId} to ${status}`, err);
+      // res.sendStatus(500);
     });
 }
 
