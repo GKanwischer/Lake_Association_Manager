@@ -5,14 +5,16 @@ import Modal from "@mui/material/Modal";
 import Box from '@mui/material/Box';
 import Button from "@mui/material/Button";
 
+// component that constructs the modal pop up for updating an event on the user page
+
 export default function UpdateEventModal({ isOpen, onClose, event }) {
+    const dispatch = useDispatch();
+    // local input states
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [start, setStart] = useState('');
     const [end, setEnd] = useState('');
-    const dispatch = useDispatch();
 
-    // console.log('Event to update: ', event);
 
     useEffect(() => {
         setTitle(event.title || '');
@@ -21,16 +23,19 @@ export default function UpdateEventModal({ isOpen, onClose, event }) {
         setEnd(moment(event.end).format('YYYY-MM-DDTHH:mm') || moment().format('YYYY-MM-DDTHH:mm'));
     }, [event]);
 
+    // function that helps handle the formatting of the updated start timestamp
     const handleStartChange = (e) => {
         const formattedStart = moment(e.target.value).format('YYYY-MM-DDTHH:mm');
         setStart(formattedStart);
     };
 
+    // function that helps handle the formatting of the updated end timestamp
     const handleEndChange = (e) => {
         const formattedEnd = moment(e.target.value).format('YYYY-MM-DDTHH:mm');
         setEnd(formattedEnd);
     };
 
+    // function that constructs an object containing the up-to-date info on the event and sends it to the db
     const onUpdate = () => {
         const eventToUpdate = {
             event_id: event.id,
@@ -51,6 +56,7 @@ export default function UpdateEventModal({ isOpen, onClose, event }) {
         onClose();
     }
 
+    // modal styling
     const style = {
         position: 'absolute',
         top: '50%',

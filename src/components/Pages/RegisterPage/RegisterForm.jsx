@@ -1,7 +1,10 @@
 import Card from '@mui/material/Card';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+// component import
 import RegisterKeyModal from './RegisterKeyModal';
+
+// function that constructs the registration form
 
 function RegisterForm() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -11,6 +14,7 @@ function RegisterForm() {
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
+  // function to register the user in the db
   const registerUser = (event) => {
     event.preventDefault();
 
@@ -26,7 +30,6 @@ function RegisterForm() {
   return (
     <Card className="formPanel"
       sx={{
-        // backgroundColor: 'rgb(65, 107, 178)',
         border: 4,
         borderRadius: '16px',
         borderColor: 'rgb(114, 162, 245)',
@@ -50,7 +53,8 @@ function RegisterForm() {
           </h3>
         )}
         <div>
-          <label htmlFor="Registration Key">
+        {/* This key is not currently functional. User's can register without it. Need to update in the future. */}
+          <label htmlFor="Registration Key"> 
             Signup Key:
             <input
               type="text"

@@ -4,17 +4,23 @@ import Modal from "@mui/material/Modal";
 import Box from '@mui/material/Box';
 import Button from "@mui/material/Button";
 
+// component that constructs the modal pop up for adding a proposal on the user page
+
 export default function AddPropModal({ isOpen, onClose }) {
     const dispatch = useDispatch();
     const [descriptInput, setDescriptInput] = useState('');
 
+    // function to submit the created proposal into the db
     function submitProposal() {
-        dispatch({ type: 'ADD_PROP', payload: { description: descriptInput } })
+        dispatch({
+            type: 'ADD_PROP',
+            payload: { description: descriptInput }
+        })
         setDescriptInput('');
         onClose();
     }
 
-
+    // modal styling
     const style = {
         position: 'absolute',
         top: '50%',
@@ -29,11 +35,9 @@ export default function AddPropModal({ isOpen, onClose }) {
         p: 4,
     };
 
-
     return (
         <Modal
             open={isOpen}
-            // shouldCloseOnOverlayClick={true}
             onClose={onClose}
         >
             <Box sx={style}>
@@ -47,7 +51,11 @@ export default function AddPropModal({ isOpen, onClose }) {
                         rows={4}
                         cols={40}
                         onChange={e => setDescriptInput(e.target.value)} />
-                    <Button variant="contained" onClick={submitProposal}>Submit</Button>
+                    <Button
+                        variant="contained"
+                        onClick={submitProposal}
+                    >Submit
+                    </Button>
                 </div>
             </Box>
         </Modal>

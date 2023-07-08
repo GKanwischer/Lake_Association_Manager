@@ -7,16 +7,23 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Tooltip from "@mui/material/Tooltip";
 import Swal from "sweetalert2";
 
+// this component builds each item in the proposals table of the admin page
+
 export default function AdminPropItem({ prop }) {
     const dispatch = useDispatch();
 
+    // function for deleting a proposal from the db
     function deleteProp() {
         dispatch({ type: 'ADMIN_DELETE_PROP', payload: prop.id })
     }
 
     return (
         <TableRow>
-            <TableCell>{(prop.first_name || prop.last_name) ? prop.first_name + ' ' + prop.last_name : prop.username}</TableCell>
+            <TableCell>
+                {(prop.first_name || prop.last_name)
+                    ? prop.first_name + ' ' + prop.last_name
+                    : prop.username}
+            </TableCell>
             <TableCell>{prop.description}</TableCell>
             <TableCell align="center" >{prop.status}</TableCell>
             <TableCell align="center" >{prop.true_votes}</TableCell>

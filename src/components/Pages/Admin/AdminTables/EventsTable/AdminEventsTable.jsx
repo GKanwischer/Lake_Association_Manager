@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from "react-redux"
 import { useEffect, useState } from "react";
-import AdminEventItem from "./AdminEventItem";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,11 +8,15 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Card from '@mui/material/Card';
 import CardHeader from "@mui/material/CardHeader";
+// import components
+import AdminEventItem from "./AdminEventItem";
+
+// this component constructs the events table for the admin page
 
 export default function AdminEventsTable() {
     const dispatch = useDispatch();
-    const user = useSelector(store => store.user);
     const events = useSelector(store => store.events);
+    // const user = useSelector(store => store.user);
 
     useEffect(() => {
         dispatch({ type: 'FETCH_EVENTS' });
@@ -56,13 +59,3 @@ export default function AdminEventsTable() {
         </div>
     )
 }
-
-// StretTableCell comback to TableCellis if youTableCellave time
-// function sortBy(TableCellead){
-//     dispatTableCell({ type: 'SORT_EVENTS_BY', payload: TableCellead})
-//     console.log('Sort by: ', TableCellead);
-// }
-// <TableCell onClick={() => sortBy(`"user"."last_name"`)}>Created By</TableCell>
-// <TableCell onClick={() => sortBy(`"event_calendar"."title"`)}>Title</TableCell>
-// <TableCell onClick={() => sortBy(`"event_calendar"."description"`)}>Description</TableCell>
-// <TableCell onClick={() => sortBy(`"event_calendar"."start"`)}>Date</TableCell> 

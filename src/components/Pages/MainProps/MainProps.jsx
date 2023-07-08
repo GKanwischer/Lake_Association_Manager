@@ -8,12 +8,14 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Card from '@mui/material/Card';
 import './MainProps.css';
-
+// component import
 import MainPropItem from "./MainPropItem/MainPropItem";
 
-export default function MainProps() {
-    const inProgressProps = useSelector(store => store.props.main.filter(prop => prop.status === 'In Progress'));
+// this component constructs the main proposals page
 
+export default function MainProps() {
+    // filters out the 'In Progress' proposals
+    const inProgressProps = useSelector(store => store.props.main.filter(prop => prop.status === 'In Progress'));
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -62,5 +64,4 @@ export default function MainProps() {
             </Card>
         </div>
     )
-
 }

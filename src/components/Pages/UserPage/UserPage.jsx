@@ -9,10 +9,10 @@ import UserContactInfo from './UserContactInfo/UserContactInfo';
 import UserProps from './UserProps/UserProps';
 import UserEvents from './UserEvents/UserEvents';
 
-function UserPage() {
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
-  const dispatch = useDispatch();
+// this component constructs and houses the relevant components pertaining to the user page
 
+function UserPage() {
+  const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
 
   useEffect(() => {

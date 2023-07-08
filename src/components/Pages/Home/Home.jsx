@@ -2,14 +2,16 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Modal from 'react-modal';
 import './Home.css';
-import Paper from "@mui/material/Paper";
 import Card from "@mui/material/Card";
 
+// import components 
 import EventCalendar from "./Calendar/EventCalendar"
 import HomePassedProps from "./HomePropTables/HomePassedProps";
 import HomeVetoedProps from "./HomePropTables/HomeVetoedProps";
 
 Modal.setAppElement('#react-root');
+
+// This component constructs the home page and holds its corresponding components
 
 export default function Home() {
     const dispatch = useDispatch();
@@ -18,7 +20,6 @@ export default function Home() {
         dispatch({ type: 'FETCH_PROPS' });
         dispatch({ type: 'FETCH_USER_VOTES' });
     }, []);
-
 
     return (
         <div className="home-container">

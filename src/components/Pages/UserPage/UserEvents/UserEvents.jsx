@@ -1,7 +1,5 @@
 import { useSelector, useDispatch } from "react-redux"
 import { useEffect, useState } from "react";
-import UserEventItem from "./UserEventItem";
-import AddEventModal from "./EventModals/AddEventModal";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -13,15 +11,17 @@ import CardHeader from "@mui/material/CardHeader";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from '@mui/material/IconButton';
 import AddBoxIcon from '@mui/icons-material/AddBox';
+// component imports
+import UserEventItem from "./UserEventItem";
+import AddEventModal from "./EventModals/AddEventModal";
 
+// component that constructs the events table on the user page
 
 export default function UserEvents() {
     const dispatch = useDispatch();
     const user = useSelector(store => store.user);
     const userEvents = useSelector(store => store.events.filter(event => event.user_id === user.id));
     const [modalOpen, setModalOpen] = useState(false);
-
-    console.log('User events', userEvents);
 
     useEffect(() => {
         dispatch({ type: 'FETCH_EVENTS' });
@@ -32,7 +32,7 @@ export default function UserEvents() {
             elevation={6}
             className="user-events"
             sx={{
-                width: 1/1,
+                width: 1 / 1,
                 border: 4,
                 borderRadius: '16px',
                 borderColor: 'rgb(114, 162, 245)'
@@ -42,7 +42,9 @@ export default function UserEvents() {
                 title="Your Community Events"
                 action={
                     <Tooltip title="Add Event">
-                        <IconButton aria-label="add" onClick={() => setModalOpen(true)}>
+                        <IconButton
+                            aria-label="add"
+                            onClick={() => setModalOpen(true)}>
                             <AddBoxIcon fontSize="large" />
                         </IconButton>
                     </Tooltip>} />
@@ -64,7 +66,9 @@ export default function UserEvents() {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <AddEventModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+            <AddEventModal
+                isOpen={modalOpen}
+                onClose={() => setModalOpen(false)} />
         </Card>
     )
 }
