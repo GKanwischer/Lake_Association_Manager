@@ -7,9 +7,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Tooltip from "@mui/material/Tooltip";
 import Swal from "sweetalert2";
 
+// component that constructs each row of the proposals table on the user page
+
 export default function UserPropItem({ prop }) {
     const dispatch = useDispatch();
 
+    // function to handle the delete of a proposal
     function handleDelete() {
         dispatch({ type: 'DELETE_USER_PROP', payload: prop.id })
     }

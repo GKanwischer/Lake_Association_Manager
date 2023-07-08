@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux"
 import { useState } from "react";
 import moment from "moment";
-import UpdateEventModal from "./EventModals/UpdateEventModal";
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
@@ -9,12 +8,17 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Tooltip from "@mui/material/Tooltip";
 import EditIcon from '@mui/icons-material/Edit';
 import Swal from "sweetalert2";
+// component import
+import UpdateEventModal from "./EventModals/UpdateEventModal";
 
+// component that constructs each row of the events table on the user page
 
 export default function UserEventItem({ event }) {
     const dispatch = useDispatch();
     const [updateModalOpen, setUpdateModalOpen] = useState(false);
 
+    // This is just to compare the start and end date of an event. 
+    // That way it only shows one of them if they're matching, which allows for a cleaner display.
     const dateMatch = () => {
         if (moment(event.start).format('l') === moment(event.end).format('l')) {
             return true;
@@ -23,6 +27,7 @@ export default function UserEventItem({ event }) {
         }
     }
 
+    // function to handle the deletion of an event
     function handleDelete() {
         dispatch({ type: 'DELETE_EVENT', payload: event.id })
     }

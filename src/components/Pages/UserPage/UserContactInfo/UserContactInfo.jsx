@@ -4,11 +4,13 @@ import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from '@mui/material/CardContent';
-import TextField from '@mui/material/TextField';
+
+// this component constructs the contact info section of the user page
 
 export default function ContactInfoTest() {
     const dispatch = useDispatch();
     const user = useSelector((store) => store.user);
+    const [editMode, setEditMode] = useState(false)
     // local input states
     const [firstNameInput, setFirstNameInput] = useState(user.first_name)
     const [lastNameInput, setLastNameInput] = useState(user.last_name)
@@ -17,8 +19,8 @@ export default function ContactInfoTest() {
     const [streetAddressInput, setStreetAddressInput] = useState(user.street_address)
     const [cityInput, setCityInput] = useState(user.city)
     const [stateInput, setStateInput] = useState(user.state)
-    const [editMode, setEditMode] = useState(false)
 
+    // local object to be sent when a user updates their contact info
     const contactInfo = {
         first_name: firstNameInput,
         last_name: lastNameInput,
@@ -29,8 +31,7 @@ export default function ContactInfoTest() {
         state: stateInput
     }
 
-    console.log('updated contact info: ', contactInfo);
-
+    // function that sends the contactInfo object so the information can be updated in the db
     function handleUpdate() {
         dispatch({
             type: 'USER_CONTACT_INFO',
@@ -55,9 +56,13 @@ export default function ContactInfoTest() {
                 action={
                     <Button
                         variant="contained"
-                        onClick={editMode ? handleUpdate : () => setEditMode(true)}
+                        onClick={editMode
+                                    ? handleUpdate
+                                    : () => setEditMode(true)}
                     >
-                        {!editMode ? 'Edit' : 'Update'}
+                        {!editMode
+                            ? 'Edit'
+                            : 'Update'}
                     </Button>
                 }
             />

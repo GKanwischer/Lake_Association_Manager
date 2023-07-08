@@ -6,15 +6,19 @@ import Modal from "@mui/material/Modal";
 import Box from '@mui/material/Box';
 import Button from "@mui/material/Button";
 
+// component that constructs the modal pop up for adding an event on the user page
+
 export default function AddEventModal({ isOpen, onClose }) {
+    const dispatch = useDispatch();
+    // local imput states
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [start, setStart] = useState(moment().format('YYYY-MM-DDTHH:mm'));
     const [end, setEnd] = useState(moment().format('YYYY-MM-DDTHH:mm'));
-    const dispatch = useDispatch();
 
     let eventToAdd = { title, description, start, end };
 
+    // function that sends the eventToAdd object to be posted into the db
     const onSubmit = () => {
         dispatch({
             type: 'ADD_EVENT',
@@ -27,6 +31,7 @@ export default function AddEventModal({ isOpen, onClose }) {
         onClose();
     }
 
+    // modal styling
     const style = {
         position: 'absolute',
         top: '50%',
