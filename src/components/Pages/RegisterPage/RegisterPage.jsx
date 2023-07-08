@@ -1,8 +1,10 @@
 import React from 'react';
-
 import { useHistory } from 'react-router-dom';
+// component imports
 import RegisterForm from './RegisterForm';
 import LoginAbout from '../LoginPage/LoginAbout/LoginAbout';
+
+// function that constructs and houses the components for the registration page
 
 function RegisterPage() {
   const history = useHistory();
@@ -12,11 +14,8 @@ function RegisterPage() {
       <div className="login-info">
         <LoginAbout />
       </div>
-
       <div className="login-page">
-
         <RegisterForm />
-
         <center>
           <button
             type="button"

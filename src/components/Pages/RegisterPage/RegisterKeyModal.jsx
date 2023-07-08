@@ -2,6 +2,8 @@ import React from "react";
 import Modal from "@mui/material/Modal";
 import Box from '@mui/material/Box';
 
+// simple function that handles the modal pop up on how to key a registration key
+
 export default function RegisterKeyModal({ isOpen, onClose }) {
 
     const style = {
