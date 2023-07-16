@@ -70,7 +70,7 @@ export default function Home() {
                             borderColor: 'rgb(114, 162, 245)'
                         }}
                         elevation={6}>
-                        <img src="/images/On_a_dock.JPG" />
+                        <img src="/images/8EF5DEEC-56AE-494A-B1AD-FDE521321651_1_105_c.jpeg" />
                     </Card>
                 </div>
             </div>
