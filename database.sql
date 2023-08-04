@@ -33,7 +33,7 @@ CREATE TABLE "proposal_vote"(
 	"proposal_id" INTEGER REFERENCES "proposal" ON DELETE CASCADE,
 	"user_id" INTEGER REFERENCES "user" ON DELETE CASCADE,
 	"vote" BOOLEAN,
-	CONSTRAINT unique_vote_per_user_proposal UNIQUE (user_id, proposal_id)
+	CONSTRAINT unique_vote_per_user_proposal UNIQUE (user_id, proposal_id),
 );
 
 CREATE TABLE "event_calendar" (
