@@ -7,7 +7,7 @@
   margin: 0 0 30px;
   background-color: rgb(114, 162, 245);
   overflow: hidden;
-  background-image: url("/Users/Kandyman/Documents/EDA/Tier_3/Solo_Project/Lake_Association_Manager/public/images/Nav_banner.png");
+  background-image: url("../../../../public/images/Nav_banner.png");
 }
 
 .nav a {
