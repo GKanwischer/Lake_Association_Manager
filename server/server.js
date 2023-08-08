@@ -36,7 +36,7 @@ app.use('/api/gallery', galleryRouter);
 app.use(express.static('build'));
 
 // App Set //
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080; // should be 5000 when local and 8080 for fly deployment
 
 /** Listen * */
 app.listen(PORT, '0.0.0.0', () => {

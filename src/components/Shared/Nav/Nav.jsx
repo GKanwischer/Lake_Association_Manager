@@ -36,6 +36,10 @@ function Nav() {
                 User
               </Link>
 
+              <Link className="navLink" to="/gallery">
+                Gallery
+              </Link>
+
               <Link className="navLink" to="/proposals">
                 Proposals
               </Link>

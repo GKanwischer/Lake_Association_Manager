@@ -21,6 +21,7 @@ import RegisterPage from './Pages/RegisterPage/RegisterPage';
 import MainProps from './Pages/MainProps/MainProps';
 import Home from './Pages/Home/Home';
 import AdminPage from './Pages/Admin/AdminPage';
+import Gallery from './Pages/Gallery/Gallery';
 
 import './App.css';
 
@@ -51,6 +52,14 @@ function App() {
             path="/user"
           >
             <UserPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/gallery"
+          >
+            <Gallery />
           </ProtectedRoute>
 
           <ProtectedRoute

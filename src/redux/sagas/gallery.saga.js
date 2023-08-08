@@ -10,7 +10,7 @@ function* gallerySaga(){
 }
 
 // helps decided which fetch request needs to be triggered
-function selectImageFetch(userDisp){
+function* selectImageFetch(userDisp){
     if (userDisp){
         yield put({ type: 'FETCH_USER_IMGS' })
     } else {
