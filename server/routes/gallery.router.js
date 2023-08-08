@@ -18,7 +18,7 @@ router.get('/', rejectUnauthenticated, (req,res) => {
 })
 
 // adding an image
-router.post('/', rejectUnauthenticated, (req, res) => {
+router.post('/add', rejectUnauthenticated, (req, res) => {
     const {url, title, description} = req.body;
     const queryText =  `INSERT INTO "gallery" ("user_id", "url", "title", "description")
                         VALUES ($1, $2, $3, $4);`;

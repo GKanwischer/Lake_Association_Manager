@@ -4,6 +4,7 @@ import user from './user.reducer';
 import calendarReducer from './calendar.reducer';
 import propReducer from './proposals.reducer';
 import adminReducer from './admin.reducer';
+import galleryReducer from './gallery.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   events: calendarReducer,
   props: propReducer,
   admin: adminReducer,
+  gallery: galleryReducer,
 });
 
 export default rootReducer;
