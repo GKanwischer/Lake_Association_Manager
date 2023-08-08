@@ -17,6 +17,21 @@ router.get('/', rejectUnauthenticated, (req,res) => {
     })
 })
 
+// getting all images added by a specifed user
+router.get('/user', rejectUnauthenticated, (req,res) => {
+    const queryText = `Select * FROM "gallery" WHERE "user_id" = $1;`;
+
+    pool.query(queryText, [req.user.id])
+    .then(result => {
+        // console.log('Success GETing gallery images for the logged in user');
+        res.status(200).send(result.rows);
+    }).catch(err => {
+        console.log('Error getting gallery images', err);
+        res.sendStatus(500);
+    })
+})
+
+
 // adding an image
 router.post('/add', rejectUnauthenticated, (req, res) => {
     const {url, title, description} = req.body;
@@ -29,6 +44,21 @@ router.post('/add', rejectUnauthenticated, (req, res) => {
         }).catch(err => {
             console.log('Error adding image to db', err);
             res.sendStatus(500)
+        })
+})
+
+// updating details of a specified image
+router.put('/edit_details/:imageId', rejectUnauthenticated, (req,res) => {
+    const imageId = req.paramas.imageId;
+    const {url, title, description} = req.body
+    const queryText = `UPDATE "gallery" SET "url" = $1, "title" = $2, "description" = $3 WHERE "id" = $4;`;
+
+    pool.query(queryText, [url, title, description, imageId])
+        .then(result => {
+            res.sendStatus(200);
+        }).catch(err => {
+            console.log(`Error updating image titled: ${title}`, err);
+            res.sendStatus(500);
         })
 })
 
