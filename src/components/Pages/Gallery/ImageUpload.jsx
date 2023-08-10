@@ -16,33 +16,46 @@ export default function ImageUpload({ userDisp }) {
     setImageSelected('');
   }
 
-  const addImage = async (files) => {
-    try {
-      let image_url = '';
+  // const addImage = async (files) => {
+  //   try {
+  //     let image_url = '';
 
-      if (imageSelected !== '') {
-        const formData = new FormData();
-        formData.append('file', imageSelected); // appending the imageSelected state to be the file selected by the user
-        formData.append('upload_preset', 'scbbuugt'); // this is needed to upload to the cloudinary account
+  //     if (imageSelected !== '') {
+  //       const formData = new FormData();
+  //       formData.append('file', imageSelected); // appending the imageSelected state to be the file selected by the user
+  //       formData.append('upload_preset', 'scbbuugt'); // this is needed to upload to the cloudinary account
 
-        // This does the actual work of posting the image to the cloudinary server
-        const response = await axios.post('https://api.cloudinary.com/v1_1/lake-association-manager/image/upload', formData);
-        // setting the variable of the image url from the response
-        image_url = response.data.secure_url;
-      }
-      dispatch({ // This fires the post request to insert a new image into the db
-        type: 'ADD_IMG',
-        payload: {
-          title: title,
-          description: description,
-          url: image_url,
-          userDisp
-        }
-      });
-      clearInputs();
-    } catch (err) {
-      console.log("Image add error!", err);
-    }
+  //       // This does the actual work of posting the image to the cloudinary server
+  //       const response = await axios.post('https://api.cloudinary.com/v1_1/lake-association-manager/image/upload', formData);
+  //       // setting the variable of the image url from the response
+  //       image_url = response.data.secure_url;
+  //     }
+  //     dispatch({ // This fires the post request to insert a new image into the db
+  //       type: 'ADD_IMG',
+  //       payload: {
+  //         title: title,
+  //         description: description,
+  //         url: image_url,
+  //         userDisp
+  //       }
+  //     });
+  //     clearInputs();
+  //   } catch (err) {
+  //     console.log("Image add error!", err);
+  //   }
+  // };
+
+  function addImage(){
+    dispatch({
+      type: 'ADD_IMG',
+      payload: {
+        title: title,
+        description: description,
+        image: imageSelected,
+        userDisp,
+      },
+    });
+    clearInputs();
   };
 
   return (
@@ -64,6 +77,7 @@ export default function ImageUpload({ userDisp }) {
         sx={{ mb: 1.5 }}
       />
       <input
+        className="file-btn"
         type="file"
         onChange={e => setImageSelected(e.target.files[0])}
       />

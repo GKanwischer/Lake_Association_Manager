@@ -39,15 +39,46 @@ function* getUserImagesSaga(){
 }
 
 // handles the request for adding an image to the database
-function* addImageSaga(action){ // expects url, title, description, userDisp 
+// function* addImageSaga(action){ // expects url, title, description, userDisp 
+//     try {
+//         const {userDisp} = action.payload;
+//         yield axios.post('/api/gallery/add', action.payload)
+//         selectImageFetch(userDisp);
+//     } catch (err) {
+//         console.log('Error with image post request', err);
+//     }
+// }
+
+function* addImageSaga(action) {
     try {
-        const {userDisp} = action.payload;
-        yield axios.post('/api/gallery/add', action.payload)
-        selectImageFetch(userDisp);
+      const { title, description, image, userDisp } = action.payload;
+  
+      let image_url = '';
+  
+      if (image !== '') {
+        const formData = new FormData();
+        formData.append('file', image);
+        formData.append('upload_preset', 'scbbuugt');
+  
+        const response = yield axios.post(
+          'https://api.cloudinary.com/v1_1/lake-association-manager/image/upload',
+          formData
+        );
+        image_url = response.data.secure_url;
+      }
+  
+      const dbPayload = {
+        title: title,
+        description: description,
+        url: image_url,
+      };
+  
+      yield axios.post('/api/gallery/add', dbPayload);
+      selectImageFetch(userDisp);
     } catch (err) {
-        console.log('Error with image post request', err);
+      console.log('Error with image add request', err);
     }
-}
+  }
 
 // handles the request for updating details about an image in the database
 function* editImageDetailsSaga(action){ // expects imageId, url, title, description, userDisp
