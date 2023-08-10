@@ -12,10 +12,13 @@ export default function GalleryItem({ image }) {
             xs={6} md={4} lg={3}
         >
             <Card elevation={3}
-                sx={{ 
-                    p: 2, 
-                    height: "100%", 
-                    }}>
+                sx={{
+                    p: 2,
+                    height: "100%",
+                    border: 4,
+                    borderRadius: '16px',
+                    borderColor: 'rgb(114, 162, 245)'
+                }}>
                 <CardHeader
                     title={image.title}
                 />

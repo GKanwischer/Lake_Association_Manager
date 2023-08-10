@@ -2,15 +2,18 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
 import axios from "axios";
 
-export default function ImageUpload({ userDisp }) {
+export default function ImageUpload({ userDisp, isOpen, onClose }) {
   const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [imageSelected, setImageSelected] = useState('');
 
-  function clearInputs(){
+  function clearInputs() {
     setTitle('');
     setDescription('');
     setImageSelected('');
@@ -45,7 +48,7 @@ export default function ImageUpload({ userDisp }) {
   //   }
   // };
 
-  function addImage(){
+  function addImage() {
     dispatch({
       type: 'ADD_IMG',
       payload: {
@@ -59,36 +62,65 @@ export default function ImageUpload({ userDisp }) {
   };
 
   return (
-    <>
-      <TextField
-        type="text"
-        lable="Title"
-        placeholder="Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        sx={{ mb: 1.5 }}
-      />
-      <TextField
-        type="text"
-        lable="Description"
-        placeholder="Description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        sx={{ mb: 1.5 }}
-      />
-      <input
-        className="file-btn"
-        type="file"
-        onChange={e => setImageSelected(e.target.files[0])}
-      />
-      <Button
-        onClick={addImage}
-        variant="contained"
-        color="primary"
-        sx={{ mr: 1.5 }}
-      >
-        Add Image
-      </Button>
-    </>
+    <Modal
+      open={isOpen}
+      onClose={onClose}
+      sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+    >
+      <Card
+        sx={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: 400,
+          bgcolor: 'background.paper',
+          border: 4,
+          borderRadius: '16px',
+          borderColor: 'rgb(114, 162, 245)',
+          boxShadow: 24,
+          p: 4,
+        }}>
+        <CardHeader
+          title="Add Image"
+        />
+        <TextField
+          type="text"
+          lable="Title"
+          placeholder="Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          sx={{ mb: 1.5 }}
+        />
+        <TextField
+          type="text"
+          lable="Description"
+          placeholder="Description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          multiline
+          rows={6}
+          sx={{ mb: 1.5 }}
+        />
+        <input
+          className="file-btn"
+          type="file"
+          onChange={e => setImageSelected(e.target.files[0])}
+        />
+        <Button
+          onClick={addImage}
+          variant="contained"
+          color="primary"
+          sx={{ mr: 1.5 }}
+        >
+          Submit</Button>
+
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={onClose}
+        >Close</Button>
+      </Card>
+    </Modal>
   )
 }

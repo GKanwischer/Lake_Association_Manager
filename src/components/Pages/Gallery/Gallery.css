@@ -3,3 +3,17 @@
     padding-top: 0;
     margin: 20px;
 }
+
+.gallery-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2%;
+    font-size: 40px;
+    text-decoration: underline;
+}
+
+.title-container {
+    flex: 1; /* Allow the title container to take available space */
+    text-align: center; /* Horizontally center the title */
+}
